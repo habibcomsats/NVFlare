@@ -21,8 +21,8 @@ from nvflare.apis.dxo import DXO, DataKind
 from nvflare.apis.fl_constant import FLContextKey
 from nvflare.apis.fl_context import FLContext
 from nvflare.app_common.abstract.model_locator import ModelLocator
-from nvflare.app_common.pt.pt_fed_utils import PTModelPersistenceFormatManager
 from nvflare.app_common.app_constant import DefaultCheckpointFileName
+from nvflare.app_common.pt.pt_fed_utils import PTModelPersistenceFormatManager
 
 
 class PTModelLocator(ModelLocator):
@@ -30,9 +30,10 @@ class PTModelLocator(ModelLocator):
     SERVER_BEST_MODEL_NAME = "server_best"
 
     def __init__(
-        self, model_dir="app_server",
+        self,
+        model_dir="app_server",
         model_name=DefaultCheckpointFileName.GLOBAL_MODEL,
-        best_model_name=DefaultCheckpointFileName.BEST_GLOBAL_MODEL
+        best_model_name=DefaultCheckpointFileName.BEST_GLOBAL_MODEL,
     ):
         """A ModelLocator that provides the global and best global models.
 

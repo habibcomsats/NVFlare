@@ -241,13 +241,10 @@ class CIFAR10Learner(Learner):
         epoch_len = len(self.train_loader)
         self.log_info(fl_ctx, f"Local steps per epoch: {epoch_len}")
 
-        # make a copy of model_global as reference for potential FedProx loss
-        if self.fedproxloss_mu > 0:
-            model_global = copy.deepcopy(self.model)
-            for param in model_global.parameters():
-                param.requires_grad = False
-        else:
-            model_global = None
+        # make a copy of model_global as reference for potential FedProx loss or SCAFFOLD
+        model_global = copy.deepcopy(self.model)
+        for param in model_global.parameters():
+            param.requires_grad = False
 
         # local train
         self.local_train(
