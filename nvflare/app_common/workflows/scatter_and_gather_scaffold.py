@@ -26,7 +26,7 @@ from nvflare.app_common.abstract.shareable_generator import ShareableGenerator
 from nvflare.app_common.app_constant import AppConstants, AlgorithmConstants
 from nvflare.app_common.app_event_type import AppEventType
 from nvflare.widgets.info_collector import GroupInfoCollector, InfoCollector
-from nvflare.apis.dxo import DXO, DataKind, MetaKey, from_shareable
+from nvflare.apis.dxo import from_shareable
 
 
 class ScatterAndGatherScaffold(Controller):
