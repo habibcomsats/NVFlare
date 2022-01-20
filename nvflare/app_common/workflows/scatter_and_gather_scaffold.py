@@ -11,10 +11,11 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-import traceback
 import copy
+import traceback
 
 from nvflare.apis.client import Client
+from nvflare.apis.dxo import from_shareable
 from nvflare.apis.fl_constant import ReturnCode
 from nvflare.apis.fl_context import FLContext
 from nvflare.apis.impl.controller import ClientTask, Controller, Task
@@ -23,10 +24,9 @@ from nvflare.apis.signal import Signal
 from nvflare.app_common.abstract.aggregator import Aggregator
 from nvflare.app_common.abstract.learnable_persistor import LearnablePersistor
 from nvflare.app_common.abstract.shareable_generator import ShareableGenerator
-from nvflare.app_common.app_constant import AppConstants, AlgorithmConstants
+from nvflare.app_common.app_constant import AlgorithmConstants, AppConstants
 from nvflare.app_common.app_event_type import AppEventType
 from nvflare.widgets.info_collector import GroupInfoCollector, InfoCollector
-from nvflare.apis.dxo import from_shareable
 
 
 class ScatterAndGatherScaffold(Controller):
@@ -149,7 +149,7 @@ class ScatterAndGatherScaffold(Controller):
         self.fire_event(AppEventType.INITIAL_MODEL_LOADED, fl_ctx)
 
         # for SCAFFOLD
-        self._global_ctrl_weights = copy.deepcopy(self._global_weights['weights'])
+        self._global_ctrl_weights = copy.deepcopy(self._global_weights["weights"])
         # Initialize correction term with zeros
         for k in self._global_ctrl_weights.keys():
             self._global_ctrl_weights[k] = self._global_ctrl_weights[k] * 0
@@ -223,7 +223,9 @@ class ScatterAndGatherScaffold(Controller):
                 ctr_diff = dxo.get_meta_prop(AlgorithmConstants.SCAFFOLD_CTRL_DIFF)
                 for v_name, v_value in ctr_diff.items():
                     self._global_ctrl_weights[v_name] += v_value
-                fl_ctx.set_prop(AlgorithmConstants.SCAFFOLD_CTRL_GLOBAL, self._global_ctrl_weights, private=True, sticky=True)
+                fl_ctx.set_prop(
+                    AlgorithmConstants.SCAFFOLD_CTRL_GLOBAL, self._global_ctrl_weights, private=True, sticky=True
+                )
 
                 fl_ctx.set_prop(AppConstants.GLOBAL_MODEL, self._global_weights, private=True, sticky=True)
                 fl_ctx.sync_sticky()
@@ -298,7 +300,9 @@ class ScatterAndGatherScaffold(Controller):
                 return False
             else:
                 if rc in [ReturnCode.MISSING_PEER_CONTEXT, ReturnCode.BAD_PEER_CONTEXT]:
-                    self.system_panic("Peer context is bad or missing. ScatterAndGatherScaffold exiting.", fl_ctx=fl_ctx)
+                    self.system_panic(
+                        "Peer context is bad or missing. ScatterAndGatherScaffold exiting.", fl_ctx=fl_ctx
+                    )
                     return False
                 elif rc in [ReturnCode.EXECUTION_EXCEPTION, ReturnCode.TASK_UNKNOWN]:
                     self.system_panic(
@@ -310,7 +314,9 @@ class ScatterAndGatherScaffold(Controller):
                     ReturnCode.TASK_DATA_FILTER_ERROR,
                     ReturnCode.TASK_RESULT_FILTER_ERROR,
                 ]:
-                    self.system_panic("Execution result is not a shareable. ScatterAndGatherScaffold exiting.", fl_ctx=fl_ctx)
+                    self.system_panic(
+                        "Execution result is not a shareable. ScatterAndGatherScaffold exiting.", fl_ctx=fl_ctx
+                    )
                     return False
 
         fl_ctx.set_prop(AppConstants.CURRENT_ROUND, self._current_round, private=True, sticky=False)

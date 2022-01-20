@@ -19,7 +19,7 @@ from nvflare.apis.fl_constant import ReservedKey, ReturnCode
 from nvflare.apis.fl_context import FLContext
 from nvflare.apis.shareable import Shareable
 from nvflare.app_common.abstract.aggregator import Aggregator
-from nvflare.app_common.app_constant import AppConstants, AlgorithmConstants
+from nvflare.app_common.app_constant import AlgorithmConstants, AppConstants
 
 
 class InTimeAccumulateWeightedAggregatorScaffold(Aggregator):
