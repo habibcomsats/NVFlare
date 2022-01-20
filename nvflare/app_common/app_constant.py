@@ -150,6 +150,7 @@ class ValidateType(object):
     BEFORE_TRAIN_VALIDATE = "before_train_validate"
     MODEL_VALIDATE = "model_validate"
 
+
 class AlgorithmConstants(object):
 
     SCAFFOLD_CTRL_DIFF = "scaffold_c_diff"
