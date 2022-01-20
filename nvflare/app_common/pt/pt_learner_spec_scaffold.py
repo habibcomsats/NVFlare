@@ -45,18 +45,23 @@ from torch.optim import Optimizer
 from nvflare.app_common.abstract.learner_spec import Learner
 
 
-class ScaffoldLearner(Learner):
+class PTScaffoldLearner(Learner):
     """Learner Spec to be used with SCAFFOLD components.
     Implements the functions used for the algorithm proposed in
     Karimireddy et al. "SCAFFOLD: Stochastic Controlled Averaging for Federated Learning"
-    (https://arxiv.org/abs/1910.06378).
+    (https://arxiv.org/abs/1910.06378) using PyTorch.
     SCAFFOLD-related functions are based on https://github.com/Xtra-Computing/NIID-Bench.
     See also Li et al. "Federated Learning on Non-IID Data Silos: An Experimental Study"
     (https://arxiv.org/abs/2102.02079).
+
+    Note: functions inherited from `Learner` are abstract and need to be implemented by the app.
     """
 
     def __init__(self):
         super().__init__()
+
+        # Model being optimized in SCAFFOLD
+        self.model = None  # should be provided by the Learner implementation
 
         # SCAFFOLD control terms
         self.cnt = 0
@@ -66,6 +71,9 @@ class ScaffoldLearner(Learner):
         self.c_delta_para = None
 
     def scaffold_init(self):
+        if not self.model:
+            raise ValueError("SCAFFOLD model is not initialized!")
+
         # create models for SCAFFOLD correction terms
         self.c_global = copy.deepcopy(self.model)
         self.c_local = copy.deepcopy(self.model)

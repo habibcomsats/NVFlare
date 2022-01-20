@@ -28,12 +28,12 @@ from nvflare.apis.fl_constant import FLContextKey, ReturnCode
 from nvflare.apis.fl_context import FLContext
 from nvflare.apis.shareable import Shareable, make_reply
 from nvflare.apis.signal import Signal
-from nvflare.app_common.abstract.learner_spec_scaffold import ScaffoldLearner
+from nvflare.app_common.pt.pt_learner_spec_scaffold import PTScaffoldLearner
 from nvflare.app_common.app_constant import AppConstants, ModelName, ValidateType
 from nvflare.app_common.pt.pt_fedproxloss import PTFedProxLoss
 
 
-class CIFAR10Learner(ScaffoldLearner):  # also supports CIFAR10ScaffoldLearner
+class CIFAR10Learner(PTScaffoldLearner):  # also supports CIFAR10ScaffoldLearner
     def __init__(
         self,
         dataset_root: str = "./dataset",
