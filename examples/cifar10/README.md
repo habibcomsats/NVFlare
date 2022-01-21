@@ -196,7 +196,7 @@ This can be observed in the resulting performance of the FedAvg algorithms.
 
 ![Impact of client data heterogeneity](./figs/fedavg_alpha.png)
 
-### 4.3 FedProx vs. FedOpt vs. SCAFFOLD
+### 4.3 FedAvg vs. FedProx vs. FedOpt vs. SCAFFOLD
 
 Finally, we compare an `alpha` setting of 0.1, causing a high client data heterogeneity and its 
 impact on more advanced FL algorithms, namely FedProx, FedOpt, and SCAFFOLD. FedProx and SCAFFOLD achieve better performance compared to FedAvg and FedProx with the same `alpha` setting. However, FedOpt and SCAFFOLD show markedly better convergence rates. SCAFFOLD achieves that by adding a correction term when updating the client models, while FedOpt utilizes SGD with momentum

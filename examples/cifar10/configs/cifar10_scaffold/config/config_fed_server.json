@@ -26,8 +26,13 @@
       "args": {}
     },
     {
-      "id": "aggregator",
-      "name": "InTimeAccumulateWeightedAggregatorScaffold",
+      "id": "weight_aggregator",
+      "name": "InTimeAccumulateWeightedAggregator",
+      "args": {}
+    },
+    {
+      "id": "scaffold_ctrl_aggregator",
+      "name": "InTimeAccumulateWeightedAggregator",
       "args": {}
     },
     {
@@ -60,7 +65,8 @@
             "num_rounds" : "{num_rounds}",
             "start_round": 0,
             "wait_time_after_min_received": 10,
-            "aggregator_id": "aggregator",
+            "aggregator_id": "weight_aggregator",
+            "aggregator_ctrl_id": "scaffold_ctrl_aggregator",
             "persistor_id": "persistor",
             "shareable_generator_id": "shareable_generator",
             "train_task_name": "train",

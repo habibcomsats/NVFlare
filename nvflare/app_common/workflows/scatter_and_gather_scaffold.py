@@ -14,22 +14,18 @@
 import copy
 import traceback
 
-from nvflare.apis.client import Client
-from nvflare.apis.dxo import from_shareable
-from nvflare.apis.fl_constant import ReturnCode
+from nvflare.apis.dxo import DXO, DataKind, MetaKey, from_shareable
 from nvflare.apis.fl_context import FLContext
-from nvflare.apis.impl.controller import ClientTask, Controller, Task
+from nvflare.apis.impl.controller import Task
 from nvflare.apis.shareable import Shareable
 from nvflare.apis.signal import Signal
 from nvflare.app_common.abstract.aggregator import Aggregator
-from nvflare.app_common.abstract.learnable_persistor import LearnablePersistor
-from nvflare.app_common.abstract.shareable_generator import ShareableGenerator
 from nvflare.app_common.app_constant import AlgorithmConstants, AppConstants
 from nvflare.app_common.app_event_type import AppEventType
-from nvflare.widgets.info_collector import GroupInfoCollector, InfoCollector
+from nvflare.app_common.workflows.scatter_and_gather import ScatterAndGather
 
 
-class ScatterAndGatherScaffold(Controller):
+class ScatterAndGatherScaffold(ScatterAndGather):
     def __init__(
         self,
         min_clients: int = 1,
@@ -37,6 +33,7 @@ class ScatterAndGatherScaffold(Controller):
         start_round: int = 0,
         wait_time_after_min_received: int = 10,
         aggregator_id=AppConstants.DEFAULT_AGGREGATOR_ID,
+        aggregator_ctrl_id=AlgorithmConstants.SCAFFOLD_CTRL_AGGREGATOR_ID,
         persistor_id=AppConstants.DEFAULT_PERSISTOR_ID,
         shareable_generator_id=AppConstants.DEFAULT_SHAREABLE_GENERATOR_ID,
         train_task_name=AppConstants.TASK_TRAIN,
@@ -57,103 +54,56 @@ class ScatterAndGatherScaffold(Controller):
                 contributions received. Defaults to 10.
             train_timeout (int, optional): Time to wait for clients to do local training.
             aggregator_id (str, optional): ID of the aggregator component. Defaults to "aggregator".
+            aggregator_ctrl_id (str, optional): ID of the aggregator component that aggregrates the SCAFFOLD control term. Defaults to "aggregator".
             persistor_id (str, optional): ID of the persistor component. Defaults to "persistor".
             shareable_generator_id (str, optional): ID of the shareable generator. Defaults to "shareable_generator".
             train_task_name (str, optional): Name of the train task. Defaults to "train".
         """
-        Controller.__init__(self)
 
-        # Check arguments
-        if not isinstance(min_clients, int):
-            raise TypeError("min_clients must be int.")
-        if not isinstance(num_rounds, int):
-            raise TypeError("num_rounds must be int.")
-        if not isinstance(start_round, int):
-            raise TypeError("start_round must be int.")
-        if not isinstance(wait_time_after_min_received, int):
-            raise TypeError("wait_time_after_min_received must be int.")
-        if not isinstance(train_timeout, int):
-            raise TypeError("train_timeout must be int.")
-        if not isinstance(aggregator_id, str):
-            raise TypeError("aggregator_id must be a string.")
-        if not isinstance(persistor_id, str):
-            raise TypeError("persistor_id must be a string.")
-        if not isinstance(shareable_generator_id, str):
-            raise TypeError("shareable_generator_id must be a string.")
-        if not isinstance(train_task_name, str):
-            raise TypeError("train_task_name must be a string.")
-        if min_clients <= 0:
-            raise ValueError("min_clients must be greater than 0.")
-        if num_rounds < 0:
-            raise ValueError("num_rounds must be greater than or equal to 0.")
-        if start_round < 0:
-            raise ValueError("start_round must be greater than or equal to 0.")
-        if wait_time_after_min_received < 0:
-            raise ValueError("wait_time_after_min_received must be greater than or equal to 0.")
+        super().__init__(
+            min_clients=min_clients,
+            num_rounds=num_rounds,
+            start_round=start_round,
+            wait_time_after_min_received=wait_time_after_min_received,
+            aggregator_id=aggregator_id,
+            persistor_id=persistor_id,
+            shareable_generator_id=shareable_generator_id,
+            train_task_name=train_task_name,
+            train_timeout=train_timeout,
+            ignore_result_error=ignore_result_error,
+        )
 
-        self.aggregator_id = aggregator_id
-        self.persistor_id = persistor_id
-        self.shareable_generator_id = shareable_generator_id
-        self.train_task_name = train_task_name
-        self.aggregator = None
-        self.persistor = None
-        self.shareable_gen = None
-
-        # config data
-        self._min_clients = min_clients
-        self._num_rounds = num_rounds
-        self._wait_time_after_min_received = wait_time_after_min_received  # 5 minutes
-        self._start_round = start_round
-        self._train_timeout = train_timeout
-        self.ignore_result_error = ignore_result_error
-
-        # workflow phases: init, train, validate
-        self._phase = AppConstants.PHASE_INIT
-        self._global_weights = None
-        self._global_ctrl_weights = None
-        self._current_round = None
-
-    def start_controller(self, fl_ctx: FLContext) -> None:
-        self.log_info(fl_ctx, "Initializing ScatterAndGatherScaffold workflow.")
-        self._phase = AppConstants.PHASE_INIT
-        engine = fl_ctx.get_engine()
-        if not engine:
-            self.system_panic("Engine not found. ScatterAndGatherScaffold exiting.", fl_ctx)
-            return
-
-        self.aggregator = engine.get_component(self.aggregator_id)
-        if not isinstance(self.aggregator, Aggregator):
-            self.system_panic(f"aggregator {self.aggregator_id} must be an Aggregator type object.", fl_ctx)
-            return
-
-        self.shareable_gen = engine.get_component(self.shareable_generator_id)
-        if not isinstance(self.shareable_gen, ShareableGenerator):
-            self.system_panic(
-                f"Shareable generator {self.shareable_generator_id} must be a ShareableGenerator type object.", fl_ctx
-            )
-            return
-
-        self.persistor = engine.get_component(self.persistor_id)
-        if not isinstance(self.persistor, LearnablePersistor):
-            self.system_panic(
-                f"Model Persistor {self.persistor_id} must be a LearnablePersistor type object.",
-                fl_ctx,
-            )
-            return
-
-        # initialize global model
-        fl_ctx.set_prop(AppConstants.START_ROUND, self._start_round, private=True, sticky=True)
-        fl_ctx.set_prop(AppConstants.NUM_ROUNDS, self._num_rounds, private=True, sticky=False)
-        self._global_weights = self.persistor.load(fl_ctx)
-        fl_ctx.set_prop(AppConstants.GLOBAL_MODEL, self._global_weights, private=True, sticky=True)
-        self.fire_event(AppEventType.INITIAL_MODEL_LOADED, fl_ctx)
+        if not isinstance(aggregator_ctrl_id, str):
+            raise TypeError("aggregator_ctrl_id must be a string.")
 
         # for SCAFFOLD
+        self.aggregator_ctrl_id = aggregator_ctrl_id
+        self.aggregator_ctrl = None
+        self._global_ctrl_weights = None
+
+    def start_controller(self, fl_ctx: FLContext) -> None:
+        super().start_controller(fl_ctx=fl_ctx)
+
+        # for SCAFFOLD
+        if not self._global_weights:
+            self.system_panic("Global weights not available!", fl_ctx)
+            return
+
         self._global_ctrl_weights = copy.deepcopy(self._global_weights["weights"])
         # Initialize correction term with zeros
         for k in self._global_ctrl_weights.keys():
             self._global_ctrl_weights[k] = self._global_ctrl_weights[k] * 0
         # TODO: Print some stats of the correction magnitudes
+
+        engine = fl_ctx.get_engine()
+        self.aggregator_ctrl = engine.get_component(self.aggregator_ctrl_id)
+        if not isinstance(self.aggregator_ctrl, Aggregator):
+            self.system_panic(
+                f"aggregator {self.aggregator_ctrl_id} must be an Aggregator type object but is "
+                f"{type(self.aggregator_ctrl)}.",
+                fl_ctx,
+            )
+            return
 
     def control_flow(self, abort_signal: Signal, fl_ctx: FLContext) -> None:
         try:
@@ -209,6 +159,7 @@ class ScatterAndGatherScaffold(Controller):
 
                 self.fire_event(AppEventType.BEFORE_AGGREGATION, fl_ctx)
                 aggr_result = self.aggregator.aggregate(fl_ctx)
+                ctrl_aggr_result = self.aggregator_ctrl.aggregate(fl_ctx)  # SCAFFOLD
                 fl_ctx.set_prop(AppConstants.AGGREGATION_RESULT, aggr_result, private=True, sticky=False)
                 self.fire_event(AppEventType.AFTER_AGGREGATION, fl_ctx)
 
@@ -219,8 +170,8 @@ class ScatterAndGatherScaffold(Controller):
                 self._global_weights = self.shareable_gen.shareable_to_learnable(aggr_result, fl_ctx)
 
                 # update SCAFFOLD global controls
-                dxo = from_shareable(aggr_result)
-                ctr_diff = dxo.get_meta_prop(AlgorithmConstants.SCAFFOLD_CTRL_DIFF)
+                dxo = from_shareable(ctrl_aggr_result)
+                ctr_diff = dxo.data
                 for v_name, v_value in ctr_diff.items():
                     self._global_ctrl_weights[v_name] += v_value
                 fl_ctx.set_prop(
@@ -249,93 +200,22 @@ class ScatterAndGatherScaffold(Controller):
             self.log_exception(fl_ctx, error_msg)
             self.system_panic(str(e), fl_ctx)
 
-    def stop_controller(self, fl_ctx: FLContext) -> None:
-        self._phase = AppConstants.PHASE_FINISHED
-        self.cancel_all_tasks()
-
-    def handle_event(self, event_type: str, fl_ctx: FLContext):
-        super().handle_event(event_type, fl_ctx)
-        if event_type == InfoCollector.EVENT_TYPE_GET_STATS:
-            collector = fl_ctx.get_prop(InfoCollector.CTX_KEY_STATS_COLLECTOR, None)
-            if collector:
-                assert isinstance(collector, GroupInfoCollector)
-
-                collector.add_info(
-                    group_name=self._name,
-                    info={"phase": self._phase, "current_round": self._current_round, "num_rounds": self._num_rounds},
-                )
-
-    def _prepare_train_task_data(self, client_task: ClientTask, fl_ctx: FLContext) -> None:
-        fl_ctx.set_prop(AppConstants.TRAIN_SHAREABLE, client_task.task.data, private=True, sticky=False)
-        self.fire_event(AppEventType.BEFORE_TRAIN_TASK, fl_ctx)
-
-    def _process_train_result(self, client_task: ClientTask, fl_ctx: FLContext) -> None:
-        result = client_task.result
-        client_name = client_task.client.name
-
-        self._accept_train_result(client_name=client_name, result=result, fl_ctx=fl_ctx)
-
-        # Cleanup task result
-        client_task.result = None
-
-    def process_result_of_unknown_task(
-        self, client: Client, task_name, client_task_id, result: Shareable, fl_ctx: FLContext
-    ) -> None:
-        if self._phase == AppConstants.PHASE_TRAIN and task_name == self.train_task_name:
-            self._accept_train_result(client_name=client.name, result=result, fl_ctx=fl_ctx)
-            self.log_info(fl_ctx, f"Result of unknown task {task_name} sent to aggregator.")
-        else:
-            self.log_error(fl_ctx, "Ignoring result from unknown task.")
-
     def _accept_train_result(self, client_name: str, result: Shareable, fl_ctx: FLContext) -> bool:
+        weights_accepted = super()._accept_train_result(client_name=client_name, result=result, fl_ctx=fl_ctx)
 
-        rc = result.get_return_code()
-        contribution_round = result.get_cookie(AppConstants.CONTRIBUTION_ROUND)
-        result.set_header(AppConstants.CONTRIBUTION_ROUND, contribution_round)
+        # get SCAFFOLD updates
+        dxo = from_shareable(result)
+        c_delta_para = dxo.get_meta_prop(AlgorithmConstants.SCAFFOLD_CTRL_DIFF, None)
 
-        # Raise errors if bad peer context or execution exception.
-        if rc and rc != ReturnCode.OK:
-            if self.ignore_result_error:
-                self.log_error(fl_ctx, f"Ignore the client train result. Train result error code: {rc}")
-                return False
-            else:
-                if rc in [ReturnCode.MISSING_PEER_CONTEXT, ReturnCode.BAD_PEER_CONTEXT]:
-                    self.system_panic(
-                        "Peer context is bad or missing. ScatterAndGatherScaffold exiting.", fl_ctx=fl_ctx
-                    )
-                    return False
-                elif rc in [ReturnCode.EXECUTION_EXCEPTION, ReturnCode.TASK_UNKNOWN]:
-                    self.system_panic(
-                        "Execution Exception in client training. ScatterAndGatherScaffold exiting.", fl_ctx=fl_ctx
-                    )
-                    return False
-                elif rc in [
-                    ReturnCode.EXECUTION_RESULT_ERROR,
-                    ReturnCode.TASK_DATA_FILTER_ERROR,
-                    ReturnCode.TASK_RESULT_FILTER_ERROR,
-                ]:
-                    self.system_panic(
-                        "Execution result is not a shareable. ScatterAndGatherScaffold exiting.", fl_ctx=fl_ctx
-                    )
-                    return False
+        # convert to Shareable for aggregation
+        ctr_aggr_dxo = DXO(data_kind=DataKind.WEIGHT_DIFF, data=c_delta_para)
+        ctr_aggr_dxo.set_meta_prop(MetaKey.NUM_STEPS_CURRENT_ROUND, dxo.get_meta_prop(MetaKey.NUM_STEPS_CURRENT_ROUND))
+        result["DXO"] = ctr_aggr_dxo._encode()  # TODO: uses protected function. Add way of replacing DXO in shareable
 
-        fl_ctx.set_prop(AppConstants.CURRENT_ROUND, self._current_round, private=True, sticky=False)
-        fl_ctx.set_prop(AppConstants.TRAINING_RESULT, result, private=True, sticky=False)
-        fl_ctx.set_prop(AppConstants.CONTRIBUTION_ROUND, contribution_round, private=True, sticky=False)
-        self.fire_event(AppEventType.BEFORE_CONTRIBUTION_ACCEPT, fl_ctx)
+        # add SCAFFOLD control term
+        ctrl_accepted = self.aggregator_ctrl.accept(result, fl_ctx)
 
-        accepted = self.aggregator.accept(result, fl_ctx)
-        accepted_msg = "ACCEPTED" if accepted else "REJECTED"
-        self.log_info(fl_ctx, f"Contribution from {client_name} {accepted_msg} by the aggregator.")
+        ctrl_accepted_msg = "ACCEPTED" if ctrl_accepted else "REJECTED"
+        self.log_info(fl_ctx, f"Contribution from {client_name} {ctrl_accepted_msg} by the aggregator.")
 
-        fl_ctx.set_prop(AppConstants.AGGREGATION_ACCEPTED, accepted, private=True, sticky=False)
-        self.fire_event(AppEventType.AFTER_CONTRIBUTION_ACCEPT, fl_ctx)
-
-        return accepted
-
-    def _check_abort_signal(self, fl_ctx, abort_signal: Signal):
-        if abort_signal.triggered:
-            self._phase = AppConstants.PHASE_FINISHED
-            self.log_info(fl_ctx, f"Abort signal received. Exiting at round {self._current_round}.")
-            return True
-        return False
+        return weights_accepted and ctrl_accepted
