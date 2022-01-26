@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # add current folder to PYTHONPATH
-export PYTHONPATH="${PWD}"
+export PYTHONPATH="${PWD}:${PWD}/../.."
 echo "PYTHONPATH is ${PYTHONPATH}"
 
 algorithms_dir="${PWD}/configs"

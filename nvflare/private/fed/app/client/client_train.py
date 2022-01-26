@@ -26,6 +26,7 @@ from nvflare.private.fed.app.fl_conf import FLClientStarterConfiger
 from nvflare.private.fed.client.admin import FedAdminAgent
 from nvflare.private.fed.client.admin_msg_sender import AdminMessageSender
 from nvflare.private.fed.client.client_engine import ClientEngine
+from nvflare.apis.utils.common_utils import print_mem_usage
 
 
 def main():
@@ -208,3 +209,5 @@ if __name__ == "__main__":
     # multiprocessing.set_start_method('spawn')
 
     main()
+
+    print_mem_usage("CLIENT TRAIN:")

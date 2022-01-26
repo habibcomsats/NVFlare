@@ -27,6 +27,7 @@ from nvflare.fuel.utils.argument_utils import parse_vars
 from nvflare.private.fed.app.fl_conf import FLServerStarterConfiger
 from nvflare.private.fed.server.admin import FedAdminServer
 from nvflare.security.security import EmptyAuthorizer, FLAuthorizer
+from nvflare.apis.utils.common_utils import print_mem_usage
 
 
 def main():
@@ -220,3 +221,5 @@ if __name__ == "__main__":
     """
 
     main()
+
+    print_mem_usage("SERVER TRAIN:")

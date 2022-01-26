@@ -12,7 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import os
 import socket
+import psutil
 
 
 def get_open_ports(number):
@@ -34,3 +36,8 @@ def get_open_ports(number):
     if len(ports) != number:
         raise RuntimeError("Could not get enough open ports from the system.")
     return ports
+
+
+def print_mem_usage(prefix=""):
+    process = psutil.Process(os.getpid())
+    print(f"{prefix} Mem. usage {process.memory_info().rss/1e6:.2f} MB")  # in Megabytes

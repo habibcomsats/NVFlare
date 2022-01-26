@@ -30,6 +30,7 @@ from nvflare.private.fed.client.client_run_manager import ClientRunManager
 from nvflare.private.fed.client.client_runner import ClientRunner
 from nvflare.private.fed.client.client_status import ClientStatus
 from nvflare.private.fed.client.command_agent import CommandAgent
+from nvflare.apis.utils.common_utils import print_mem_usage
 
 
 def main():
@@ -189,3 +190,5 @@ if __name__ == "__main__":
     """
 
     main()
+
+    print_mem_usage("WORKER PROCESS:")
