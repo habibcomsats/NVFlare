@@ -13,7 +13,8 @@
         "path": "nvflare.app_common.executors.virtual_learner_executor.VirtualLearnerExecutor",
         "args": {
           "learner_id": "cifar10-learner",
-          "virtual_clients": 8
+          "n_real_clients": 8,
+          "n_virtual_clients": 2
         }
       }
     }
