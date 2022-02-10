@@ -77,13 +77,20 @@ class CIFAR10Learner(Learner):
         self.epoch_of_start_time = 0
         self.epoch_global = 0
 
+        self.client_id = None
+
     def initialize(self, parts: dict, fl_ctx: FLContext):
         # when the run starts, this is where the actual settings get initialized for trainer
 
         # Set the paths according to fl_ctx
         self.app_root = fl_ctx.get_prop(FLContextKey.APP_ROOT)
         fl_args = fl_ctx.get_prop(FLContextKey.ARGS)
-        self.client_id = fl_ctx.get_identity_name()
+
+        if fl_ctx.get_prop(AppConstants.VIRTUAL_NAME) is not None:  # support virtual clients
+            self.client_id = fl_ctx.get_prop(AppConstants.VIRTUAL_NAME)
+        else:
+            self.client_id = fl_ctx.get_identity_name()
+
         self.log_info(
             fl_ctx,
             f"Client {self.client_id} initialized at \n {self.app_root} \n with args: {fl_args}",
@@ -95,7 +102,10 @@ class CIFAR10Learner(Learner):
         # Select local TensorBoard writer or event-based writer for streaming
         self.writer = parts.get(self.analytic_sender_id)  # user configured config_fed_client.json for streaming
         if not self.writer:  # use local TensorBoard writer only
-            self.writer = SummaryWriter(self.app_root)
+            writer_dir = os.path.join(self.app_root, self.client_id)  # to support multiple virtual clients
+            if not os.path.isdir(writer_dir):
+                os.makedirs(writer_dir)
+            self.writer = SummaryWriter(writer_dir)
 
         # Set datalist, here the path and filename are hard-coded, can also be fed as an argument
         site_idx_file_name = os.path.join(self.dataset_root, self.client_id + ".npy")
@@ -216,7 +226,7 @@ class CIFAR10Learner(Learner):
         current_round = shareable.get_header(AppConstants.CURRENT_ROUND)
         total_rounds = shareable.get_header(AppConstants.NUM_ROUNDS)
         self.log_info(fl_ctx, f"Current/Total Round: {current_round + 1}/{total_rounds}")
-        self.log_info(fl_ctx, f"Client identity: {fl_ctx.get_identity_name()}")
+        self.log_info(fl_ctx, f"Client identity: {self.client_id}")
 
         # update local model weights with received weights
         dxo = from_shareable(shareable)
@@ -335,7 +345,7 @@ class CIFAR10Learner(Learner):
             return make_reply(ReturnCode.TASK_ABORTED)
 
         # get round information
-        self.log_info(fl_ctx, f"Client identity: {fl_ctx.get_identity_name()}")
+        self.log_info(fl_ctx, f"Client identity: {self.client_id}")
 
         # update local model weights with received weights
         dxo = from_shareable(shareable)

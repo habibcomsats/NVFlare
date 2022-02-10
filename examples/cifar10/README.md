@@ -215,3 +215,22 @@ In a real-world scenario, the researcher won't have access to the TensorBoard ev
 ./run_poc.sh 8 cifar10_fedavg_stream_tb 9 1.0
 ```
 Using this configuration, a `tb_events` folder will be created under the `run_*` folder of the server that includes all the TensorBoard event values of the different clients.
+
+
+## 6. Simulate many clients on limited resources
+
+Let's say we would like to simulate 16 clients. However, our GPU can only support running 8 clients in parallel. We can therefore use 8 "real" clients in parallel, each of which will simulate running 8 clients sequentially. The total number of "effective" clients would be the desired 16 clients. 
+
+First set up a workspace as before
+```
+n_real=8
+n_total=16
+./create_poc_workpace.sh ${n_real}
+```
+Press "y" when prompted.
+
+We can use the `VirtualLearnerExecutor` to simulate `n_virtual` clients on each real client.
+
+```
+./run_poc_virtual.sh ${n_real} ${n_total} cifar10_fedavg_virtual 10 1.0
+```

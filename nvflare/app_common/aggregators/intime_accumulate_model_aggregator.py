@@ -128,6 +128,7 @@ class InTimeAccumulateWeightedAggregator(Aggregator):
 
         contributor_name = shareable.get_peer_prop(key=ReservedKey.IDENTITY_NAME, default="?")
         contribution_round = shareable.get_header(AppConstants.CONTRIBUTION_ROUND)
+        print("$$$$$$$$$$ intime contribution_round", contribution_round)
 
         rc = shareable.get_return_code()
         if rc and rc != ReturnCode.OK:

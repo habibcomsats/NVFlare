@@ -64,6 +64,8 @@ class FullModelShareableGenerator(ShareableGenerator):
                 self.log_info(fl_ctx, "No model weights found. Model will not be updated.")
             else:
                 base_model[ModelLearnableKey.WEIGHTS] = weights
+        else:
+            self.log_error(fl_ctx, f"Data kind {dxo.data_kind} not supported and ignored.")
 
         base_model[ModelLearnableKey.META] = dxo.get_meta_props()
         return base_model

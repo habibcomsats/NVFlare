@@ -117,6 +117,7 @@ class AppConstants(object):
     SUBMIT_MODEL_NAME = "submit_model_name"
     VALIDATE_TYPE = "_validate_type"
 
+    VIRTUAL_NAME = "_VIRTUAL_CLIENT_NAME_"
 
 class EnvironmentKey(object):
 
