@@ -48,11 +48,15 @@ import torchvision.datasets as datasets
 def load_cifar10_data(datadir):
     # download data
     train_dataset = datasets.CIFAR10(root=datadir, train=True, download=True)
-    # valid_dataset = datasets.CIFAR10(root=datadir, train=False, download=True)
+    valid_dataset = datasets.CIFAR10(root=datadir, train=False, download=False)
 
-    # only training label is needed for doing split
+    train_images = train_dataset.data
     train_label = np.array(train_dataset.targets)
-    return train_label
+
+    valid_images = valid_dataset.data
+    valid_labels = np.array(valid_dataset.targets)
+
+    return train_images, train_label, valid_images, valid_labels
 
 
 def get_site_class_summary(train_label, site_idx):
@@ -66,7 +70,7 @@ def get_site_class_summary(train_label, site_idx):
 
 
 def partition_data(datadir, num_sites, alpha):
-    train_label = load_cifar10_data(datadir)
+    train_images, train_label, valid_images, valid_labels = load_cifar10_data(datadir)
 
     min_size = 0
     K = 10
@@ -74,6 +78,7 @@ def partition_data(datadir, num_sites, alpha):
     site_idx = {}
 
     # split
+    print(f"Partition {N} training images into {num_sites} parts.")
     while min_size < 10:
         idx_batch = [[] for _ in range(num_sites)]
         # for each class in the dataset
@@ -93,10 +98,35 @@ def partition_data(datadir, num_sites, alpha):
         np.random.shuffle(idx_batch[j])
         site_idx[j] = idx_batch[j]
 
+    # get the training data for each site
+    site_data = {}
+    for j in range(num_sites):
+        site_data[j] = {"train_images": train_images[site_idx[j], ...],
+                        "train_labels": train_label[site_idx[j], ...],
+                        "train_orig_index": site_idx[j]}
+
     # collect class summary
     class_sum = get_site_class_summary(train_label, site_idx)
 
-    return site_idx, class_sum
+    # check class sum and nr. images & labels matches
+    for j in range(num_sites):
+        class_total = 0
+        for k in class_sum[j]:
+            class_total += class_sum[j][k]
+        assert len(site_data[j]["train_images"]) == len(site_data[j]["train_labels"]), "validation nr. of image and labels!"
+        assert class_total == len(site_data[j]["train_images"]), "mismatch between class total and number of images!"
+        assert class_total == len(site_data[j]["train_labels"]), "mismatch between class total and number of labels!"
+        assert class_total == len(site_data[j]["train_orig_index"]), "mismatch between class total and number of orig. index!"
+
+    # add validation data to first site
+    print(f"Adding {len(valid_images)} validation images to site-1 only.")
+    assert len(valid_images) == len(valid_labels), "validation image and labels mismatch!"
+    site_data[j].update({
+        "valid_images": valid_images,
+        "valid_labels": valid_labels
+    })
+
+    return site_data, class_sum,
 
 
 def main():
@@ -110,7 +140,7 @@ def main():
     np.random.seed(args.seed)
 
     print(f"Partition CIFAR-10 dataset into {args.num_sites} sites with Dirichlet sampling under alpha {args.alpha}")
-    site_idx, class_sum = partition_data(datadir=args.data_dir, num_sites=args.num_sites, alpha=args.alpha)
+    site_data, class_sum = partition_data(datadir=args.data_dir, num_sites=args.num_sites, alpha=args.alpha)
     # write to files
     sum_file_name = os.path.join(args.data_dir, "summary.txt")
     with open(sum_file_name, "w") as sum_file:
@@ -122,7 +152,7 @@ def main():
     site_file_path = os.path.join(args.data_dir, "site-")
     for site in range(args.num_sites):
         site_file_name = site_file_path + str(site + 1) + ".npy"
-        np.save(site_file_name, np.array(site_idx[site]))
+        np.save(site_file_name, np.array(site_data[site]))
 
 
 if __name__ == "__main__":
