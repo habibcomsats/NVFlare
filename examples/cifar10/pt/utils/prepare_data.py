@@ -152,7 +152,7 @@ def main():
     site_file_path = os.path.join(args.data_dir, "site-")
     for site in range(args.num_sites):
         site_file_name = site_file_path + str(site + 1) + ".npy"
-        np.save(site_file_name, np.array(site_data[site]))
+        np.save(site_file_name, site_data[site])
 
 
 if __name__ == "__main__":
