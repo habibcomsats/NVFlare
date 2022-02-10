@@ -19,7 +19,8 @@ import numpy as np
 import torch
 import torch.optim as optim
 from pt.networks.cifar10_nets import ModerateCNN
-from pt.utils.cifar10_dataset import CIFAR10_Idx
+from pt.utils.basic_dataset import BasicDataset
+from pt.utils.prepare_data import load_cifar10_data
 from torch.utils.tensorboard import SummaryWriter
 from torchvision import datasets, transforms
 
@@ -48,7 +49,7 @@ class CIFAR10Learner(Learner):
         """Simple CIFAR-10 Trainer.
 
         Args:
-            dataset_root: directory with CIFAR-10 data.
+            dataset_root: directory with CIFAR-10 data parts.
             aggregation_epochs: the number of training epochs for a round. Defaults to 1.
             train_task_name: name of the task to train the model.
             submit_model_task_name: name of the task to submit the best local model.
@@ -73,11 +74,36 @@ class CIFAR10Learner(Learner):
         self.writer = None
         self.analytic_sender_id = analytic_sender_id
 
+        self.train_dataset = None
+        self.train_loader = None
+        self.valid_dataset = None
+        self.valid_loader = None
+
         # Epoch counter
         self.epoch_of_start_time = 0
         self.epoch_global = 0
 
         self.client_id = None
+
+    def _load_cifar10_data(self, fl_ctx: FLContext):
+        # use whole dataset if self.central=True, otherwise, the site's dataset
+        if self.central:
+            train_images, train_label, valid_images, valid_labels = load_cifar10_data(self.dataset_root)
+            data = {"train_images": train_images,
+                    "train_labels": train_label,
+                    "valid_images": valid_images,
+                    "valid_labels": valid_labels}
+        else:
+            # The path and filename are hard-coded here. It could also be fed as an argument
+            site_data_file_name = os.path.join(self.dataset_root, self.client_id + ".npy")
+            self.log_info(fl_ctx, f"dataset filepath: {site_data_file_name}")
+            if os.path.exists(site_data_file_name):
+                self.log_info(fl_ctx, "Loading data subset")
+                data = np.load(site_data_file_name).tolist()
+            else:
+                self.system_panic(f"No subset index found! File {site_data_file_name} does not exist!", fl_ctx)
+                return None
+        return data
 
     def initialize(self, parts: dict, fl_ctx: FLContext):
         # when the run starts, this is where the actual settings get initialized for trainer
@@ -107,16 +133,10 @@ class CIFAR10Learner(Learner):
                 os.makedirs(writer_dir)
             self.writer = SummaryWriter(writer_dir)
 
-        # Set datalist, here the path and filename are hard-coded, can also be fed as an argument
-        site_idx_file_name = os.path.join(self.dataset_root, self.client_id + ".npy")
-        self.log_info(fl_ctx, f"IndexList Path: {site_idx_file_name}")
-        if os.path.exists(site_idx_file_name):
-            self.log_info(fl_ctx, "Loading subset index")
-            site_idx = np.load(site_idx_file_name).tolist()
-        else:
-            self.system_panic(f"No subset index found! File {site_idx_file_name} does not exist!", fl_ctx)
-            return
-        self.log_info(fl_ctx, f"Client subset size: {len(site_idx)}")
+        data = self._load_cifar10_data(fl_ctx=fl_ctx)
+        if data is None:
+            self.system_panic("No data loaded", fl_ctx)
+            return None
 
         # set the training-related parameters
         # can be replaced by a config-style block
@@ -152,24 +172,25 @@ class CIFAR10Learner(Learner):
         )
 
         # Set dataset
-        self.train_dataset = CIFAR10_Idx(
-            root=self.dataset_root,
-            # use whole dataset if self.central=True, otherwise, the site's dataset
-            data_idx=None if self.central else site_idx,
-            train=True,
-            download=True,
+        self.train_dataset = BasicDataset(
+            data=data["train_images"],
+            targets=data["train_labels"],
             transform=self.transform_train,
         )
-        self.valid_dataset = datasets.CIFAR10(
-            root=self.dataset_root,
-            train=False,
-            download=True,
-            transform=self.transform_valid,
-        )
+        self.log_info(fl_ctx, f"Client training size: {data['train_images']}")
+
+        if "valid_images" in data and "valid_labels" in data:
+            self.valid_dataset = BasicDataset(
+                data=data["valid_images"],
+                targets=data["valid_labels"],
+                transform=self.transform_valid,
+            )
+            self.log_info(fl_ctx, f"Client validation size: {data['valid_images']}")
 
         self.train_loader = torch.utils.data.DataLoader(self.train_dataset, batch_size=64, shuffle=True, num_workers=2)
 
-        self.valid_loader = torch.utils.data.DataLoader(self.valid_dataset, batch_size=64, shuffle=False, num_workers=2)
+        if self.valid_dataset:
+            self.valid_loader = torch.utils.data.DataLoader(self.valid_dataset, batch_size=64, shuffle=False, num_workers=2)
 
     def finalize(self, fl_ctx: FLContext):
         # collect threads, close files here
