@@ -14,6 +14,7 @@
 
 import copy
 import os
+import pickle
 
 import numpy as np
 import torch
@@ -45,6 +46,7 @@ class CIFAR10Learner(Learner):
         fedproxloss_mu: float = 0.0,
         central: bool = False,
         analytic_sender_id: str = "analytic_sender",
+        do_validate: bool = False
     ):
         """Simple CIFAR-10 Trainer.
 
@@ -54,6 +56,7 @@ class CIFAR10Learner(Learner):
             train_task_name: name of the task to train the model.
             submit_model_task_name: name of the task to submit the best local model.
             analytic_sender_id: id of `AnalyticsSender` if configured as a client component. If configured, TensorBoard events will be fired. Defaults to "analytic_sender".
+            do_validate: whether to run validation on that data client. Defaults to False, i.e. only the clients with a validation set in their data will be evaluating.
 
         Returns:
             a Shareable with the updated local model after running `execute()`
@@ -70,6 +73,7 @@ class CIFAR10Learner(Learner):
         self.submit_model_task_name = submit_model_task_name
         self.best_acc = 0.0
         self.central = central
+        self.do_validate = do_validate
 
         self.writer = None
         self.analytic_sender_id = analytic_sender_id
@@ -93,16 +97,25 @@ class CIFAR10Learner(Learner):
                     "train_labels": train_label,
                     "valid_images": valid_images,
                     "valid_labels": valid_labels}
+            self.do_validate = True  # always validate when simulating central training
         else:
             # The path and filename are hard-coded here. It could also be fed as an argument
-            site_data_file_name = os.path.join(self.dataset_root, self.client_id + ".npy")
+            site_data_file_name = os.path.join(self.dataset_root, self.client_id + ".pkl")
             self.log_info(fl_ctx, f"dataset filepath: {site_data_file_name}")
             if os.path.exists(site_data_file_name):
                 self.log_info(fl_ctx, "Loading data subset")
-                data = np.load(site_data_file_name).tolist()
+                with open(site_data_file_name, "rb") as f:
+                    data = pickle.load(f)
             else:
                 self.system_panic(f"No subset index found! File {site_data_file_name} does not exist!", fl_ctx)
                 return None
+        # also add validation set if specified by init argument
+        if self.do_validate and not self.central:
+            _, _, valid_images, valid_labels = load_cifar10_data(self.dataset_root)
+            data.update({
+                "valid_images": valid_images,
+                "valid_labels": valid_labels
+            })
         return data
 
     def initialize(self, parts: dict, fl_ctx: FLContext):
@@ -135,8 +148,7 @@ class CIFAR10Learner(Learner):
 
         data = self._load_cifar10_data(fl_ctx=fl_ctx)
         if data is None:
-            self.system_panic("No data loaded", fl_ctx)
-            return None
+            raise ValueError("Data couldn't be loaded")
 
         # set the training-related parameters
         # can be replaced by a config-style block
@@ -177,7 +189,7 @@ class CIFAR10Learner(Learner):
             targets=data["train_labels"],
             transform=self.transform_train,
         )
-        self.log_info(fl_ctx, f"Client training size: {data['train_images']}")
+        self.log_info(fl_ctx, f"Client training size: {len(data['train_images'])}")
 
         if "valid_images" in data and "valid_labels" in data:
             self.valid_dataset = BasicDataset(
@@ -185,7 +197,8 @@ class CIFAR10Learner(Learner):
                 targets=data["valid_labels"],
                 transform=self.transform_valid,
             )
-            self.log_info(fl_ctx, f"Client validation size: {data['valid_images']}")
+            self.log_info(fl_ctx, f"Client validation size: {len(data['valid_images'])}")
+            self.do_validate = True  # validate if validation data is included in partition
 
         self.train_loader = torch.utils.data.DataLoader(self.train_dataset, batch_size=64, shuffle=True, num_workers=2)
 
@@ -223,7 +236,7 @@ class CIFAR10Learner(Learner):
                 self.optimizer.step()
                 current_step = epoch_len * self.epoch_global + i
                 self.writer.add_scalar("train_loss", loss.item(), current_step)
-            if val_freq > 0 and epoch % val_freq == 0:
+            if self.do_validate and val_freq > 0 and epoch % val_freq == 0:
                 acc = self.local_valid(self.valid_loader, abort_signal, tb_id="val_acc_local_model", fl_ctx=fl_ctx)
                 if acc > self.best_acc:
                     self.save_model(is_best=True)
@@ -293,15 +306,18 @@ class CIFAR10Learner(Learner):
         self.epoch_of_start_time += self.aggregation_epochs
 
         # perform valid after local train
-        acc = self.local_valid(self.valid_loader, abort_signal, tb_id="val_acc_local_model", fl_ctx=fl_ctx)
+        if self.do_validate:
+            acc = self.local_valid(self.valid_loader, abort_signal, tb_id="val_acc_local_model", fl_ctx=fl_ctx)
+            if acc:
+                self.log_info(fl_ctx, f"val_acc_local_model: {acc:.4f}")
+
+            # save model
+            self.save_model(is_best=False)
+            if acc > self.best_acc:
+                self.save_model(is_best=True)
+
         if abort_signal.triggered:
             return make_reply(ReturnCode.TASK_ABORTED)
-        self.log_info(fl_ctx, f"val_acc_local_model: {acc:.4f}")
-
-        # save model
-        self.save_model(is_best=False)
-        if acc > self.best_acc:
-            self.save_model(is_best=True)
 
         # compute delta model, global model has the primary key set
         local_weights = self.model.state_dict()
@@ -387,6 +403,9 @@ class CIFAR10Learner(Learner):
 
         validate_type = shareable.get_header(AppConstants.VALIDATE_TYPE)
         if validate_type == ValidateType.BEFORE_TRAIN_VALIDATE:
+            if not self.do_validate:
+                return make_reply(ReturnCode.TASK_UNSUPPORTED)
+
             # perform valid before local train
             global_acc = self.local_valid(self.valid_loader, abort_signal, tb_id="val_acc_global_model", fl_ctx=fl_ctx)
             if abort_signal.triggered:
@@ -397,6 +416,9 @@ class CIFAR10Learner(Learner):
 
         elif validate_type == ValidateType.MODEL_VALIDATE:
             # perform valid
+            if not self.do_validate:
+                return make_reply(ReturnCode.TASK_UNSUPPORTED)
+
             train_acc = self.local_valid(self.train_loader, abort_signal)
             if abort_signal.triggered:
                 return make_reply(ReturnCode.TASK_ABORTED)

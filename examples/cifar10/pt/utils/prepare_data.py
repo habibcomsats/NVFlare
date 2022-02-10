@@ -40,6 +40,7 @@
 import argparse
 import json
 import os
+import pickle
 
 import numpy as np
 import torchvision.datasets as datasets
@@ -121,7 +122,7 @@ def partition_data(datadir, num_sites, alpha):
     # add validation data to first site
     print(f"Adding {len(valid_images)} validation images to site-1 only.")
     assert len(valid_images) == len(valid_labels), "validation image and labels mismatch!"
-    site_data[j].update({
+    site_data[0].update({
         "valid_images": valid_images,
         "valid_labels": valid_labels
     })
@@ -151,8 +152,9 @@ def main():
 
     site_file_path = os.path.join(args.data_dir, "site-")
     for site in range(args.num_sites):
-        site_file_name = site_file_path + str(site + 1) + ".npy"
-        np.save(site_file_name, site_data[site])
+        site_file_name = site_file_path + str(site + 1) + ".pkl"
+        with open(site_file_name, "wb") as f:
+            pickle.dump(site_data[site], f)
 
 
 if __name__ == "__main__":
