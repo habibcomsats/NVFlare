@@ -71,40 +71,6 @@ class VirtualLearnerExecutor(LearnerExecutor):
     #    super().execute(task_name=task_name, shareable=shareable, fl_ctx=fl_ctx, abort_signal=abort_signal)
 
     def train(self, shareable: Shareable, fl_ctx: FLContext, abort_signal: Signal) -> Shareable:
-        self.log_debug(fl_ctx, f"train abort signal: {abort_signal.triggered}")
-
-        shareable.set_header(AppConstants.VALIDATE_TYPE, ValidateType.BEFORE_TRAIN_VALIDATE)
-        validate_result: Shareable = self.learner.validate(shareable, fl_ctx, abort_signal)
-
-        train_result = self._train_virtual_clients(shareable, fl_ctx, abort_signal)
-        print("@1 train_result", type(train_result))
-        if not (train_result and isinstance(train_result, Shareable)):
-            print("@2 ReturnCode.EMPTY_RESULT", ReturnCode.EMPTY_RESULT)
-            return make_reply(ReturnCode.EMPTY_RESULT)
-
-        # if the learner returned the valid BEFORE_TRAIN_VALIDATE result, set the INITIAL_METRICS in
-        # the train result, which can be used for best model selection.
-        if (
-            validate_result
-            and isinstance(validate_result, Shareable)
-            and validate_result.get_return_code() == ReturnCode.OK
-        ):
-            try:
-                metrics_dxo = from_shareable(validate_result)
-                train_dxo = from_shareable(train_result)
-                train_dxo.meta[MetaKey.INITIAL_METRICS] = metrics_dxo.data.get(MetaKey.INITIAL_METRICS, 0)
-                print("@Return train_dxo", type(train_dxo))
-                _result = train_dxo.to_shareable()
-                print("@Return _result", type(_result))
-                return _result
-            except ValueError:
-                print("@3 train_result", type(train_result))
-                return train_result
-        else:
-            print("@4 train_result", type(train_result))
-            return train_result
-
-    def _train_virtual_clients(self, shareable: Shareable, fl_ctx: FLContext, abort_signal: Signal) -> Shareable:
 
         train_results = {}
         current_round = shareable.get_header(AppConstants.CURRENT_ROUND)
@@ -128,10 +94,11 @@ class VirtualLearnerExecutor(LearnerExecutor):
             self.log_info(fl_ctx, f"Training on virtual client {virtual_name}")
             fl_ctx.set_prop(AppConstants.VIRTUAL_NAME, virtual_name)
 
-            # reinitialize only to begin training
+            # reinitialize learner to begin training on new virtual client
             engine = fl_ctx.get_engine()
             self.learner.initialize(engine.get_all_components(), fl_ctx)
-            _train_result = self.learner.train(shareable=copy.deepcopy(shareable), fl_ctx=fl_ctx, abort_signal=abort_signal)  # TODO: is deepcopy needed?
+            # train on virtual client
+            _train_result = super().train(shareable=copy.deepcopy(shareable), fl_ctx=fl_ctx, abort_signal=abort_signal)  # TODO: is deepcopy needed?
             if abort_signal.triggered:
                 return make_reply(ReturnCode.TASK_ABORTED)
 
