@@ -13,6 +13,7 @@
 # limitations under the License.
 
 import copy
+from collections import OrderedDict
 
 from nvflare.apis.dxo import MetaKey, from_shareable
 from nvflare.apis.event_type import EventType
@@ -35,8 +36,8 @@ class VirtualLearnerExecutor(LearnerExecutor):
         train_task=AppConstants.TASK_TRAIN,
         submit_model_task=AppConstants.TASK_SUBMIT_MODEL,
         validate_task=AppConstants.TASK_VALIDATION,
-        virtual_clients = 1,
-        real_clients = 8,
+        n_virtual_clients = 1,
+        n_real_clients = 8,
         use_local_aggregation = True
     ):
         """Key component to run learner on clients.
@@ -53,8 +54,8 @@ class VirtualLearnerExecutor(LearnerExecutor):
             submit_model_task=submit_model_task,
             validate_task=validate_task,
         )
-        self.virtual_clients = virtual_clients
-        self.real_clients = real_clients
+        self.n_virtual_clients = n_virtual_clients
+        self.n_real_clients = n_real_clients
         self.real_id_name = ""  # real client ID
         self.use_local_aggregation = use_local_aggregation
         if self.use_local_aggregation:
@@ -62,13 +63,60 @@ class VirtualLearnerExecutor(LearnerExecutor):
         else:
             self.aggregator = None
 
-    def initialize(self, fl_ctx: FLContext):
-        super().initialize(fl_ctx=fl_ctx)
-        self.real_id_name = fl_ctx.get_identity_name()
-        self.log_info(fl_ctx, f"Simulating {self.virtual_clients} virtual client(s) on client {self.real_id_name}.")
+        self.virtual_learners = OrderedDict()
 
-    #def execute(self, task_name: str, shareable: Shareable, fl_ctx: FLContext, abort_signal: Signal) -> Shareable:
-    #    super().execute(task_name=task_name, shareable=shareable, fl_ctx=fl_ctx, abort_signal=abort_signal)
+    def initialize(self, fl_ctx: FLContext):
+        self.log_info(fl_ctx, f"Simulating {self.n_virtual_clients} virtual client(s) on client {self.real_id_name}.")
+        self.real_id_name = fl_ctx.get_identity_name()
+
+        for vid in range(1, self.n_virtual_clients + 1):
+            # TODO: more general client identity management
+            real_id = int(self.real_id_name.replace("site-", ""))
+            assert real_id > 0, f"expecting real_ids starting from 1 but got {real_id}"
+            virtual_id = (real_id - 1) * self.n_virtual_clients + vid
+            print(f"DEBUG: real ID {real_id}, local virtual client ID {vid}, virtual ID {virtual_id}")
+            virtual_name = f"site-{virtual_id}"
+
+            try:
+                engine = fl_ctx.get_engine()
+                # make one copy of the learner for each virtual client
+                self.virtual_learners[virtual_name] = copy.deepcopy(engine.get_component(self.learner_id))  # TODO: is this good to do?
+                if not isinstance(self.virtual_learners[virtual_name], Learner):
+                    raise TypeError(f"learner must be Learner type. Got: {type(self.virtual_learners[virtual_name])}")
+                fl_ctx.set_prop(AppConstants.VIRTUAL_NAME, virtual_name)
+                self.virtual_learners[virtual_name].initialize(engine.get_all_components(), fl_ctx)
+            except Exception as e:
+                self.log_exception(fl_ctx, f"learner initialize exception for virtual client {virtual_name}: {e}")
+
+            # TODO: if successfully created virtual learners, delete engine.get_component(self.learner_id). Add engine.set_component()?
+
+    def virtual_train(self, learner: Learner, shareable: Shareable, fl_ctx: FLContext, abort_signal: Signal) -> Shareable:
+        # TODO: using given learner instead of self.learner (only difference to superclass)
+        self.log_debug(fl_ctx, f"train abort signal: {abort_signal.triggered}")
+
+        shareable.set_header(AppConstants.VALIDATE_TYPE, ValidateType.BEFORE_TRAIN_VALIDATE)
+        validate_result: Shareable = learner.validate(shareable, fl_ctx, abort_signal)
+
+        train_result = learner.train(shareable, fl_ctx, abort_signal)
+        if not (train_result and isinstance(train_result, Shareable)):
+            return make_reply(ReturnCode.EMPTY_RESULT)
+
+        # if the learner returned the valid BEFORE_TRAIN_VALIDATE result, set the INITIAL_METRICS in
+        # the train result, which can be used for best model selection.
+        if (
+            validate_result
+            and isinstance(validate_result, Shareable)
+            and validate_result.get_return_code() == ReturnCode.OK
+        ):
+            try:
+                metrics_dxo = from_shareable(validate_result)
+                train_dxo = from_shareable(train_result)
+                train_dxo.meta[MetaKey.INITIAL_METRICS] = metrics_dxo.data.get(MetaKey.INITIAL_METRICS, 0)
+                return train_dxo.to_shareable()
+            except ValueError:
+                return train_result
+        else:
+            return train_result
 
     def train(self, shareable: Shareable, fl_ctx: FLContext, abort_signal: Signal) -> Shareable:
 
@@ -76,29 +124,18 @@ class VirtualLearnerExecutor(LearnerExecutor):
         current_round = shareable.get_header(AppConstants.CURRENT_ROUND)
         print("############## current_round", current_round)
 
+        if len(self.virtual_learners) != self.n_virtual_clients:
+            self.log_error(fl_ctx, f"There's a mismatch between the requeste virutal clients ({self.n_virtual_clients}) and generated virtual learners ({len(self.virtual_learners) })!")
+            return make_reply(ReturnCode.ERROR)
+
         # loop through virtual clients
-        for vid in range(1, self.virtual_clients+1):
+        for virtual_name in self.virtual_learners.keys():
             if abort_signal.triggered:
                 return make_reply(ReturnCode.TASK_ABORTED)
 
-            # TODO: more general client identity management
-            real_id = int(self.real_id_name.replace("site-", ""))
-            assert real_id > 0, f"expecting real_ids starting from 1 but got {real_id}"
-            #if self.virtual_clients > 1:
-            virtual_id = (real_id-1)*self.virtual_clients + vid
-            #else:
-            #    virtual_id = real_id  # TODO: there must be a better way
-            print(f"DEBUG: real ID {real_id}, local virtual client ID {vid}, virtual ID {virtual_id}")
-
-            virtual_name = f"site-{virtual_id}"
-            self.log_info(fl_ctx, f"Training on virtual client {virtual_name}")
-            fl_ctx.set_prop(AppConstants.VIRTUAL_NAME, virtual_name)
-
-            # reinitialize learner to begin training on new virtual client
-            engine = fl_ctx.get_engine()
-            self.learner.initialize(engine.get_all_components(), fl_ctx)
             # train on virtual client
-            _train_result = super().train(shareable=copy.deepcopy(shareable), fl_ctx=fl_ctx, abort_signal=abort_signal)  # TODO: is deepcopy needed?
+            self.log_info(fl_ctx, f"Training on virtual client {virtual_name}")
+            _train_result = self.virtual_train(learner=self.virtual_learners[virtual_name], shareable=copy.deepcopy(shareable), fl_ctx=fl_ctx, abort_signal=abort_signal)  # TODO: is deepcopy needed?
             if abort_signal.triggered:
                 return make_reply(ReturnCode.TASK_ABORTED)
 
@@ -115,24 +152,24 @@ class VirtualLearnerExecutor(LearnerExecutor):
                 self.aggregator.accept(shareable=_train_result, fl_ctx=fl_ctx)
             else:
                 # add DXO to collection
-                train_results.update({virtual_id: from_shareable(_train_result)})
+                train_results.update({virtual_name: from_shareable(_train_result)})
 
         if abort_signal.triggered:
             return make_reply(ReturnCode.TASK_ABORTED)
 
         if self.aggregator:
-            self.log_info(fl_ctx, f"Compute local aggregate of {self.virtual_clients} virtual clients.")
-            result = self.aggregator.aggregate(fl_ctx=fl_ctx)
+            self.log_info(fl_ctx, f"Compute local aggregate of {self.n_virtual_clients} virtual clients.")
+            result = self.aggregator.aggregate(fl_ctx=fl_ctx)  # TODO: don't divide by count here but on server
             print("########## result", type(result))
             return result
         else:
             raise NotImplemented("Needs testing!")
             return DXO(data_kind=DataKind.COLLECTION, data=train_results).to_shareable()
 
-
     def finalize(self, fl_ctx: FLContext):
-        try:
-            if self.learner:
-                self.learner.finalize(fl_ctx)
-        except Exception as e:
-            self.log_exception(fl_ctx, f"learner finalize exception: {e}")
+        if self.virtual_learners:
+            for virtual_name in self.virtual_learners.keys():
+                try:
+                    self.virtual_learners[virtual_name].finalize(fl_ctx)
+                except Exception as e:
+                    self.log_exception(fl_ctx, f"learner finalize exception for virtual client {virtual_name}: {e}")
