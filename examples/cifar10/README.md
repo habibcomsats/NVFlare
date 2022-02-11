@@ -219,7 +219,7 @@ Using this configuration, a `tb_events` folder will be created under the `run_*`
 
 ## 6. Simulate many clients on limited resources
 
-Let's say we would like to simulate 16 clients. However, our GPU can only support running 8 clients in parallel. We can therefore use 8 "real" clients in parallel, each of which will simulate running 8 "virtual" clients sequentially. The total number of "effective" clients would be the desired 16 clients (n_total = n_real * n_virtual). 
+Let's say we would like to simulate 16 clients. However, our GPU can only support running 8 clients in parallel. We can therefore use 8 "real" clients in parallel, each of which will simulate running 8 "virtual" clients sequentially. The total number of "effective" clients would be the desired 16 clients (`n_total` = `n_real` * `n_virtual`). 
 
 First set up a workspace as before
 ```
@@ -234,5 +234,8 @@ We can use the `VirtualLearnerExecutor` to simulate `n_virtual` clients on each 
 ```
 ./run_poc_virtual.sh ${n_real} ${n_total} cifar10_fedavg_virtual 10 1.0
 ```
+Note, in `run_poc_virtual.sh`, we alternately start clients on all available GPUs such that all resources can be utilized allowing to simulate as many clients as possible. `n_real` should be set to the maximum number of clients on your system that can run training in parallel.
+
+# TODO: use a run_fl_virtual.py to adjust the n_virtual automatically
 
 > **_NOTE:_** `GloablModelEval` or `CrossSiteModelEval` workflows are currently not supported with virtual clients.
