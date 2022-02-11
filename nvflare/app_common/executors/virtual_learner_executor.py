@@ -37,8 +37,9 @@ class VirtualLearnerExecutor(LearnerExecutor):
         submit_model_task=AppConstants.TASK_SUBMIT_MODEL,
         validate_task=AppConstants.TASK_VALIDATION,
         n_virtual_clients = 1,
-        n_real_clients = 8,
-        use_local_aggregation = True
+        n_real_clients = 8,  # TODO: get real clients from fl_ctx
+        use_local_aggregation = True,
+        release_model_an_optim = False
     ):
         """Key component to run learner on clients.
 
@@ -47,6 +48,10 @@ class VirtualLearnerExecutor(LearnerExecutor):
             train_task (str, optional): label to dispatch train task. Defaults to AppConstants.TASK_TRAIN.
             submit_model_task (str, optional): label to dispatch submit model task. Defaults to AppConstants.TASK_SUBMIT_MODEL.
             validate_task (str, optional): label to dispatch validation task. Defaults to AppConstants.TASK_VALIDATION.
+            n_virtual_clients:
+            n_real_clients:
+            use_local_aggregation:
+            release_model_an_optim:
         """
         super().__init__(
             learner_id=learner_id,
@@ -58,6 +63,7 @@ class VirtualLearnerExecutor(LearnerExecutor):
         self.n_real_clients = n_real_clients
         self.real_id_name = ""  # real client ID
         self.use_local_aggregation = use_local_aggregation
+        self.release_model_an_optim = release_model_an_optim
         if self.use_local_aggregation:
             self.aggregator = InTimeAccumulateWeightedAggregator()
         else:
@@ -94,12 +100,17 @@ class VirtualLearnerExecutor(LearnerExecutor):
         # TODO: using given learner instead of self.learner (only difference to superclass)
         self.log_debug(fl_ctx, f"train abort signal: {abort_signal.triggered}")
 
+        # re-init the model for this training
         shareable.set_header(AppConstants.VALIDATE_TYPE, ValidateType.BEFORE_TRAIN_VALIDATE)
         validate_result: Shareable = learner.validate(shareable, fl_ctx, abort_signal)
 
         train_result = learner.train(shareable, fl_ctx, abort_signal)
         if not (train_result and isinstance(train_result, Shareable)):
             return make_reply(ReturnCode.EMPTY_RESULT)
+
+        if self.release_model_an_optim:
+            # try to free the model from memory
+            learner.release_model_an_optim(fl_ctx=fl_ctx)  # TODO: make this and setting to None optional
 
         # if the learner returned the valid BEFORE_TRAIN_VALIDATE result, set the INITIAL_METRICS in
         # the train result, which can be used for best model selection.

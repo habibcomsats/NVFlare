@@ -83,11 +83,30 @@ class CIFAR10Learner(Learner):
         self.valid_dataset = None
         self.valid_loader = None
 
+        self.model = None
+        self.optimizer = None
+        self.device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+
         # Epoch counter
         self.epoch_of_start_time = 0
         self.epoch_global = 0
 
         self.client_id = None
+
+    def init_model_an_optim(self, fl_ctx):
+        """ Useful function to initialize the model again if simulating many virtual clients """
+        if self.model is None:
+            self.log_info(fl_ctx, "Reinitializing model...")
+            self.model = ModerateCNN().to(self.device)
+        if self.optimizer is None:
+            self.log_info(fl_ctx, "Reinitializing optimizer...")
+            self.optimizer = optim.SGD(self.model.parameters(), lr=self.lr, momentum=0.9)
+
+    def release_model_an_optim(self, fl_ctx):
+        """ Useful function to initialize the model again if simulating many virtual clients """
+        self.log_info(fl_ctx, "Releasing model and optimizer memory...")
+        self.model = None
+        self.optimizer = None
 
     def _load_cifar10_data(self, fl_ctx: FLContext):
         # use whole dataset if self.central=True, otherwise, the site's dataset
@@ -152,9 +171,6 @@ class CIFAR10Learner(Learner):
 
         # set the training-related parameters
         # can be replaced by a config-style block
-        self.device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-        self.model = ModerateCNN().to(self.device)
-        self.optimizer = optim.SGD(self.model.parameters(), lr=self.lr, momentum=0.9)
         self.criterion = torch.nn.CrossEntropyLoss()
         if self.fedproxloss_mu > 0:
             self.log_info(fl_ctx, f"using FedProx loss with mu {self.fedproxloss_mu}")
@@ -267,6 +283,7 @@ class CIFAR10Learner(Learner):
         global_weights = dxo.data
 
         # Before loading weights, tensors might need to be reshaped to support HE for secure aggregation.
+        self.init_model_an_optim(fl_ctx=fl_ctx)
         local_var_dict = self.model.state_dict()
         model_keys = global_weights.keys()
         for var_name in local_var_dict:
@@ -389,6 +406,7 @@ class CIFAR10Learner(Learner):
         global_weights = dxo.data
 
         # Before loading weights, tensors might need to be reshaped to support HE for secure aggregation.
+        self.init_model_an_optim(fl_ctx=fl_ctx)
         local_var_dict = self.model.state_dict()
         model_keys = global_weights.keys()
         for var_name in local_var_dict:
