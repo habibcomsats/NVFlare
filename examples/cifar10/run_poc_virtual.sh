@@ -48,7 +48,7 @@ if [ "${n_clients}" -gt 1 ]
 then
   # download and split data
   echo "PREPARING DATA"
-  rm "/tmp/cifar10_data/*.npy"  # remove old splits
+  rm "/tmp/cifar10_data/*.pkl"  # remove old splits
   python3 ./pt/utils/prepare_data.py --data_dir="/tmp/cifar10_data" --num_sites="${n_total}" --alpha="${alpha}"
 fi
 
