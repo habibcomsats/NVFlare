@@ -14,7 +14,8 @@
         "args": {
           "learner_id": "cifar10-learner",
           "n_real_clients": 8,
-          "n_virtual_clients": 2
+          "n_virtual_clients": 2,
+          "release_model_an_optim": true
         }
       }
     }
