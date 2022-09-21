@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -22,12 +22,12 @@ from monai.networks.nets.unet import UNet
 from pt.helpers.supervised_pt_ditto import SupervisedPTDittoHelper
 from pt.learners.supervised_monai_prostate_learner import SupervisedMonaiProstateLearner
 
-from nvflare.apis.dxo import DXO, DataKind, MetaKey, from_shareable
-from nvflare.apis.fl_constant import ReturnCode
-from nvflare.apis.fl_context import FLContext
-from nvflare.apis.shareable import Shareable, make_reply
-from nvflare.apis.signal import Signal
-from nvflare.app_common.app_constant import AppConstants
+from flare.apis.dxo import DXO, DataKind, MetaKey, from_shareable
+from flare.apis.fl_constant import ReturnCode
+from flare.apis.fl_context import FLContext
+from flare.apis.shareable import Shareable, make_reply
+from flare.apis.signal import Signal
+from flare.app_common.app_constant import AppConstants
 
 
 class SupervisedMonaiProstateDittoLearner(SupervisedMonaiProstateLearner):

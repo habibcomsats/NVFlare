@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -25,10 +25,10 @@ this_directory = os.path.abspath(os.path.dirname(__file__))
 with open(os.path.join(this_directory, "README.md"), encoding="utf-8") as f:
     long_description = f.read()
 
-if os.path.exists(os.path.join(this_directory, "nvflare", "poc.zip")):
-    os.remove(os.path.join(this_directory, "nvflare", "poc.zip"))
-shutil.make_archive(base_name="poc", format="zip", root_dir=os.path.join(this_directory, "nvflare"), base_dir="poc")
-shutil.move("poc.zip", os.path.join(this_directory, "nvflare", "poc.zip"))
+if os.path.exists(os.path.join(this_directory, "flare", "poc.zip")):
+    os.remove(os.path.join(this_directory, "flare", "poc.zip"))
+shutil.make_archive(base_name="poc", format="zip", root_dir=os.path.join(this_directory, "flare"), base_dir="poc")
+shutil.move("poc.zip", os.path.join(this_directory, "flare", "poc.zip"))
 
 versions = versioneer.get_versions()
 if versions["error"]:
@@ -42,17 +42,17 @@ else:
 
 release = os.environ.get("NVFL_RELEASE")
 if release == "1":
-    package_name = "nvflare"
+    package_name = "flare"
 else:
-    package_name = "nvflare-nightly"
+    package_name = "flare-nightly"
 
 setup(
     name=package_name,
     version=version,
     cmdclass=versioneer.get_cmdclass(),
     description="Federated Learning Application Runtime Environment",
-    url="https://github.com/NVIDIA/NVFlare",
-    package_dir={"nvflare": "nvflare"},
+    url="https://github.com/[BLINDED]/Flare",
+    package_dir={"flare": "flare"},
     packages=find_packages(
         where=".",
         include=[
@@ -91,12 +91,12 @@ setup(
     ],
     entry_points={
         "console_scripts": [
-            "provision=nvflare.lighter.provision:main",
-            "poc=nvflare.lighter.poc:main",
-            "nvflare=nvflare.cli:main",
-            "authz_preview=nvflare.fuel.hci.tools.authz_preview:main",
+            "provision=flare.lighter.provision:main",
+            "poc=flare.lighter.poc:main",
+            "flare=flare.cli:main",
+            "authz_preview=flare.fuel.hci.tools.authz_preview:main",
         ],
     },
 )
 
-os.remove(os.path.join(this_directory, "nvflare", "poc.zip"))
+os.remove(os.path.join(this_directory, "flare", "poc.zip"))

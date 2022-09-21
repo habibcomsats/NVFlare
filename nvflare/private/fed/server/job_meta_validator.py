@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,7 +19,7 @@ from io import BytesIO
 from typing import Optional, Set, Tuple
 from zipfile import ZipFile
 
-from nvflare.apis.job_def import ALL_SITES, JobMetaKey
+from flare.apis.job_def import ALL_SITES, JobMetaKey
 
 SERVER_CONFIG = "config_fed_server.json"
 CLIENT_CONFIG = "config_fed_client.json"

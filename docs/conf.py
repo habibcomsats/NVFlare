@@ -1,4 +1,4 @@
-# Copyright (c) 2021, NVIDIA CORPORATION.
+# Copyright (c) 2021, [BLINDED] CORPORATION.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -43,9 +43,9 @@ print(sys.path)
 
 # -- Project information -----------------------------------------------------
 
-project = "NVIDIA FLARE"
-copyright = "2022, NVIDIA"
-author = "NVIDIA"
+project = "[BLINDED] FLARE"
+copyright = "2022, [BLINDED]"
+author = "[BLINDED]"
 
 # The full version, including alpha/beta/rc tags
 release = "2.1.0"
@@ -117,7 +117,7 @@ html_static_path = ["_static"]
 
 def generate_apidocs(*args):
     """Generate API docs automatically by trawling the available modules"""
-    module_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "nvflare"))
+    module_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "flare"))
     output_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "apidocs"))
     print(f"output_path {output_path}")
     print(f"module_path {module_path}")

@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -21,20 +21,20 @@ from logging.handlers import RotatingFileHandler
 from multiprocessing.connection import Listener
 from typing import List
 
-from nvflare.apis.app_validation import AppValidator
-from nvflare.apis.fl_constant import FLContextKey, SiteType, WorkspaceConstants
-from nvflare.apis.fl_context import FLContext
-from nvflare.apis.job_def import JobMetaKey
-from nvflare.apis.workspace import Workspace
-from nvflare.fuel.sec.audit import AuditService
-from nvflare.fuel.sec.authz import AuthorizationService
-from nvflare.fuel.sec.security_content_service import LoadResult, SecurityContentService
-from nvflare.fuel.utils import fobs
-from nvflare.private.defs import SSLConstants
-from nvflare.private.fed.protos.federated_pb2 import ModelData
-from nvflare.private.fed.utils.numproto import bytes_to_proto
-from nvflare.private.privacy_manager import PrivacyManager, PrivacyService
-from nvflare.security.security import EmptyAuthorizer, FLAuthorizer
+from flare.apis.app_validation import AppValidator
+from flare.apis.fl_constant import FLContextKey, SiteType, WorkspaceConstants
+from flare.apis.fl_context import FLContext
+from flare.apis.job_def import JobMetaKey
+from flare.apis.workspace import Workspace
+from flare.fuel.sec.audit import AuditService
+from flare.fuel.sec.authz import AuthorizationService
+from flare.fuel.sec.security_content_service import LoadResult, SecurityContentService
+from flare.fuel.utils import fobs
+from flare.private.defs import SSLConstants
+from flare.private.fed.protos.federated_pb2 import ModelData
+from flare.private.fed.utils.numproto import bytes_to_proto
+from flare.private.privacy_manager import PrivacyManager, PrivacyService
+from flare.security.security import EmptyAuthorizer, FLAuthorizer
 
 from .app_authz import AppAuthzService
 

@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,8 +14,8 @@
 
 from abc import abstractmethod
 
-from nvflare.fuel.common.excepts import ConfigError
-from nvflare.fuel.utils.class_utils import instantiate_class
+from flare.fuel.common.excepts import ConfigError
+from flare.fuel.utils.class_utils import instantiate_class
 
 
 class ComponentBuilder:

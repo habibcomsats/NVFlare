@@ -8,7 +8,7 @@
       ],
       "executor": {
         "id": "executor",
-        "path": "monai_nvflare.client_algo_executor.ClientAlgoExecutor",
+        "path": "monai_flare.client_algo_executor.ClientAlgoExecutor",
         "args": {
           "client_algo_id": "client_algo",
           "key_metric": "val_mean_dice"

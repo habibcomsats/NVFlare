@@ -1,4 +1,4 @@
-# Copyright (c) 2022, NVIDIA CORPORATION.
+# Copyright (c) 2022, [BLINDED] CORPORATION.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,13 +19,13 @@ import plotly.graph_objects as go
 from analysis_executor import SupportedTasks
 from plotly.subplots import make_subplots
 
-from nvflare.apis.client import Client
-from nvflare.apis.dxo import from_shareable
-from nvflare.apis.fl_constant import FLContextKey, ReturnCode
-from nvflare.apis.fl_context import FLContext
-from nvflare.apis.impl.controller import ClientTask, Controller, Task
-from nvflare.apis.shareable import Shareable
-from nvflare.apis.signal import Signal
+from flare.apis.client import Client
+from flare.apis.dxo import from_shareable
+from flare.apis.fl_constant import FLContextKey, ReturnCode
+from flare.apis.fl_context import FLContext
+from flare.apis.impl.controller import ClientTask, Controller, Task
+from flare.apis.shareable import Shareable
+from flare.apis.signal import Signal
 
 
 class AnalysisController(Controller):

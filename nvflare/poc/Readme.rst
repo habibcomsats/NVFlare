@@ -1,8 +1,8 @@
 ###############################
-How to use nvFlare POC commands
+How to use flare POC commands
 ###############################
 
-nvFlare POC commands enables to set up and run the FL training without the provision steps. The FL server communicates with the clients and admin without HTTPS encryption. There's no
+flare POC commands enables to set up and run the FL training without the provision steps. The FL server communicates with the clients and admin without HTTPS encryption. There's no
 SSL certificates required on server, or the client and admin. You can run the FL server, client and admin system components on
 the same machine, or from different machines.
 

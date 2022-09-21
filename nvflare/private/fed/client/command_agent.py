@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 import logging
 import threading
 
-from nvflare.apis.fl_context import FLContext
+from flare.apis.fl_context import FLContext
 
 from ..utils.fed_utils import listen_command
 from .admin_commands import AdminCommands

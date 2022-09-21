@@ -2,7 +2,7 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-from nvflare.private.fed.protos import admin_pb2 as nvflare_dot_private_dot_fed_dot_protos_dot_admin__pb2
+from flare.private.fed.protos import admin_pb2 as flare_dot_private_dot_fed_dot_protos_dot_admin__pb2
 
 
 class AdminCommunicatingStub(object):
@@ -20,18 +20,18 @@ class AdminCommunicatingStub(object):
         """
         self.Retrieve = channel.unary_unary(
                 '/admin.AdminCommunicating/Retrieve',
-                request_serializer=nvflare_dot_private_dot_fed_dot_protos_dot_admin__pb2.Client.SerializeToString,
-                response_deserializer=nvflare_dot_private_dot_fed_dot_protos_dot_admin__pb2.Messages.FromString,
+                request_serializer=flare_dot_private_dot_fed_dot_protos_dot_admin__pb2.Client.SerializeToString,
+                response_deserializer=flare_dot_private_dot_fed_dot_protos_dot_admin__pb2.Messages.FromString,
                 )
         self.SendReply = channel.unary_unary(
                 '/admin.AdminCommunicating/SendReply',
-                request_serializer=nvflare_dot_private_dot_fed_dot_protos_dot_admin__pb2.Reply.SerializeToString,
-                response_deserializer=nvflare_dot_private_dot_fed_dot_protos_dot_admin__pb2.Empty.FromString,
+                request_serializer=flare_dot_private_dot_fed_dot_protos_dot_admin__pb2.Reply.SerializeToString,
+                response_deserializer=flare_dot_private_dot_fed_dot_protos_dot_admin__pb2.Empty.FromString,
                 )
         self.SendResult = channel.unary_unary(
                 '/admin.AdminCommunicating/SendResult',
-                request_serializer=nvflare_dot_private_dot_fed_dot_protos_dot_admin__pb2.Reply.SerializeToString,
-                response_deserializer=nvflare_dot_private_dot_fed_dot_protos_dot_admin__pb2.Empty.FromString,
+                request_serializer=flare_dot_private_dot_fed_dot_protos_dot_admin__pb2.Reply.SerializeToString,
+                response_deserializer=flare_dot_private_dot_fed_dot_protos_dot_admin__pb2.Empty.FromString,
                 )
 
 
@@ -68,18 +68,18 @@ def add_AdminCommunicatingServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'Retrieve': grpc.unary_unary_rpc_method_handler(
                     servicer.Retrieve,
-                    request_deserializer=nvflare_dot_private_dot_fed_dot_protos_dot_admin__pb2.Client.FromString,
-                    response_serializer=nvflare_dot_private_dot_fed_dot_protos_dot_admin__pb2.Messages.SerializeToString,
+                    request_deserializer=flare_dot_private_dot_fed_dot_protos_dot_admin__pb2.Client.FromString,
+                    response_serializer=flare_dot_private_dot_fed_dot_protos_dot_admin__pb2.Messages.SerializeToString,
             ),
             'SendReply': grpc.unary_unary_rpc_method_handler(
                     servicer.SendReply,
-                    request_deserializer=nvflare_dot_private_dot_fed_dot_protos_dot_admin__pb2.Reply.FromString,
-                    response_serializer=nvflare_dot_private_dot_fed_dot_protos_dot_admin__pb2.Empty.SerializeToString,
+                    request_deserializer=flare_dot_private_dot_fed_dot_protos_dot_admin__pb2.Reply.FromString,
+                    response_serializer=flare_dot_private_dot_fed_dot_protos_dot_admin__pb2.Empty.SerializeToString,
             ),
             'SendResult': grpc.unary_unary_rpc_method_handler(
                     servicer.SendResult,
-                    request_deserializer=nvflare_dot_private_dot_fed_dot_protos_dot_admin__pb2.Reply.FromString,
-                    response_serializer=nvflare_dot_private_dot_fed_dot_protos_dot_admin__pb2.Empty.SerializeToString,
+                    request_deserializer=flare_dot_private_dot_fed_dot_protos_dot_admin__pb2.Reply.FromString,
+                    response_serializer=flare_dot_private_dot_fed_dot_protos_dot_admin__pb2.Empty.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -107,8 +107,8 @@ class AdminCommunicating(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/admin.AdminCommunicating/Retrieve',
-            nvflare_dot_private_dot_fed_dot_protos_dot_admin__pb2.Client.SerializeToString,
-            nvflare_dot_private_dot_fed_dot_protos_dot_admin__pb2.Messages.FromString,
+            flare_dot_private_dot_fed_dot_protos_dot_admin__pb2.Client.SerializeToString,
+            flare_dot_private_dot_fed_dot_protos_dot_admin__pb2.Messages.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -124,8 +124,8 @@ class AdminCommunicating(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/admin.AdminCommunicating/SendReply',
-            nvflare_dot_private_dot_fed_dot_protos_dot_admin__pb2.Reply.SerializeToString,
-            nvflare_dot_private_dot_fed_dot_protos_dot_admin__pb2.Empty.FromString,
+            flare_dot_private_dot_fed_dot_protos_dot_admin__pb2.Reply.SerializeToString,
+            flare_dot_private_dot_fed_dot_protos_dot_admin__pb2.Empty.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -141,7 +141,7 @@ class AdminCommunicating(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/admin.AdminCommunicating/SendResult',
-            nvflare_dot_private_dot_fed_dot_protos_dot_admin__pb2.Reply.SerializeToString,
-            nvflare_dot_private_dot_fed_dot_protos_dot_admin__pb2.Empty.FromString,
+            flare_dot_private_dot_fed_dot_protos_dot_admin__pb2.Reply.SerializeToString,
+            flare_dot_private_dot_fed_dot_protos_dot_admin__pb2.Empty.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

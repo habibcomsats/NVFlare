@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,22 +17,22 @@
 import os
 import re
 
-from nvflare.apis.fl_component import FLComponent
-from nvflare.apis.fl_constant import SiteType
-from nvflare.apis.workspace import Workspace
-from nvflare.fuel.utils.argument_utils import parse_vars
-from nvflare.fuel.utils.json_scanner import Node
-from nvflare.fuel.utils.wfconf import ConfigContext, ConfigError
-from nvflare.private.defs import SSLConstants
-from nvflare.private.fed.utils.fed_utils import configure_logging
-from nvflare.private.json_configer import JsonConfigurator
-from nvflare.private.privacy_manager import PrivacyManager, Scope
+from flare.apis.fl_component import FLComponent
+from flare.apis.fl_constant import SiteType
+from flare.apis.workspace import Workspace
+from flare.fuel.utils.argument_utils import parse_vars
+from flare.fuel.utils.json_scanner import Node
+from flare.fuel.utils.wfconf import ConfigContext, ConfigError
+from flare.private.defs import SSLConstants
+from flare.private.fed.utils.fed_utils import configure_logging
+from flare.private.json_configer import JsonConfigurator
+from flare.private.privacy_manager import PrivacyManager, Scope
 
 from .deployer.base_client_deployer import BaseClientDeployer
 from .deployer.server_deployer import ServerDeployer
 from .fl_app_validator import FLAppValidator
 
-FL_PACKAGES = ["nvflare"]
+FL_PACKAGES = ["flare"]
 FL_MODULES = ["server", "client", "app"]
 
 

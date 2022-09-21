@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@ from .site_launcher import ServerProperties, SiteLauncher, SiteProperties, kill_
 REF_PROJECT_YML = "./data/project.yml"
 PROJECT_NAME = "integration_test"
 WORKSPACE = "ci_workspace"
-PROVISION_SCRIPT = "nvflare.lighter.provision"
+PROVISION_SCRIPT = "flare.lighter.provision"
 PROD_FOLDER_NAME = "prod_00"
 
 

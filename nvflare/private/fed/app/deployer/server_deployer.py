@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,13 +15,13 @@
 """FL Server deployer."""
 import threading
 
-from nvflare.apis.event_type import EventType
-from nvflare.apis.fl_constant import SystemComponents
-from nvflare.apis.workspace import Workspace
-from nvflare.private.fed.server.fed_server import FederatedServer
-from nvflare.private.fed.server.job_runner import JobRunner
-from nvflare.private.fed.server.run_manager import RunManager
-from nvflare.private.fed.server.server_cmd_modules import ServerCommandModules
+from flare.apis.event_type import EventType
+from flare.apis.fl_constant import SystemComponents
+from flare.apis.workspace import Workspace
+from flare.private.fed.server.fed_server import FederatedServer
+from flare.private.fed.server.job_runner import JobRunner
+from flare.private.fed.server.run_manager import RunManager
+from flare.private.fed.server.server_cmd_modules import ServerCommandModules
 
 
 class ServerDeployer:

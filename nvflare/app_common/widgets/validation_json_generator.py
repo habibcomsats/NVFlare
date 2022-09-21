@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,12 +15,12 @@
 import json
 import os.path
 
-from nvflare.apis.dxo import DataKind, from_shareable
-from nvflare.apis.event_type import EventType
-from nvflare.apis.fl_context import FLContext
-from nvflare.app_common.app_constant import AppConstants
-from nvflare.app_common.app_event_type import AppEventType
-from nvflare.widgets.widget import Widget
+from flare.apis.dxo import DataKind, from_shareable
+from flare.apis.event_type import EventType
+from flare.apis.fl_context import FLContext
+from flare.app_common.app_constant import AppConstants
+from flare.app_common.app_event_type import AppEventType
+from flare.widgets.widget import Widget
 
 
 class ValidationJsonGenerator(Widget):

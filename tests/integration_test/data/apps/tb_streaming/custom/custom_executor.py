@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,13 +15,13 @@
 import random
 import time
 
-from nvflare.apis.analytix import AnalyticsDataType
-from nvflare.apis.executor import Executor
-from nvflare.apis.fl_constant import FLContextKey
-from nvflare.apis.fl_context import FLContext
-from nvflare.apis.shareable import Shareable
-from nvflare.apis.signal import Signal
-from nvflare.app_common.widgets.streaming import create_analytic_dxo, send_analytic_dxo
+from flare.apis.analytix import AnalyticsDataType
+from flare.apis.executor import Executor
+from flare.apis.fl_constant import FLContextKey
+from flare.apis.fl_context import FLContext
+from flare.apis.shareable import Shareable
+from flare.apis.signal import Signal
+from flare.app_common.widgets.streaming import create_analytic_dxo, send_analytic_dxo
 
 
 class CustomExecutor(Executor):

@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 from enum import Enum
 from typing import Optional
 
-from nvflare.apis.dxo import DXO, DataKind
+from flare.apis.dxo import DXO, DataKind
 
 _DATA_TYPE_KEY = "analytics_data_type"
 _KWARGS_KEY = "analytics_kwargs"

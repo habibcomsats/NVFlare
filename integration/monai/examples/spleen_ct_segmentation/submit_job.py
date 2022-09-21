@@ -1,4 +1,4 @@
-# Copyright (c) 2021, NVIDIA CORPORATION.
+# Copyright (c) 2021, [BLINDED] CORPORATION.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,13 +15,13 @@
 import argparse
 import os
 
-from nvflare.fuel.hci.client.fl_admin_api_runner import FLAdminAPIRunner, api_command_wrapper
+from flare.fuel.hci.client.fl_admin_api_runner import FLAdminAPIRunner, api_command_wrapper
 
 
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--admin_dir", type=str, default="./admin/", help="Path to admin directory.")
-    parser.add_argument("--username", type=str, default="admin@nvidia.com", help="Admin username.")
+    parser.add_argument("--username", type=str, default="admin@[BLINDED].com", help="Admin username.")
     parser.add_argument("--job", type=str, default="cifar10_fedavg", help="Path to job config.")
 
     args = parser.parse_args()

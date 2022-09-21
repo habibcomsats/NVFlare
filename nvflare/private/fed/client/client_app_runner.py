@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,16 +15,16 @@
 import os
 import sys
 
-from nvflare.apis.fl_constant import FLContextKey
-from nvflare.apis.workspace import Workspace
-from nvflare.private.defs import EngineConstant
-from nvflare.private.fed.app.fl_conf import create_privacy_manager
-from nvflare.private.fed.client.client_json_config import ClientJsonConfigurator
-from nvflare.private.fed.client.client_run_manager import ClientRunManager
-from nvflare.private.fed.client.client_runner import ClientRunner
-from nvflare.private.fed.client.client_status import ClientStatus
-from nvflare.private.fed.client.command_agent import CommandAgent
-from nvflare.private.privacy_manager import PrivacyService
+from flare.apis.fl_constant import FLContextKey
+from flare.apis.workspace import Workspace
+from flare.private.defs import EngineConstant
+from flare.private.fed.app.fl_conf import create_privacy_manager
+from flare.private.fed.client.client_json_config import ClientJsonConfigurator
+from flare.private.fed.client.client_run_manager import ClientRunManager
+from flare.private.fed.client.client_runner import ClientRunner
+from flare.private.fed.client.client_status import ClientStatus
+from flare.private.fed.client.command_agent import CommandAgent
+from flare.private.privacy_manager import PrivacyService
 
 
 class ClientAppRunner:

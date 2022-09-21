@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,12 +14,12 @@
 
 from typing import Dict, List
 
-from nvflare.apis.client import Client
-from nvflare.apis.fl_context import FLContext
-from nvflare.apis.impl.controller import ClientTask
-from nvflare.apis.shareable import Shareable
-from nvflare.apis.signal import Signal
-from nvflare.app_common.workflows.statistics_controller import StatisticsController
+from flare.apis.client import Client
+from flare.apis.fl_context import FLContext
+from flare.apis.impl.controller import ClientTask
+from flare.apis.shareable import Shareable
+from flare.apis.signal import Signal
+from flare.app_common.workflows.statistics_controller import StatisticsController
 
 
 class MockStatisticsController(StatisticsController):

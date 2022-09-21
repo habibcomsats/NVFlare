@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@ import argparse
 import os
 import sys
 
-from nvflare.private.fed.app.simulator.simulator_runner import SimulatorRunner
+from flare.private.fed.app.simulator.simulator_runner import SimulatorRunner
 
 
 def define_simulator_parser(simulator_parser):
@@ -46,7 +46,7 @@ def run_simulator(simulator_args):
 
 if __name__ == "__main__":
     """
-    This is the main program when running the NVFlare Simulator. Use the Flare simulator API,
+    This is the main program when running the Flare Simulator. Use the Flare simulator API,
     create the SimulatorRunner object, do a setup(), then calls the run().
     """
 

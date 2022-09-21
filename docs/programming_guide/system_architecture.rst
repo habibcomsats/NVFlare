@@ -2,7 +2,7 @@
 System Architecture
 ###################
 
-NVIDIA FLARE is designed with the idea that less is more, using a spec based design principle to focus on what is
+[BLINDED] FLARE is designed with the idea that less is more, using a spec based design principle to focus on what is
 essential (solutions to hard, tedious problems others do not want to solve) and to allow other people to be able to do
 what they want to do in real world applications. FL is an open ended space, so the spec based design allows others to
 bring their own implementations and solutions for various components.
@@ -15,12 +15,12 @@ Concepts and System Components
 
 Spec-based Programming for System Service Objects
 =================================================
-NVIDIA FLARE 2.1.0 needs additional services to implement the HA feature:
+[BLINDED] FLARE 2.1.0 needs additional services to implement the HA feature:
 storage, overseer, job definition management, etc. There are many ways to implement such services. For example,
 storage could be implemented with a file system, AWS S3, or some database technologies. Similarly, job definition
 management could be done with simple file reading or a sophisticated solution with a database or search engine.
 
-To allow any of these solutions in NVIDIA FLARE, we take a spec-based approach for such objects. Each such service will
+To allow any of these solutions in [BLINDED] FLARE, we take a spec-based approach for such objects. Each such service will
 provide an interface definition (the spec), and all implementations must follow the spec. The spec defines the
 required behaviors for the implementation. At the same time, we provide some implementations that follow these specs.
 
@@ -40,7 +40,7 @@ provisioning time, if the name is specified incorrectly, either being duplicate 
 characters, the provision command will fail with an error message. It is possible to use a unique hostname rather than
 FQDN, with the IP mapped to the hostname by having it added to ``/etc/hosts``.
 
-NVIDIA FLARE 2.1.0 comes with HTTPS-based overseer.  Users are welcome to change the name and port arguments of the overseer
+[BLINDED] FLARE 2.1.0 comes with HTTPS-based overseer.  Users are welcome to change the name and port arguments of the overseer
 in project.yml to fit their deployment environment.
 
 The Overseer will receive a Startup kit, which includes the start.sh shell script, its certificate and private key,
@@ -61,16 +61,16 @@ The other important requirement is this agent must be able to communicate with t
 may implement their own Overseer based on their deployment environment.  In that case, users also need to implement
 their own Overseer Agent.
 
-:class:`Overseer Agent Spec<nvflare.apis.overseer_spec.OverseerAgent>`
+:class:`Overseer Agent Spec<flare.apis.overseer_spec.OverseerAgent>`
 
-NVIDIA FLARE provides two implementations:
+[BLINDED] FLARE provides two implementations:
 
-    - :class:`HttpOverseerAgent<nvflare.ha.overseer_agent.HttpOverseerAgent>` to work with the Overseer server. For NVIDIA
+    - :class:`HttpOverseerAgent<flare.ha.overseer_agent.HttpOverseerAgent>` to work with the Overseer server. For [BLINDED]
       FLARE 2.1.0, the provisioning tool will automatically map parameters specified in Overseer into the arguments for
       the HttpOverseerAgent.
-    - :class:`DummyOverseerAgent<nvflare.ha.dummy_overseer_agent.DummyOverseerAgent>` is a dummy agent that simply
+    - :class:`DummyOverseerAgent<flare.ha.dummy_overseer_agent.DummyOverseerAgent>` is a dummy agent that simply
       returns the configured endpoint as the hot FL server. The dummy agent is used when a single FL server is configured
-      and no Overseer server is necessary in an NVIDIA FLARE system. When DummyOverseerAgent is specified, the provisioning
+      and no Overseer server is necessary in an [BLINDED] FLARE system. When DummyOverseerAgent is specified, the provisioning
       tool will include all arguments into the Overseer Agent section of generated json files.
 
 Job Definition Manager
@@ -83,11 +83,11 @@ This component is specified as one item in the components.server section.
 
 This configuration is included in the fed_server.json of the Server’s Startup Kit.
 
-:class:`Job Definition Manager Spec<nvflare.apis.job_def_manager_spec.JobDefManagerSpec>`
+:class:`Job Definition Manager Spec<flare.apis.job_def_manager_spec.JobDefManagerSpec>`
 
-NVIDIA FLARE provides a simple implementation that is based on scanning of job definition objects:
+[BLINDED] FLARE provides a simple implementation that is based on scanning of job definition objects:
 
-    - :class:`Simple Job Def Manager<nvflare.apis.impl.job_def_manager.SimpleJobDefManager>`
+    - :class:`Simple Job Def Manager<flare.apis.impl.job_def_manager.SimpleJobDefManager>`
 
 Job Storage
 ^^^^^^^^^^^
@@ -99,7 +99,7 @@ This configuration is included in the fed_server.json of the Server’s Startup 
 
 .. note::
 
-   The default storage is `FilesystemStorage<nvflare.app_common.storages.filesystem_storage.FilesystemStorage>` and is
+   The default storage is `FilesystemStorage<flare.app_common.storages.filesystem_storage.FilesystemStorage>` and is
    configured to use paths available in the file system to persist data. Other implementations can be used instead that
    may need to take other arguments or configurations.
 
@@ -113,22 +113,22 @@ This component is specified as one item in the components.server section.
 
 This configuration is included in the fed_server.json of the Server’s Startup Kit.
 
-:class:`Job Scheduler Spec<nvflare.apis.job_scheduler_spec.JobSchedulerSpec>`
+:class:`Job Scheduler Spec<flare.apis.job_scheduler_spec.JobSchedulerSpec>`
 
-NVIDIA FLARE provides a default implementation of the Job Scheduler that does resource based scheduling as described in the beginning:
+[BLINDED] FLARE provides a default implementation of the Job Scheduler that does resource based scheduling as described in the beginning:
 
-    - :class:`Default Job Scheduler<nvflare.app_common.job_schedulers.job_scheduler.DefaultJobScheduler>`
+    - :class:`Default Job Scheduler<flare.app_common.job_schedulers.job_scheduler.DefaultJobScheduler>`
 
 Storage
 -------
 Storage is used in Job Storage and Job Execution State Storage. See the specific sections for more details.
 
-:class:`Storage Spec<nvflare.apis.storage.StorageSpec>`
+:class:`Storage Spec<flare.apis.storage.StorageSpec>`
 
-NVIDIA FLARE provides two simple storage implementations:
+[BLINDED] FLARE provides two simple storage implementations:
 
-    - :class:`File System Storage<nvflare.app_common.storages.filesystem_storage.FilesystemStorage>`
-    - :class:`AWS S3 Storage<nvflare.app_common.storages.s3_storage.S3Storage>`
+    - :class:`File System Storage<flare.app_common.storages.filesystem_storage.FilesystemStorage>`
+    - :class:`AWS S3 Storage<flare.app_common.storages.s3_storage.S3Storage>`
 
 Resource Manager
 -----------------
@@ -140,11 +140,11 @@ This component is specified as one item in the components.client section.
 
 This configuration is included in the fed_client.json of the FL Client’s Startup Kit.
 
-:class:`Resource Manager Spec<nvflare.apis.resource_manager_spec.ResourceManagerSpec>`
+:class:`Resource Manager Spec<flare.apis.resource_manager_spec.ResourceManagerSpec>`
 
-NVIDIA FLARE provides a simple resource manager that manages resources as a list of items:
+[BLINDED] FLARE provides a simple resource manager that manages resources as a list of items:
 
-    - :class:`List Resource Manager<nvflare.app_common.resource_managers.list_resource_manager.ListResourceManager>`
+    - :class:`List Resource Manager<flare.app_common.resource_managers.list_resource_manager.ListResourceManager>`
 
 Resource Consumer
 -----------------
@@ -157,11 +157,11 @@ The system reserved component id, resource_consumer, is used to denote the Resou
 
 This component is specified as one item in the components.client section.
 
-:class:`Resource Consumer Spec<nvflare.apis.resource_manager_spec.ResourceConsumerSpec>`
+:class:`Resource Consumer Spec<flare.apis.resource_manager_spec.ResourceConsumerSpec>`
 
-NVIDIA FLARE provides a GPU resource consumer:
+[BLINDED] FLARE provides a GPU resource consumer:
 
-    - :class:`GPU Resource Consumer<nvflare.app_common.resource_consumers.gpu_resource_consumer.GPUResourceConsumer>`
+    - :class:`GPU Resource Consumer<flare.app_common.resource_consumers.gpu_resource_consumer.GPUResourceConsumer>`
 
 Snapshot Persisting
 -------------------

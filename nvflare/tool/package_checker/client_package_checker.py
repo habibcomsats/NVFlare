@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -22,14 +22,14 @@ from .check_rule import (
     CheckSPSocketServerAvailable,
 )
 from .package_checker import PackageChecker
-from .utils import NVFlareConfig, NVFlareRole
+from .utils import FlareConfig, FlareRole
 
-CLIENT_SCRIPT = "nvflare.private.fed.app.client.client_train"
+CLIENT_SCRIPT = "flare.private.fed.app.client.client_train"
 
 
 class ClientPackageChecker(PackageChecker):
-    NVF_CONFIG = NVFlareConfig.CLIENT
-    NVF_ROLE = NVFlareRole.CLIENT
+    NVF_CONFIG = FlareConfig.CLIENT
+    NVF_ROLE = FlareRole.CLIENT
 
     def should_be_checked(self) -> bool:
         """Check if this package should be checked by this checker."""

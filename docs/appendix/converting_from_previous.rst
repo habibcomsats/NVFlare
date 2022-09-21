@@ -1,11 +1,11 @@
 ###########################################################
-Changes and Considerations Converting from NVIDIA FLARE 2.0
+Changes and Considerations Converting from [BLINDED] FLARE 2.0
 ###########################################################
 There are several breaking changes:
 
 Provisioning Changes
 ====================
-The project.yml file for NVIDIA FLARE 2.1 uses api_version 3, and it is not compatible with previous API versions because
+The project.yml file for [BLINDED] FLARE 2.1 uses api_version 3, and it is not compatible with previous API versions because
 the Provision Tool has been enhanced to support the configurations of additional components. See the example :ref:`project_yml`
 that shows how these components are configured in the components section of StaticFileBuilder.
 

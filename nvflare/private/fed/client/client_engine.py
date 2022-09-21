@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -21,18 +21,18 @@ import time
 import traceback
 from concurrent.futures import ThreadPoolExecutor
 
-from nvflare.apis.event_type import EventType
-from nvflare.apis.fl_component import FLComponent
-from nvflare.apis.fl_constant import MachineStatus, WorkspaceConstants
-from nvflare.apis.fl_context import FLContext, FLContextManager
-from nvflare.apis.shareable import Shareable
-from nvflare.apis.utils.common_utils import get_open_ports
-from nvflare.apis.workspace import Workspace
-from nvflare.private.admin_defs import Message
-from nvflare.private.defs import ERROR_MSG_PREFIX, ClientStatusKey, EngineConstant
-from nvflare.private.event import fire_event
-from nvflare.private.fed.utils.app_deployer import AppDeployer
-from nvflare.private.fed.utils.fed_utils import security_close
+from flare.apis.event_type import EventType
+from flare.apis.fl_component import FLComponent
+from flare.apis.fl_constant import MachineStatus, WorkspaceConstants
+from flare.apis.fl_context import FLContext, FLContextManager
+from flare.apis.shareable import Shareable
+from flare.apis.utils.common_utils import get_open_ports
+from flare.apis.workspace import Workspace
+from flare.private.admin_defs import Message
+from flare.private.defs import ERROR_MSG_PREFIX, ClientStatusKey, EngineConstant
+from flare.private.event import fire_event
+from flare.private.fed.utils.app_deployer import AppDeployer
+from flare.private.fed.utils.fed_utils import security_close
 
 from .client_engine_internal_spec import ClientEngineInternalSpec
 from .client_executor import ProcessExecutor

@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,13 +14,13 @@
 
 from typing import Any, Dict, Union
 
-from nvflare.apis.dxo import DXO, DataKind, from_shareable
-from nvflare.apis.fl_constant import ReservedKey, ReturnCode
-from nvflare.apis.fl_context import FLContext
-from nvflare.apis.shareable import Shareable
-from nvflare.app_common.abstract.aggregator import Aggregator
-from nvflare.app_common.aggregators.dxo_aggregator import DXOAggregator
-from nvflare.app_common.app_constant import AppConstants
+from flare.apis.dxo import DXO, DataKind, from_shareable
+from flare.apis.fl_constant import ReservedKey, ReturnCode
+from flare.apis.fl_context import FLContext
+from flare.apis.shareable import Shareable
+from flare.app_common.abstract.aggregator import Aggregator
+from flare.app_common.aggregators.dxo_aggregator import DXOAggregator
+from flare.app_common.app_constant import AppConstants
 
 
 def _is_nested_aggregation_weights(aggregation_weights):

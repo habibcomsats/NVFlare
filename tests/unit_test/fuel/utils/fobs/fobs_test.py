@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,8 +17,8 @@ from typing import Any, Type
 
 import pytest
 
-from nvflare.fuel.utils import fobs
-from nvflare.fuel.utils.fobs import Decomposer
+from flare.fuel.utils import fobs
+from flare.fuel.utils.fobs import Decomposer
 
 
 class TestFobs:

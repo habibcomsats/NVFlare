@@ -4,7 +4,7 @@
 Programming Guide
 #################
 
-The NVIDIA FLARE Controller and Worker APIs are used to implement the task-based interaction defined in an :ref:`user_guide/application:NVIDIA FLARE Application`.
+The [BLINDED] FLARE Controller and Worker APIs are used to implement the task-based interaction defined in an :ref:`user_guide/application:[BLINDED] FLARE Application`.
 In the application, the server configuration defines the components to be used in the controller workflow.
 For example, the server configuration may define the aggregator used to accumulate client task data, a persistor used to
 save models, and the shareable object used to exchange data.  The server configuration also defines the Controller
@@ -24,13 +24,13 @@ task assignments that are broadcast and executed on the client worker.  The resu
 then returned to the server for aggregation.  As can be seen in the diagram, both on task assignment and task result
 submission, filtering can be applied on both the server and client side.
 
-NVIDIA FLARE is designed with a componentized architecture which allows users to bring customized components into the
+[BLINDED] FLARE is designed with a componentized architecture which allows users to bring customized components into the
 framework.
 
 This guide contains details on the key concepts, objects, and information you should know to implement your own components.
 
 If you want to use your components in an FL application, you will need to change the config in the application folder.
-Please refer to :ref:`user_guide/application:NVIDIA FLARE Application` for more details.
+Please refer to :ref:`user_guide/application:[BLINDED] FLARE Application` for more details.
 
 .. toctree::
    :maxdepth: 1
@@ -53,18 +53,18 @@ Please refer to :ref:`user_guide/application:NVIDIA FLARE Application` for more 
 Code Structure
 ==============
 
-Different components can be built on top of the APIs(:mod:`nvflare.apis`) in NVIDIA FLARE core, and you can now
+Different components can be built on top of the APIs(:mod:`flare.apis`) in [BLINDED] FLARE core, and you can now
 implement your own custom workflows. The concepts of aggregator, learnable, persistors, and shareable_generator which
-were fixed in the workflow have been decoupled from the core of NVIDIA FLARE and moved to :mod:`nvflare.app_common`.
+were fixed in the workflow have been decoupled from the core of [BLINDED] FLARE and moved to :mod:`flare.app_common`.
 This is also the package containing the reference implementation of the :ref:`scatter_and_gather_workflow`, and all of
 this can be used in your own workflow.
 
-    - :mod:`nvflare.apis` - the generic class definitions
-    - :mod:`nvflare.app_common` - higher level controllers, workflows, and algorithms
-    - :mod:`nvflare.fuel` - supporting components of the provisioning and admin systems
-    - :mod:`nvflare.ha` - overseer and overseer agent to support :ref:`high_availability`
-    - :mod:`nvflare.lighter` - configuration, scripts, and Builders to support the provisioning tool
-    - :mod:`nvflare.poc` - configurations for the poc tool
-    - :mod:`nvflare.private` - low-level implementation of the platform and communication
-    - :mod:`nvflare.security` - authorization policies
-    - :mod:`nvflare.widgets` - widgets that extend base functionality in the aux communication channel
+    - :mod:`flare.apis` - the generic class definitions
+    - :mod:`flare.app_common` - higher level controllers, workflows, and algorithms
+    - :mod:`flare.fuel` - supporting components of the provisioning and admin systems
+    - :mod:`flare.ha` - overseer and overseer agent to support :ref:`high_availability`
+    - :mod:`flare.lighter` - configuration, scripts, and Builders to support the provisioning tool
+    - :mod:`flare.poc` - configurations for the poc tool
+    - :mod:`flare.private` - low-level implementation of the platform and communication
+    - :mod:`flare.security` - authorization policies
+    - :mod:`flare.widgets` - widgets that extend base functionality in the aux communication channel

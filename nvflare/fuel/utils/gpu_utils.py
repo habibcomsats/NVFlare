@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,20 +16,20 @@ import subprocess
 from typing import List
 
 
-def use_nvidia_smi(query: str, report_format: str = "csv"):
+def use_[BLINDED]_smi(query: str, report_format: str = "csv"):
     try:
         result = subprocess.run(
-            ["nvidia-smi", f"--query-gpu={query}", f"--format={report_format}"],
+            ["[BLINDED]-smi", f"--query-gpu={query}", f"--format={report_format}"],
             capture_output=True,
             text=True,
         )
         rc = result.returncode
         if rc > 0:
-            raise Exception(f"Failed to call nvidia-smi with query {query}", result.stderr)
+            raise Exception(f"Failed to call [BLINDED]-smi with query {query}", result.stderr)
         else:
             return result.stdout.splitlines()
     except FileNotFoundError as e:
-        print(f"Failed to call nvidia-smi: {e}")
+        print(f"Failed to call [BLINDED]-smi: {e}")
     return None
 
 
@@ -47,12 +47,12 @@ def _parse_gpu_mem(result: str = None, unit: str = "MiB") -> List:
 
 
 def get_host_gpu_memory_total(unit="MiB") -> List:
-    result = use_nvidia_smi("memory.total")
+    result = use_[BLINDED]_smi("memory.total")
     return _parse_gpu_mem(result, unit)
 
 
 def get_host_gpu_memory_free(unit="MiB") -> List:
-    result = use_nvidia_smi("memory.free")
+    result = use_[BLINDED]_smi("memory.free")
     return _parse_gpu_mem(result, unit)
 
 
@@ -60,9 +60,9 @@ def get_host_gpu_ids() -> List:
     """Gets GPU IDs.
 
     Note:
-        Only supports nvidia-smi now.
+        Only supports [BLINDED]-smi now.
     """
-    result = use_nvidia_smi("index")
+    result = use_[BLINDED]_smi("index")
     gpu_ids = []
     if not result:
         print("Failed to get gpu device IDs, assume no gpu device.")

@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,12 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from nvflare.apis.dxo import DataKind, from_shareable
-from nvflare.apis.fl_context import FLContext
-from nvflare.apis.shareable import Shareable
-from nvflare.app_common.abstract.model import ModelLearnable, ModelLearnableKey, model_learnable_to_dxo
-from nvflare.app_common.abstract.shareable_generator import ShareableGenerator
-from nvflare.app_common.app_constant import AppConstants
+from flare.apis.dxo import DataKind, from_shareable
+from flare.apis.fl_context import FLContext
+from flare.apis.shareable import Shareable
+from flare.app_common.abstract.model import ModelLearnable, ModelLearnableKey, model_learnable_to_dxo
+from flare.app_common.abstract.shareable_generator import ShareableGenerator
+from flare.app_common.app_constant import AppConstants
 
 
 class FullModelShareableGenerator(ShareableGenerator):

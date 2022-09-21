@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,19 +14,19 @@
 
 import threading
 
-from nvflare.apis.client import Client
-from nvflare.apis.event_type import EventType
-from nvflare.apis.fl_component import FLComponent
-from nvflare.apis.fl_constant import FLContextKey, ReservedKey, ReservedTopic, ReturnCode
-from nvflare.apis.fl_context import FLContext
-from nvflare.apis.fl_exception import WorkflowError
-from nvflare.apis.server_engine_spec import ServerEngineSpec
-from nvflare.apis.shareable import ReservedHeaderKey, Shareable, make_reply
-from nvflare.apis.signal import Signal
-from nvflare.apis.utils.fl_context_utils import add_job_audit_event
-from nvflare.private.defs import SpecialTaskName, TaskConstant
-from nvflare.private.privacy_manager import Scope
-from nvflare.widgets.info_collector import GroupInfoCollector, InfoCollector
+from flare.apis.client import Client
+from flare.apis.event_type import EventType
+from flare.apis.fl_component import FLComponent
+from flare.apis.fl_constant import FLContextKey, ReservedKey, ReservedTopic, ReturnCode
+from flare.apis.fl_context import FLContext
+from flare.apis.fl_exception import WorkflowError
+from flare.apis.server_engine_spec import ServerEngineSpec
+from flare.apis.shareable import ReservedHeaderKey, Shareable, make_reply
+from flare.apis.signal import Signal
+from flare.apis.utils.fl_context_utils import add_job_audit_event
+from flare.private.defs import SpecialTaskName, TaskConstant
+from flare.private.privacy_manager import Scope
+from flare.widgets.info_collector import GroupInfoCollector, InfoCollector
 
 
 class ServerRunnerConfig(object):

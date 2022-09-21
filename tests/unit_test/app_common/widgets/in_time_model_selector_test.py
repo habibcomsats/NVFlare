@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,13 +14,13 @@
 
 import pytest
 
-from nvflare.apis.dxo import DXO, DataKind, MetaKey
-from nvflare.apis.event_type import EventType
-from nvflare.apis.fl_constant import FLContextKey
-from nvflare.apis.fl_context import FLContext, FLContextManager
-from nvflare.app_common.app_constant import AppConstants
-from nvflare.app_common.app_event_type import AppEventType
-from nvflare.app_common.widgets.intime_model_selector import IntimeModelSelector
+from flare.apis.dxo import DXO, DataKind, MetaKey
+from flare.apis.event_type import EventType
+from flare.apis.fl_constant import FLContextKey
+from flare.apis.fl_context import FLContext, FLContextManager
+from flare.app_common.app_constant import AppConstants
+from flare.app_common.app_event_type import AppEventType
+from flare.app_common.widgets.intime_model_selector import IntimeModelSelector
 
 
 class MockSimpleEngine:

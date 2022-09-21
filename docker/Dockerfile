@@ -1,11 +1,11 @@
 FROM python:3.8
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install zip
-COPY nvflare /opt/NVFlare/nvflare
-COPY setup.py /opt/NVFlare/setup.py
-COPY versioneer.py /opt/NVFlare/versioneer.py
-COPY README.md /opt/NVFlare/README.md
-COPY setup.cfg /opt/NVFlare/setup.cfg
-WORKDIR /opt/NVFlare
+COPY flare /opt/Flare/flare
+COPY setup.py /opt/Flare/setup.py
+COPY versioneer.py /opt/Flare/versioneer.py
+COPY README.md /opt/Flare/README.md
+COPY setup.cfg /opt/Flare/setup.cfg
+WORKDIR /opt/Flare
 RUN pip install -U pip
 RUN pip install -e .
 

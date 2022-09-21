@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
 
 from typing import List, Optional
 
-from nvflare.app_common.app_constant import StatisticsConstants as StC
+from flare.app_common.app_constant import StatisticsConstants as StC
 
 
 def get_feature_bin_range(feature_name: str, hist_config: dict) -> Optional[List[float]]:

@@ -150,4 +150,4 @@ wrksp/*
 # Jupyter Notebook
 .ipynb_checkpoints
 
-nvflare/dashboard/application/static/**/*
+flare/dashboard/application/static/**/*

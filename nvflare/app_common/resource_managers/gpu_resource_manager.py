@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,8 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from nvflare.app_common.resource_managers.resouce_manager import BaseResourceManager
-from nvflare.fuel.utils.gpu_utils import get_host_gpu_ids, get_host_gpu_memory_total
+from flare.app_common.resource_managers.resouce_manager import BaseResourceManager
+from flare.fuel.utils.gpu_utils import get_host_gpu_ids, get_host_gpu_memory_total
 
 
 def _check_non_negative(prop, prop_name: str):

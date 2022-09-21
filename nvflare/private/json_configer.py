@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,12 +16,12 @@ import json
 import os
 from typing import List, Union
 
-from nvflare.fuel.common.excepts import ConfigError
-from nvflare.fuel.utils.class_utils import ModuleScanner, get_class
-from nvflare.fuel.utils.component_builder import ComponentBuilder
-from nvflare.fuel.utils.dict_utils import augment, extract_first_level_primitive
-from nvflare.fuel.utils.json_scanner import JsonObjectProcessor, JsonScanner, Node
-from nvflare.fuel.utils.wfconf import _EnvUpdater
+from flare.fuel.common.excepts import ConfigError
+from flare.fuel.utils.class_utils import ModuleScanner, get_class
+from flare.fuel.utils.component_builder import ComponentBuilder
+from flare.fuel.utils.dict_utils import augment, extract_first_level_primitive
+from flare.fuel.utils.json_scanner import JsonObjectProcessor, JsonScanner, Node
+from flare.fuel.utils.wfconf import _EnvUpdater
 
 
 class ConfigContext(object):

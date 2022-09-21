@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,12 +14,12 @@
 
 """FL Admin commands."""
 
-from nvflare.apis.fl_constant import AdminCommandNames, FLContextKey
-from nvflare.apis.fl_context import FLContext
-from nvflare.apis.shareable import ReservedHeaderKey, Shareable
-from nvflare.private.fed.client.client_status import get_status_message
-from nvflare.widgets.info_collector import InfoCollector
-from nvflare.widgets.widget import WidgetID
+from flare.apis.fl_constant import AdminCommandNames, FLContextKey
+from flare.apis.fl_context import FLContext
+from flare.apis.shareable import ReservedHeaderKey, Shareable
+from flare.private.fed.client.client_status import get_status_message
+from flare.widgets.info_collector import InfoCollector
+from flare.widgets.widget import WidgetID
 
 
 class CommandProcessor(object):

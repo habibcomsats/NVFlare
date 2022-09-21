@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,12 +18,12 @@ import tempfile
 import unittest
 from unittest import mock
 
-from nvflare.apis.fl_context import FLContext
-from nvflare.apis.impl.job_def_manager import SimpleJobDefManager
-from nvflare.apis.job_def import JobDataKey, JobMetaKey
-from nvflare.app_common.storages.filesystem_storage import FilesystemStorage
-from nvflare.fuel.hci.zip_utils import zip_directory_to_bytes
-from nvflare.private.fed.server.job_meta_validator import JobMetaValidator
+from flare.apis.fl_context import FLContext
+from flare.apis.impl.job_def_manager import SimpleJobDefManager
+from flare.apis.job_def import JobDataKey, JobMetaKey
+from flare.app_common.storages.filesystem_storage import FilesystemStorage
+from flare.fuel.hci.zip_utils import zip_directory_to_bytes
+from flare.private.fed.server.job_meta_validator import JobMetaValidator
 
 
 class TestJobManager(unittest.TestCase):
@@ -38,7 +38,7 @@ class TestJobManager(unittest.TestCase):
         shutil.rmtree(self.uri_root)
 
     def test_create_job(self):
-        with mock.patch("nvflare.apis.impl.job_def_manager.SimpleJobDefManager._get_job_store") as mock_store:
+        with mock.patch("flare.apis.impl.job_def_manager.SimpleJobDefManager._get_job_store") as mock_store:
             mock_store.return_value = FilesystemStorage()
 
             data, meta = self._create_job()
@@ -54,7 +54,7 @@ class TestJobManager(unittest.TestCase):
         return data, meta
 
     def test_save_workspace(self):
-        with mock.patch("nvflare.apis.impl.job_def_manager.SimpleJobDefManager._get_job_store") as mock_store:
+        with mock.patch("flare.apis.impl.job_def_manager.SimpleJobDefManager._get_job_store") as mock_store:
             mock_store.return_value = FilesystemStorage()
 
             data, meta = self._create_job()

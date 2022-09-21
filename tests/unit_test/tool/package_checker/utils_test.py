@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,8 +19,8 @@ from unittest.mock import MagicMock, patch
 import pytest
 from requests import Response
 
-from nvflare.apis.utils.common_utils import get_open_ports
-from nvflare.tool.package_checker.utils import check_overseer_running, check_response, try_bind_address, try_write_dir
+from flare.apis.utils.common_utils import get_open_ports
+from flare.tool.package_checker.utils import check_overseer_running, check_response, try_bind_address, try_write_dir
 
 
 def _mock_response(code) -> Response:
@@ -59,11 +59,11 @@ class TestUtils:
         assert check_response(resp=resp) == result
 
     def test_check_overseer_running(self):
-        with patch("nvflare.tool.package_checker.utils._create_http_session") as mock2:
+        with patch("flare.tool.package_checker.utils._create_http_session") as mock2:
             mock2.return_value = None
-            with patch("nvflare.tool.package_checker.utils._prepare_data") as mock3:
+            with patch("flare.tool.package_checker.utils._prepare_data") as mock3:
                 mock3.return_value = None
-                with patch("nvflare.tool.package_checker.utils._send_request") as mock4:
+                with patch("flare.tool.package_checker.utils._send_request") as mock4:
                     mock4.return_value = _mock_response(200)
                     resp, err = check_overseer_running(
                         startup="test",

@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,8 +14,8 @@
 
 import pytest
 
-from nvflare.app_common.app_constant import StatisticsConstants as StC
-from nvflare.app_common.statistics.min_max_noise_generator import AddNoiseToMinMax
+from flare.app_common.app_constant import StatisticsConstants as StC
+from flare.app_common.statistics.min_max_noise_generator import AddNoiseToMinMax
 
 MAX_TEST_CASES = [
     (100, (0.1, 0.3), (100 * 1.1, 100 * 1.3)),

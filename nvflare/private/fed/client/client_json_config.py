@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,11 +14,11 @@
 
 import re
 
-from nvflare.apis.executor import Executor
-from nvflare.apis.fl_component import FLComponent
-from nvflare.fuel.utils.json_scanner import Node
-from nvflare.private.fed_json_config import FedJsonConfigurator
-from nvflare.private.json_configer import ConfigContext, ConfigError
+from flare.apis.executor import Executor
+from flare.apis.fl_component import FLComponent
+from flare.fuel.utils.json_scanner import Node
+from flare.private.fed_json_config import FedJsonConfigurator
+from flare.private.json_configer import ConfigContext, ConfigError
 
 from .client_runner import ClientRunnerConfig
 
@@ -29,7 +29,7 @@ class _ExecutorDef(object):
         self.executor = None
 
 
-FL_PACKAGES = ["nvflare"]
+FL_PACKAGES = ["flare"]
 FL_MODULES = ["server", "client", "aggregators", "handlers", "pt", "app", "app_common", "workflows"]
 
 

@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,9 +14,9 @@
 
 import tenseal as ts
 
-from nvflare.apis.fl_constant import FLContextKey
-from nvflare.apis.fl_context import FLContext
-from nvflare.fuel.sec.security_content_service import LoadResult, SecurityContentService
+from flare.apis.fl_constant import FLContextKey
+from flare.apis.fl_context import FLContext
+from flare.fuel.sec.security_content_service import LoadResult, SecurityContentService
 
 
 def load_tenseal_context_from_workspace(ctx_file_name: str, fl_ctx: FLContext):

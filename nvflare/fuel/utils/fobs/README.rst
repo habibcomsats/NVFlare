@@ -32,7 +32,7 @@ FOBS defines following 4 functions, similar to Pickle,
 Examples,
 ::
 
-    from nvflare.fuel.utils import fobs
+    from flare.fuel.utils import fobs
 
     data = fobs.dumps(dxo)
     new_dxo = fobs.loads(data)
@@ -119,7 +119,7 @@ by MessagePack, a decomposer is included in `fobs` module so no need to further 
 
 ::
 
-    from nvflare.fuel.utils import fobs
+    from flare.fuel.utils import fobs
 
 
     class Simple:

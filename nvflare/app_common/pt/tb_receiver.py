@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,11 +17,11 @@ from typing import List, Optional
 
 from torch.utils.tensorboard import SummaryWriter
 
-from nvflare.apis.analytix import AnalyticsData, AnalyticsDataType
-from nvflare.apis.dxo import from_shareable
-from nvflare.apis.fl_context import FLContext
-from nvflare.apis.shareable import Shareable
-from nvflare.app_common.widgets.streaming import AnalyticsReceiver
+from flare.apis.analytix import AnalyticsData, AnalyticsDataType
+from flare.apis.dxo import from_shareable
+from flare.apis.fl_context import FLContext
+from flare.apis.shareable import Shareable
+from flare.app_common.widgets.streaming import AnalyticsReceiver
 
 FUNCTION_MAPPING = {
     AnalyticsDataType.SCALAR: "add_scalar",

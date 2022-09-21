@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,10 +14,10 @@
 
 import os
 
-from nvflare.apis.fl_snapshot import FLSnapshot, RunSnapshot
-from nvflare.apis.state_persistor import StatePersistor
-from nvflare.apis.storage import StorageSpec
-from nvflare.fuel.utils import fobs
+from flare.apis.fl_snapshot import FLSnapshot, RunSnapshot
+from flare.apis.state_persistor import StatePersistor
+from flare.apis.storage import StorageSpec
+from flare.fuel.utils import fobs
 
 
 class StorageStatePersistor(StatePersistor):

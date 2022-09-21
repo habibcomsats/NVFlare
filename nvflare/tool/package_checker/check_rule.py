@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,9 +16,9 @@ import json
 import os
 from abc import ABC, abstractmethod
 
-from nvflare.tool.package_checker.utils import (
-    NVFlareConfig,
-    NVFlareRole,
+from flare.tool.package_checker.utils import (
+    FlareConfig,
+    FlareRole,
     check_grpc_server_running,
     check_overseer_running,
     check_response,
@@ -55,30 +55,30 @@ class CheckRule(ABC):
 class CheckOverseerRunning(CheckRule):
     def __init__(self, name: str, role: str):
         super().__init__(name)
-        if role not in [NVFlareRole.SERVER, NVFlareRole.CLIENT, NVFlareRole.ADMIN]:
+        if role not in [FlareRole.SERVER, FlareRole.CLIENT, FlareRole.ADMIN]:
             raise RuntimeError(f"role {role} is not supported.")
         self.role = role
 
     def __call__(self, package_path, data=None):
         startup = os.path.join(package_path, "startup")
-        if self.role == NVFlareRole.SERVER:
-            nvf_config = NVFlareConfig.SERVER
-        elif self.role == NVFlareRole.CLIENT:
-            nvf_config = NVFlareConfig.CLIENT
+        if self.role == FlareRole.SERVER:
+            nvf_config = FlareConfig.SERVER
+        elif self.role == FlareRole.CLIENT:
+            nvf_config = FlareConfig.CLIENT
         else:
-            nvf_config = NVFlareConfig.ADMIN
+            nvf_config = FlareConfig.ADMIN
 
         fed_config_file = os.path.join(startup, nvf_config)
         with open(fed_config_file, "r") as f:
             fed_config = json.load(f)
 
-        if self.role == NVFlareRole.ADMIN:
+        if self.role == FlareRole.ADMIN:
             overseer_agent_conf = fed_config["admin"]["overseer_agent"]
         else:
             overseer_agent_conf = fed_config["overseer_agent"]
 
         required_args = ["overseer_end_point", "role", "project", "name"]
-        if self.role == NVFlareRole.SERVER:
+        if self.role == FlareRole.SERVER:
             required_args.extend(["fl_port", "admin_port"])
 
         overseer_agent_args = parse_overseer_agent_args(overseer_agent_conf, required_args)

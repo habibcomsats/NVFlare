@@ -1,17 +1,17 @@
 FLAdminAPI
 ==========
 
-:class:`FLAdminAPI<nvflare.fuel.hci.client.fl_admin_api.FLAdminAPI>` is a wrapper for admin commands that can be issued
+:class:`FLAdminAPI<flare.fuel.hci.client.fl_admin_api.FLAdminAPI>` is a wrapper for admin commands that can be issued
 by an admin client to the FL server. You can use a provisioned admin client's certs and keys to initialize an instance
 of FLAdminAPI to programmatically submit commands to the FL server.
 
 Initialization
 --------------
-It is recommended to use the :class:`FLAdminAPIRunner<nvflare.fuel.hci.client.fl_admin_api_runner.FLAdminAPIRunner>` to
+It is recommended to use the :class:`FLAdminAPIRunner<flare.fuel.hci.client.fl_admin_api_runner.FLAdminAPIRunner>` to
 initialize the API, or use it as a guide to write your own code to use the FLAdminAPI.
 
-Compared to before NVIDIA FLARE 2.1.0, the FLAdminAPI now requires an overseer_agent to be provided, and this is automatically
-created by the :class:`FLAdminAPIRunner<nvflare.fuel.hci.client.fl_admin_api_runner.FLAdminAPIRunner>` with the
+Compared to before [BLINDED] FLARE 2.1.0, the FLAdminAPI now requires an overseer_agent to be provided, and this is automatically
+created by the :class:`FLAdminAPIRunner<flare.fuel.hci.client.fl_admin_api_runner.FLAdminAPIRunner>` with the
 information in ``fed_admin.json`` in the provided admin_dir's startup directory.
 
 Logging in is now automatically handled, and when there is a server cutover, the overseer_agent will provide the new SP
@@ -33,14 +33,14 @@ After using FLAdminAPI, the overseer_agent must be cleaned up with a call to:
 
 Usage
 -----
-See the example scripts ``run_fl.py`` in `CIFAR-10 <https://github.com/NVIDIA/NVFlare/tree/main/examples/cifar10>`_ for
+See the example scripts ``run_fl.py`` in `CIFAR-10 <https://github.com/[BLINDED]/Flare/tree/main/examples/cifar10>`_ for
 an example of how to use the FLAdminAPI with FLAdminAPIRunner.
 
 You can use the example as inspiration to write your own code using the FLAdminAPI to operate your FL system.
 
 Arguments and targets
 ---------------------
-The arguments required for each FLAdminAPI call are specified in :class:`FLAdminAPI<nvflare.fuel.hci.client.fl_admin_api_spec.FLAdminAPISpec>`.
+The arguments required for each FLAdminAPI call are specified in :class:`FLAdminAPI<flare.fuel.hci.client.fl_admin_api_spec.FLAdminAPISpec>`.
 
 The ``target`` when needed is where the action should take place. An argument of ``target`` as a string can be a
 singular target of "server" or a specific client name. Where ``target_type`` is required and ``targets`` can
@@ -66,7 +66,7 @@ are included in the FLAdminAPI reply under the "raw" key for some calls and erro
 Additional and Complex Commands
 -------------------------------
 The functions ``wait_until_server_status()``, ``wait_until_client_status()``, and ``wait_until_server_stats()`` are
-included with the FLAdminAPI in NVIDIA FLARE as examples of useful functions that can be built with other calls in a
+included with the FLAdminAPI in [BLINDED] FLARE as examples of useful functions that can be built with other calls in a
 loop with logic. These examples wait until the provided callback returns True, with the option to specify a timeout and
 interval to check the status or stats. There is a default callback to evaluate the reply in the included functions, and
 additional kwargs passed in will be available to the callback. Custom callbacks can be provided to add logic to handle

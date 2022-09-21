@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,19 +13,19 @@
 # limitations under the License.
 from typing import Dict, List, Optional
 
-from nvflare.apis.dxo import DXO, DataKind
-from nvflare.apis.event_type import EventType
-from nvflare.apis.executor import Executor
-from nvflare.apis.fl_constant import ReturnCode
-from nvflare.apis.fl_context import FLContext
-from nvflare.apis.shareable import Shareable, make_reply
-from nvflare.apis.signal import Signal
-from nvflare.app_common.abstract.statistics_spec import Feature, Histogram, HistogramType, MetricConfig, Statistics
-from nvflare.app_common.app_constant import StatisticsConstants as StC
-from nvflare.app_common.statistics.metrics_config_utils import get_feature_bin_range
-from nvflare.app_common.statistics.numeric_stats import filter_numeric_features
-from nvflare.app_common.statistics.statisitcs_objects_decomposer import fobs_registration
-from nvflare.fuel.utils import fobs
+from flare.apis.dxo import DXO, DataKind
+from flare.apis.event_type import EventType
+from flare.apis.executor import Executor
+from flare.apis.fl_constant import ReturnCode
+from flare.apis.fl_context import FLContext
+from flare.apis.shareable import Shareable, make_reply
+from flare.apis.signal import Signal
+from flare.app_common.abstract.statistics_spec import Feature, Histogram, HistogramType, MetricConfig, Statistics
+from flare.app_common.app_constant import StatisticsConstants as StC
+from flare.app_common.statistics.metrics_config_utils import get_feature_bin_range
+from flare.app_common.statistics.numeric_stats import filter_numeric_features
+from flare.app_common.statistics.statisitcs_objects_decomposer import fobs_registration
+from flare.fuel.utils import fobs
 
 """
     StatisticsExecutor is client-side executor that perform local statistics generation and communication to

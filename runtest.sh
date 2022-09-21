@@ -43,16 +43,16 @@ function clean {
     echo "remove coverage history"
     python3 -m coverage erase
 
-    echo "uninstalling nvflare development files..."
+    echo "uninstalling flare development files..."
     python3 setup.py develop --user --uninstall
 
     echo "removing temporary files in ${WORK_DIR}"
 
-    find "${WORK_DIR}/nvflare" -type d -name "__pycache__" -exec rm -r "{}" \;
-    find "${WORK_DIR}/nvflare" -type f -name "*.py[co]" -exec rm -r "{}" \;
+    find "${WORK_DIR}/flare" -type d -name "__pycache__" -exec rm -r "{}" \;
+    find "${WORK_DIR}/flare" -type f -name "*.py[co]" -exec rm -r "{}" \;
 
     find "${WORK_DIR}" -depth -maxdepth 1 -type d -name ".eggs" -exec rm -r "{}" \;
-    find "${WORK_DIR}" -depth -maxdepth 1 -type d -name "nvflare.egg-info" -exec rm -r "{}" \;
+    find "${WORK_DIR}" -depth -maxdepth 1 -type d -name "flare.egg-info" -exec rm -r "{}" \;
     find "${WORK_DIR}" -depth -maxdepth 1 -type d -name "build" -exec rm -r "{}" \;
     find "${WORK_DIR}" -depth -maxdepth 1 -type d -name "dist" -exec rm -r "{}" \;
     find "${WORK_DIR}" -depth -maxdepth 1 -type d -name ".mypy_cache" -exec rm -r "{}" \;
@@ -98,9 +98,9 @@ function dry_run() {
 }
 
 function check_license() {
-    folders_to_check_license="nvflare tests"
+    folders_to_check_license="flare tests"
     grep -q -r --include "*.py" --exclude-dir "*protos*" -L \
-    "\(# Copyright (c) \(2021\|2021-2022\|2022\), NVIDIA CORPORATION.  All rights reserved.\)\|\(This file is released into the public domain.\)" \
+    "\(# Copyright (c) \(2021\|2021-2022\|2022\), [BLINDED] CORPORATION.  All rights reserved.\)\|\(This file is released into the public domain.\)" \
     ${folders_to_check_license} > no_license.lst
     if [ -s no_license.lst ]; then
         # The file is not-empty.
@@ -249,7 +249,7 @@ do
         -s |--check-format) # check format and styles
             cmd="check_style_type_import"
             if [[ -z $target ]]; then
-                target="nvflare tests"
+                target="flare tests"
             fi
         ;;
 
@@ -257,7 +257,7 @@ do
             if [ -n "${target}" ]; then
                 cmd="fix_style_import ${target}"
             else
-                cmd="fix_style_import nvflare && fix_style_import tests"
+                cmd="fix_style_import flare && fix_style_import tests"
             fi
         ;;
         -c|--coverage)
@@ -305,10 +305,10 @@ done
 
 if [[ -z $cmd ]]; then
     cmd="check_license;
-        check_style_type_import nvflare tests;
-        fix_style_import nvflare;
+        check_style_type_import flare tests;
+        fix_style_import flare;
         fix_style_import tests;
-        python3 -m pytest --numprocesses=auto --cov=nvflare --cov-report html:cov_html --cov-report xml:cov.xml --junitxml=unit_test.xml tests/unit_test;
+        python3 -m pytest --numprocesses=auto --cov=flare --cov-report html:cov_html --cov-report xml:cov.xml --junitxml=unit_test.xml tests/unit_test;
         "
 else
     cmd="$cmd $target"

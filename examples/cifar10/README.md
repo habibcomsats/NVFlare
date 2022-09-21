@@ -37,11 +37,11 @@ To create the secure workspace, please use the following to build a package and 
 to `secure_workspace` for later experimentation.
 ```
 cd ./workspaces
-python3 -m nvflare.lighter.provision -p ./secure_project.yml
+python3 -m flare.lighter.provision -p ./secure_project.yml
 cp -r ./workspace/secure_project/prod_00 ./secure_workspace
 cd ..
 ```
-For more information about secure provisioning see the [documentation](https://nvflare.readthedocs.io/en/main/user_guide/provisioning_tool.html).
+For more information about secure provisioning see the [documentation](https://flare.readthedocs.io/en/main/user_guide/provisioning_tool.html).
 
 For starting the FL system with 8 clients in the secure workspace, run
 ```
@@ -75,7 +75,7 @@ we set the available GPU indices as `gpu: [0, 1]` using the `ListResourceManager
 For the POC workspace, adjust the default values in `./workspaces/poc_workspace/site-*/startup/fed_client.json` 
 and `./workspaces/poc_workspace/server/startup/fed_server.json`. 
 
-For details, please refer to the [documentation](https://nvflare.readthedocs.io/en/main/user_guide/job.html).
+For details, please refer to the [documentation](https://flare.readthedocs.io/en/main/user_guide/job.html).
 
 ### 2.3 Download the CIFAR-10 dataset 
 To speed up the following experiments, first download the [CIFAR-10](https://www.cs.toronto.edu/~kriz/cifar.html) dataset:
@@ -115,7 +115,7 @@ see [Wang et al.](https://arxiv.org/abs/2002.06440)
 ### 3.2 Centralized training
 
 To simulate a centralized training baseline, we run FL with 1 client for 25 local epochs but only for one round. 
-It takes circa 6 minutes on an NVIDIA TitanX GPU.
+It takes circa 6 minutes on an [BLINDED] TitanX GPU.
 ```
 ./submit_job.sh cifar10_central 0.0
 ```
@@ -140,12 +140,12 @@ You can copy the whole block into the terminal, and it will execute each experim
 
 > **_NOTE:_** You can always use the admin console to manually abort a running job. 
   using `abort_job [JOB_ID]`. 
-> For a complete list of admin commands, see [here](https://nvflare.readthedocs.io/en/main/user_guide/operation.html).
+> For a complete list of admin commands, see [here](https://flare.readthedocs.io/en/main/user_guide/operation.html).
 
 > To log into the POC workspace admin console no username is required 
 > (use "admin" for commands requiring conformation with username). 
 
-> For the secure workspace admin console, use username "admin@nvidia.com"
+> For the secure workspace admin console, use username "admin@[BLINDED].com"
 
 After training, each client's best model will be used for cross-site validation. 
 The results can be downloaded and shown with the admin console using

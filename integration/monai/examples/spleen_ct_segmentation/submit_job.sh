@@ -6,7 +6,7 @@ algorithms_dir="${PWD}"
 job_config=$1
 
 echo "Submit poc job ${job_config}"
-workspace="/tmp/nvflare/poc"
+workspace="/tmp/flare/poc"
 admin_username="admin"
 
 # submit job

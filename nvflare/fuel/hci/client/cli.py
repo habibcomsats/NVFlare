@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -22,11 +22,11 @@ import traceback
 from datetime import datetime
 from typing import List, Optional
 
-from nvflare.fuel.hci.cmd_arg_utils import join_args, split_to_args
-from nvflare.fuel.hci.proto import CredentialType
-from nvflare.fuel.hci.reg import CommandModule, CommandModuleSpec, CommandRegister, CommandSpec
-from nvflare.fuel.hci.security import hash_password, verify_password
-from nvflare.fuel.hci.table import Table
+from flare.fuel.hci.cmd_arg_utils import join_args, split_to_args
+from flare.fuel.hci.proto import CredentialType
+from flare.fuel.hci.reg import CommandModule, CommandModuleSpec, CommandRegister, CommandSpec
+from flare.fuel.hci.security import hash_password, verify_password
+from flare.fuel.hci.table import Table
 
 from .api import AdminAPI, CommandInfo, SessionEventType
 from .api_spec import ServiceFinder

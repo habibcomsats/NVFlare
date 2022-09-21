@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,8 +15,8 @@
 import os
 import traceback
 
-import nvflare.fuel.hci.file_transfer_defs as ftd
-from nvflare.fuel.hci.base64_utils import (
+import flare.fuel.hci.file_transfer_defs as ftd
+from flare.fuel.hci.base64_utils import (
     b64str_to_binary_file,
     b64str_to_bytes,
     b64str_to_text_file,
@@ -24,10 +24,10 @@ from nvflare.fuel.hci.base64_utils import (
     bytes_to_b64str,
     text_file_to_b64str,
 )
-from nvflare.fuel.hci.cmd_arg_utils import join_args
-from nvflare.fuel.hci.reg import CommandEntry, CommandModule, CommandModuleSpec, CommandSpec
-from nvflare.fuel.hci.table import Table
-from nvflare.fuel.hci.zip_utils import split_path, unzip_all_from_bytes, zip_directory_to_bytes
+from flare.fuel.hci.cmd_arg_utils import join_args
+from flare.fuel.hci.reg import CommandEntry, CommandModule, CommandModuleSpec, CommandSpec
+from flare.fuel.hci.table import Table
+from flare.fuel.hci.zip_utils import split_path, unzip_all_from_bytes, zip_directory_to_bytes
 
 from .api_spec import CommandContext, ReplyProcessor
 from .api_status import APIStatus

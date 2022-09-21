@@ -1,10 +1,10 @@
 .. _application:
 
 ########################
-NVIDIA FLARE Application
+[BLINDED] FLARE Application
 ########################
 
-The NVIDIA FLARE application defines how the server and client should run.
+The [BLINDED] FLARE application defines how the server and client should run.
 Note that in the scope of one job, each site will only run one application.
 
 The structure of the app folder needs to be::
@@ -50,7 +50,7 @@ Example:
 .. csv-table::
     :header: Key, Notes
 
-    format_version, The NVIDIA FLARE version for this config
+    format_version, The [BLINDED] FLARE version for this config
     server, Specify server-specific attributes like heart_beat_timeout for seconds before the heart beat times out
     task_data_filters, "What filters to apply to data leaving server, see :ref:`filters`"
     task_result_filters, "What filters to apply to data arriving to server, see :ref:`filters`"
@@ -71,7 +71,7 @@ Example:
 .. csv-table::
     :header: Key, Notes
 
-    format_version, The NVIDIA FLARE version for this config
+    format_version, The [BLINDED] FLARE version for this config
     executors, The configuration for Tasks and Executors which now includes Trainers
     task_data_filters, "What filters to apply to data arriving at client, see :ref:`filters`"
     task_result_filters, "What filters to apply to data leaving client, :ref:`filters`"

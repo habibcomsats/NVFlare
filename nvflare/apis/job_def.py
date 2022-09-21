@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,8 +15,8 @@
 from enum import Enum
 from typing import Dict, List, Optional
 
-from nvflare.apis.fl_constant import SystemComponents
-from nvflare.apis.fl_context import FLContext
+from flare.apis.fl_constant import SystemComponents
+from flare.apis.fl_context import FLContext
 
 # this is treated as all online sites in job deploy_map
 ALL_SITES = "@ALL"

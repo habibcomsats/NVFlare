@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -22,13 +22,13 @@ import uuid
 from abc import ABC, abstractmethod
 from typing import Any, Dict, List, Optional
 
-from nvflare.apis.fl_context import FLContext
-from nvflare.apis.job_def import Job, JobDataKey, JobMetaKey, job_from_meta
-from nvflare.apis.job_def_manager_spec import JobDefManagerSpec, RunStatus
-from nvflare.apis.server_engine_spec import ServerEngineSpec
-from nvflare.apis.storage import StorageException, StorageSpec
-from nvflare.fuel.hci.zip_utils import unzip_all_from_bytes, zip_directory_to_bytes
-from nvflare.fuel.utils import fobs
+from flare.apis.fl_context import FLContext
+from flare.apis.job_def import Job, JobDataKey, JobMetaKey, job_from_meta
+from flare.apis.job_def_manager_spec import JobDefManagerSpec, RunStatus
+from flare.apis.server_engine_spec import ServerEngineSpec
+from flare.apis.storage import StorageException, StorageSpec
+from flare.fuel.hci.zip_utils import unzip_all_from_bytes, zip_directory_to_bytes
+from flare.fuel.utils import fobs
 
 
 class _JobFilter(ABC):

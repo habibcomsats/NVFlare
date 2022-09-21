@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,9 +17,9 @@ from __future__ import annotations
 import enum
 from abc import ABC, abstractmethod
 
-from nvflare.fuel.common.ctx import SimpleContext
-from nvflare.fuel.hci.reg import CommandModule
-from nvflare.fuel.hci.table import Table
+from flare.fuel.common.ctx import SimpleContext
+from flare.fuel.hci.reg import CommandModule
+from flare.fuel.hci.table import Table
 
 
 class CommandCtxKey(object):

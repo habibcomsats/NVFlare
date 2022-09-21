@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -20,22 +20,22 @@ import threading
 import time
 from multiprocessing.connection import Listener
 
-from nvflare.apis.event_type import EventType
-from nvflare.apis.fl_component import FLComponent
-from nvflare.apis.fl_constant import FLContextKey, WorkspaceConstants
-from nvflare.fuel.common.multi_process_executor_constants import CommunicationMetaData
-from nvflare.fuel.hci.server.authz import AuthorizationService
-from nvflare.fuel.sec.audit import AuditService
-from nvflare.private.fed.app.client.worker_process import check_parent_alive
-from nvflare.private.fed.client.admin import FedAdminAgent
-from nvflare.private.fed.client.admin_msg_sender import AdminMessageSender
-from nvflare.private.fed.client.client_req_processors import ClientRequestProcessors
-from nvflare.private.fed.client.fed_client import FederatedClient
-from nvflare.private.fed.simulator.simulator_app_runner import SimulatorClientAppRunner
-from nvflare.private.fed.simulator.simulator_client_engine import SimulatorClientEngine
-from nvflare.private.fed.simulator.simulator_const import SimulatorConstants
-from nvflare.private.fed.utils.fed_utils import add_logfile_handler
-from nvflare.security.security import EmptyAuthorizer
+from flare.apis.event_type import EventType
+from flare.apis.fl_component import FLComponent
+from flare.apis.fl_constant import FLContextKey, WorkspaceConstants
+from flare.fuel.common.multi_process_executor_constants import CommunicationMetaData
+from flare.fuel.hci.server.authz import AuthorizationService
+from flare.fuel.sec.audit import AuditService
+from flare.private.fed.app.client.worker_process import check_parent_alive
+from flare.private.fed.client.admin import FedAdminAgent
+from flare.private.fed.client.admin_msg_sender import AdminMessageSender
+from flare.private.fed.client.client_req_processors import ClientRequestProcessors
+from flare.private.fed.client.fed_client import FederatedClient
+from flare.private.fed.simulator.simulator_app_runner import SimulatorClientAppRunner
+from flare.private.fed.simulator.simulator_client_engine import SimulatorClientEngine
+from flare.private.fed.simulator.simulator_const import SimulatorConstants
+from flare.private.fed.utils.fed_utils import add_logfile_handler
+from flare.security.security import EmptyAuthorizer
 
 
 class ClientTaskWorker(FLComponent):
@@ -188,7 +188,7 @@ def main():
 
 if __name__ == "__main__":
     """
-    This is the main program of simulator worker process when running the NVFlare Simulator..
+    This is the main program of simulator worker process when running the Flare Simulator..
     """
 
     main()

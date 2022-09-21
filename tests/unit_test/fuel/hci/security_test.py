@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@ import uuid
 
 import pytest
 
-from nvflare.fuel.hci.security import get_certificate_common_name, hash_password, make_session_token, verify_password
+from flare.fuel.hci.security import get_certificate_common_name, hash_password, make_session_token, verify_password
 
 
 class TestSecurityUtils:

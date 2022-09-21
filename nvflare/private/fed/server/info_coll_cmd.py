@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,15 +15,15 @@
 import json
 from typing import List
 
-from nvflare.apis.fl_constant import AdminCommandNames
-from nvflare.fuel.hci.conn import Connection
-from nvflare.fuel.hci.reg import CommandModuleSpec, CommandSpec
-from nvflare.fuel.hci.server.authz import PreAuthzReturnCode
-from nvflare.private.defs import InfoCollectorTopic, RequestHeader
-from nvflare.private.fed.server.admin import new_message
-from nvflare.private.fed.server.server_engine_internal_spec import ServerEngineInternalSpec
-from nvflare.widgets.info_collector import InfoCollector
-from nvflare.widgets.widget import WidgetID
+from flare.apis.fl_constant import AdminCommandNames
+from flare.fuel.hci.conn import Connection
+from flare.fuel.hci.reg import CommandModuleSpec, CommandSpec
+from flare.fuel.hci.server.authz import PreAuthzReturnCode
+from flare.private.defs import InfoCollectorTopic, RequestHeader
+from flare.private.fed.server.admin import new_message
+from flare.private.fed.server.server_engine_internal_spec import ServerEngineInternalSpec
+from flare.widgets.info_collector import InfoCollector
+from flare.widgets.widget import WidgetID
 
 from .cmd_utils import CommandUtil
 from .job_cmds import JobCommandModule

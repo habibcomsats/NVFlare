@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,8 +19,8 @@ import tempfile
 
 from .site_launcher import ServerProperties, SiteLauncher, SiteProperties, run_command_in_subprocess
 
-SERVER_SCRIPT = "nvflare.private.fed.app.server.server_train"
-CLIENT_SCRIPT = "nvflare.private.fed.app.client.client_train"
+SERVER_SCRIPT = "flare.private.fed.app.server.server_train"
+CLIENT_SCRIPT = "flare.private.fed.app.client.client_train"
 SERVER_NVF_CONFIG = "fed_server.json"
 CLIENT_NVF_CONFIG = "fed_client.json"
 

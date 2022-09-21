@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,11 +18,11 @@ import threading
 import time
 import traceback
 
-from nvflare.fuel.hci.server.constants import ConnProps
-from nvflare.fuel.sec.audit import Auditor, AuditService
-from nvflare.fuel.sec.authz import AuthorizationService, AuthzContext, Person
-from nvflare.private.admin_defs import Message, error_reply, ok_reply
-from nvflare.private.defs import RequestHeader
+from flare.fuel.hci.server.constants import ConnProps
+from flare.fuel.sec.audit import Auditor, AuditService
+from flare.fuel.sec.authz import AuthorizationService, AuthzContext, Person
+from flare.private.admin_defs import Message, error_reply, ok_reply
+from flare.private.defs import RequestHeader
 
 
 class Sender(object):

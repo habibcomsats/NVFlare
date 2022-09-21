@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-export projectname='nvflare_prostate'
+export projectname='flare_prostate'
 export projectpath="."
 
 python3 -m venv ${projectname}

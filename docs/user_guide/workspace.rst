@@ -1,11 +1,11 @@
 ######################
-NVIDIA FLARE Workspace
+[BLINDED] FLARE Workspace
 ######################
 
-NVIDIA FLARE maintains a workspace for keeping the FL apps and execution results for different jobs
+[BLINDED] FLARE maintains a workspace for keeping the FL apps and execution results for different jobs
 under folders with the name of the ``job_id``.
 
-The following is the workspace folder structure when running NVIDIA FLARE for the server and clients.
+The following is the workspace folder structure when running [BLINDED] FLARE for the server and clients.
 
 .. _server_workspace:
 
@@ -120,7 +120,7 @@ While the ``log.txt`` under client folder is the log for the client control proc
 
 The ``startup`` folder contains the config and the scripts to start the FL client program.
 
-The :class:`Workspace<nvflare.apis.workspace.Workspace>` object is available through the FLContext.
+The :class:`Workspace<flare.apis.workspace.Workspace>` object is available through the FLContext.
 From the Workspace, you can access each folder location accordingly
 
 .. code-block:: python
@@ -128,6 +128,6 @@ From the Workspace, you can access each folder location accordingly
     workspace = fl_ctx.get_prop(FLContextKey.WORKSPACE_OBJECT)
 
 
-.. literalinclude:: ../../nvflare/apis/workspace.py
+.. literalinclude:: ../../flare/apis/workspace.py
     :language: python
     :lines: 36-

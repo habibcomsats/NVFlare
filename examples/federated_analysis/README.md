@@ -1,4 +1,4 @@
-# Federated Analysis with NVIDIA FLARE
+# Federated Analysis with [BLINDED] FLARE
 
 ## (Optional) 0. Set up a virtual environment
 ```
@@ -65,14 +65,14 @@ Next, we submit the federated analysis job configuration to execute the histogra
 
 ### 3.2 Submit job using admin console
 
-To do this, you need to log into the NVFlare admin console.
+To do this, you need to log into the Flare admin console.
 
 1. Open a new terminal
 2. Activate the virtual environment (if needed): `source ./virtualenv/set_env.sh`
 3. Start the admin console: `./workspaces/poc_workspace/admin/startup/fl_admin.sh`
 4. Inside the console, submit the job: `submit_job [PWD]/configs/fed_analysis` (replace `[PWD]` with your current path) 
 
-For a complete list of available admin console commands, see [here](https://nvflare.readthedocs.io/en/main/user_guide/operation.html).
+For a complete list of available admin console commands, see [here](https://flare.readthedocs.io/en/main/user_guide/operation.html).
 
 ### 3.2 List the submitted job
 

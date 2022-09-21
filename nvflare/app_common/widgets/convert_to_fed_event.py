@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,10 +14,10 @@
 
 from typing import List
 
-from nvflare.apis.fl_constant import EventScope, FLContextKey
-from nvflare.apis.fl_context import FLContext
-from nvflare.apis.shareable import Shareable
-from nvflare.widgets.widget import Widget
+from flare.apis.fl_constant import EventScope, FLContextKey
+from flare.apis.fl_context import FLContext
+from flare.apis.shareable import Shareable
+from flare.widgets.widget import Widget
 
 FED_EVENT_PREFIX = "fed."
 

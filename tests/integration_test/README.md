@@ -1,4 +1,4 @@
-# NVIDIA FLARE Integration test
+# [BLINDED] FLARE Integration test
 
 The integration tests entry file is `tests/integration_test/system_test.py`.
 The overseer tests entry file is `tests/integration_test/overseer_test.py`
@@ -14,7 +14,7 @@ Or if you are running using docker container you should use `--add-host localhos
 
 First switch to this folder and then run
 
-`PYTHONPATH=[path/to/your/NVFlare] ./run_integration_tests.sh`
+`PYTHONPATH=[path/to/your/Flare] ./run_integration_tests.sh`
 
 
 ## Test structure
@@ -98,4 +98,4 @@ The following result type is supported:
 
 ### apps
 
-Each application in apps folder should be a valid NVFlare application.
+Each application in apps folder should be a valid Flare application.

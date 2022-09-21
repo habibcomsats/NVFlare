@@ -15,7 +15,7 @@ there are other privacy configurations for weights, weight diff, and many others
 
 # Privacy configuration
 
-The NVFLARE privacy configuration is consists of set of task data filters and task result filters
+The FLARE privacy configuration is consists of set of task data filters and task result filters
 * The task data filter applies before client executor executes;
 * The task results filter applies after client executor before it sends to server;
 * for both data filter and result filter, they are groups via scope.

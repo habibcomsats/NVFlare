@@ -18,23 +18,23 @@ The setup of this exercise consists of one **server** and two **clients**.
 
   This exercise differs from :doc:`hello_pt`, as it uses the ``Learner`` API along with the ``LearnerExecutor``.
   In short, the execution flow is abstracted away into the ``LearnerExecutor``, allowing you to only need to implement the required methods in the ``Learner`` class.
-  This will not be the focus of this guide, however you can learn more at :class:`Learner<nvflare.app_common.abstract.learner_spec.Learner>`
-  and :class:`LearnerExecutor<nvflare.app_common.executors.learner_executor.LearnerExecutor>`.
+  This will not be the focus of this guide, however you can learn more at :class:`Learner<flare.app_common.abstract.learner_spec.Learner>`
+  and :class:`LearnerExecutor<flare.app_common.executors.learner_executor.LearnerExecutor>`.
 
 
-Let's get started. Make sure you have an environment with NVIDIA FLARE installed as described in
+Let's get started. Make sure you have an environment with [BLINDED] FLARE installed as described in
 :doc:`quickstart <../quickstart>` guide. First clone the repo:
 
 .. code-block:: shell
 
-  $ git clone https://github.com/NVIDIA/NVFlare.git
+  $ git clone https://github.com/[BLINDED]/Flare.git
 
-Now remember to activate your NVIDIA FLARE Python virtual environment from the installation guide.
+Now remember to activate your [BLINDED] FLARE Python virtual environment from the installation guide.
 Since you will use PyTorch, torchvision, and TensorBoard for this exercise, let's go ahead and install these libraries:
 
 .. code-block:: shell
 
-  (nvflare-env) $ python3 -m pip install torch torchvision tensorboard
+  (flare-env) $ python3 -m pip install torch torchvision tensorboard
 
 
 Adding TensorBoard Streaming to Configurations
@@ -51,11 +51,11 @@ Take a look at the components section of the client config at line 24.
 The first component is the ``pt_learner`` which contains the initialization, training, and validation logic.
 ``pt_learner.py`` is where we will add our TensorBoard streaming changes.
 
-Next we have the :class:`AnalyticsSender<nvflare.app_common.widgets.streaming.AnalyticsSender>`,
+Next we have the :class:`AnalyticsSender<flare.app_common.widgets.streaming.AnalyticsSender>`,
 which implements some common methods that follow the signatures from the PyTorch SummaryWriter.
 This makes it easy for the ``pt_learner`` to log metrics and send events.
 
-Finally, we have the :class:`ConvertToFedEvent<nvflare.app_common.widgets.convert_to_fed_event.ConvertToFedEvent>`,
+Finally, we have the :class:`ConvertToFedEvent<flare.app_common.widgets.convert_to_fed_event.ConvertToFedEvent>`,
 which converts local events to federated events.
 This changes the event ``analytix_log_stats`` into a fed event ``fed.analytix_log_stats``,
 which will then be streamed from the clients to the server.
@@ -66,14 +66,14 @@ which will then be streamed from the clients to the server.
    :caption: config_fed_server.json
 
 Under the component section in the server config, we have the
-:class:`TBAnalyticsReceiver<nvflare.app_common.pt.tb_receiver.TBAnalyticsReceiver>`
-of type :class:`AnalyticsReceiver<nvflare.app_common.widgets.streaming.AnalyticsReceiver>`.
+:class:`TBAnalyticsReceiver<flare.app_common.pt.tb_receiver.TBAnalyticsReceiver>`
+of type :class:`AnalyticsReceiver<flare.app_common.widgets.streaming.AnalyticsReceiver>`.
 
 This component receives TensorBoard events from the clients and saves them to a specified folder
 (default ``tb_events``) under the server's run folder.
 
 Notice how the accepted event type ``"fed.analytix_log_stats"`` matches the output of
-:class:`ConvertToFedEvent<nvflare.app_common.widgets.convert_to_fed_event.ConvertToFedEvent>` in the client config.
+:class:`ConvertToFedEvent<flare.app_common.widgets.convert_to_fed_event.ConvertToFedEvent>` in the client config.
 
 
 Adding TensorBoard Streaming to your Code
@@ -108,7 +108,7 @@ We use ``add_scalar(tag, scalar, global_step)`` on line 155 to send training los
 while on line 159 we send the validation accuracy at the end of each epoch.
 
 You can learn more about other supported writer methods in
-:class:`AnalyticsSender<nvflare.app_common.widgets.streaming.AnalyticsSender>`.
+:class:`AnalyticsSender<flare.app_common.widgets.streaming.AnalyticsSender>`.
 
 
 Train the Model, Federated!
@@ -122,7 +122,7 @@ Viewing the TensorBoard Dashboard during Training
 --------------------------------------------------
 
 On the client side, the ``AnalyticsSender`` works as a TensorBoard SummaryWriter.
-Instead of writing to TB files, it actually generates NVFLARE events of type ``analytix_log_stats``.
+Instead of writing to TB files, it actually generates FLARE events of type ``analytix_log_stats``.
 
 The ``ConvertToFedEvent`` widget will turn the event ``analytix_log_stats`` into a fed event
 ``fed.analytix_log_stats``, which will be delivered to the server side.
@@ -160,5 +160,5 @@ Congratulations!
 Now you will be able to see the live training metrics of each client from a central place on the server.
 
 The full source code for this exercise can be found in
-`examples/hello-pt-tb <https://github.com/NVIDIA/NVFlare/tree/main/examples/hello-pt-tb>`_.
+`examples/hello-pt-tb <https://github.com/[BLINDED]/Flare/tree/main/examples/hello-pt-tb>`_.
 

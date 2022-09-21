@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,11 +15,11 @@
 from abc import ABC, abstractmethod
 from typing import List
 
-from nvflare.fuel.hci.conn import Connection
-from nvflare.fuel.hci.proto import CredentialType, InternalCommands
-from nvflare.fuel.hci.reg import CommandModule, CommandModuleSpec, CommandSpec
-from nvflare.fuel.hci.security import IdentityKey, verify_password
-from nvflare.fuel.hci.server.constants import ConnProps
+from flare.fuel.hci.conn import Connection
+from flare.fuel.hci.proto import CredentialType, InternalCommands
+from flare.fuel.hci.reg import CommandModule, CommandModuleSpec, CommandSpec
+from flare.fuel.hci.security import IdentityKey, verify_password
+from flare.fuel.hci.server.constants import ConnProps
 
 from .reg import CommandFilter
 from .sess import Session, SessionManager

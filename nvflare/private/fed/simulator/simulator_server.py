@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,13 +14,13 @@
 
 from typing import List, Optional
 
-from nvflare.apis.fl_component import FLComponent
-from nvflare.apis.fl_constant import FLContextKey, ReservedKey, RunProcessKey, ServerCommandKey
-from nvflare.apis.fl_context import FLContext
-from nvflare.apis.shareable import ReturnCode, Shareable, make_reply
-from nvflare.private.fed.server.run_manager import RunManager
-from nvflare.private.fed.server.server_state import HotState
-from nvflare.private.fed.simulator.simulator_const import SimulatorConstants
+from flare.apis.fl_component import FLComponent
+from flare.apis.fl_constant import FLContextKey, ReservedKey, RunProcessKey, ServerCommandKey
+from flare.apis.fl_context import FLContext
+from flare.apis.shareable import ReturnCode, Shareable, make_reply
+from flare.private.fed.server.run_manager import RunManager
+from flare.private.fed.server.server_state import HotState
+from flare.private.fed.simulator.simulator_const import SimulatorConstants
 
 from ..server.fed_server import FederatedServer
 from ..server.server_engine import ServerEngine

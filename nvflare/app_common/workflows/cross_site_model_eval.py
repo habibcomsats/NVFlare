@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,20 +17,20 @@ import shutil
 import time
 from typing import Union
 
-from nvflare.apis.client import Client
-from nvflare.apis.controller_spec import ClientTask, Task
-from nvflare.apis.dxo import DXO, from_bytes, from_shareable
-from nvflare.apis.fl_constant import ReturnCode
-from nvflare.apis.fl_context import FLContext
-from nvflare.apis.impl.controller import Controller
-from nvflare.apis.shareable import Shareable
-from nvflare.apis.signal import Signal
-from nvflare.apis.workspace import Workspace
-from nvflare.app_common.abstract.formatter import Formatter
-from nvflare.app_common.abstract.model_locator import ModelLocator
-from nvflare.app_common.app_constant import AppConstants, ModelName
-from nvflare.app_common.app_event_type import AppEventType
-from nvflare.widgets.info_collector import GroupInfoCollector, InfoCollector
+from flare.apis.client import Client
+from flare.apis.controller_spec import ClientTask, Task
+from flare.apis.dxo import DXO, from_bytes, from_shareable
+from flare.apis.fl_constant import ReturnCode
+from flare.apis.fl_context import FLContext
+from flare.apis.impl.controller import Controller
+from flare.apis.shareable import Shareable
+from flare.apis.signal import Signal
+from flare.apis.workspace import Workspace
+from flare.app_common.abstract.formatter import Formatter
+from flare.app_common.abstract.model_locator import ModelLocator
+from flare.app_common.app_constant import AppConstants, ModelName
+from flare.app_common.app_event_type import AppEventType
+from flare.widgets.info_collector import GroupInfoCollector, InfoCollector
 
 
 class CrossSiteModelEval(Controller):

@@ -2,13 +2,13 @@
 Authorization
 #############
 
-NVIDIA FLARE implements a role-based authorization framework that determines what a user can or cannot do based on the user’s
+[BLINDED] FLARE implements a role-based authorization framework that determines what a user can or cannot do based on the user’s
 assigned roles configured through AuthPolicyBuilder at provisioning.
 
 ********************************
 Terminology for FL authorization
 ********************************
-The following concepts are used in defining an authorization policy for NVIDIA FLARE.
+The following concepts are used in defining an authorization policy for [BLINDED] FLARE.
 
 Rights
 ======
@@ -166,8 +166,8 @@ Here is an example of the generated file::
        }
      },
      "users": {
-       "admin@nvidia.com": {
-         "org": "nvidia",
+       "admin@[BLINDED].com": {
+         "org": "[BLINDED]",
          "roles": ["super"]
        },
        "researcher1@org2.com": {
@@ -182,13 +182,13 @@ Here is an example of the generated file::
      "orgs": {
        "org1": ["general", "strict"],
        "org2": ["general", "relaxed"],
-       "nvidia": ["general"]
+       "[BLINDED]": ["general"]
      },
      "sites": {
        "org1-a": "org1",
        "org1-b": "org1",
        "org2": "org2",
-       "server": "nvidia"
+       "server": "[BLINDED]"
      }
     }
 

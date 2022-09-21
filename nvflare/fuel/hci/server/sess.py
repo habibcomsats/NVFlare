@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,11 +16,11 @@ import threading
 import time
 from typing import List
 
-from nvflare.fuel.hci.conn import Connection
-from nvflare.fuel.hci.proto import InternalCommands
-from nvflare.fuel.hci.reg import CommandModule, CommandModuleSpec, CommandSpec
-from nvflare.fuel.hci.security import make_session_token
-from nvflare.fuel.utils.time_utils import time_to_string
+from flare.fuel.hci.conn import Connection
+from flare.fuel.hci.proto import InternalCommands
+from flare.fuel.hci.reg import CommandModule, CommandModuleSpec, CommandSpec
+from flare.fuel.hci.security import make_session_token
+from flare.fuel.utils.time_utils import time_to_string
 
 LIST_SESSIONS_CMD_NAME = InternalCommands.LIST_SESSIONS
 CHECK_SESSION_CMD_NAME = InternalCommands.CHECK_SESSION

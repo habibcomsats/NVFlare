@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,12 +15,12 @@
 import time
 from abc import ABC, abstractmethod
 
-from nvflare.apis.client import Client
-from nvflare.apis.fl_constant import MachineStatus
-from nvflare.apis.fl_context import FLContext
-from nvflare.apis.job_def_manager_spec import JobDefManagerSpec
-from nvflare.apis.server_engine_spec import ServerEngineSpec
-from nvflare.apis.shareable import Shareable
+from flare.apis.client import Client
+from flare.apis.fl_constant import MachineStatus
+from flare.apis.fl_context import FLContext
+from flare.apis.job_def_manager_spec import JobDefManagerSpec
+from flare.apis.server_engine_spec import ServerEngineSpec
+from flare.apis.shareable import Shareable
 
 from .job_runner import JobRunner
 from .run_manager import RunInfo, RunManager

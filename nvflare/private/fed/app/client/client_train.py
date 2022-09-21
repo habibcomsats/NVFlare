@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,19 +19,19 @@ import os
 import sys
 import time
 
-from nvflare.apis.event_type import EventType
-from nvflare.apis.fl_constant import SiteType, WorkspaceConstants
-from nvflare.apis.workspace import Workspace
-from nvflare.fuel.common.excepts import ConfigError
-from nvflare.fuel.utils.argument_utils import parse_vars
-from nvflare.private.defs import AppFolderConstants, SSLConstants
-from nvflare.private.fed.app.fl_conf import FLClientStarterConfiger, create_privacy_manager
-from nvflare.private.fed.client.admin import FedAdminAgent
-from nvflare.private.fed.client.admin_msg_sender import AdminMessageSender
-from nvflare.private.fed.client.client_engine import ClientEngine
-from nvflare.private.fed.client.fed_client import FederatedClient
-from nvflare.private.fed.utils.fed_utils import add_logfile_handler, security_init
-from nvflare.private.privacy_manager import PrivacyService
+from flare.apis.event_type import EventType
+from flare.apis.fl_constant import SiteType, WorkspaceConstants
+from flare.apis.workspace import Workspace
+from flare.fuel.common.excepts import ConfigError
+from flare.fuel.utils.argument_utils import parse_vars
+from flare.private.defs import AppFolderConstants, SSLConstants
+from flare.private.fed.app.fl_conf import FLClientStarterConfiger, create_privacy_manager
+from flare.private.fed.client.admin import FedAdminAgent
+from flare.private.fed.client.admin_msg_sender import AdminMessageSender
+from flare.private.fed.client.client_engine import ClientEngine
+from flare.private.fed.client.fed_client import FederatedClient
+from flare.private.fed.utils.fed_utils import add_logfile_handler, security_init
+from flare.private.privacy_manager import PrivacyService
 
 
 def main():
@@ -192,7 +192,7 @@ def create_admin_agent(
 
 if __name__ == "__main__":
     """
-    This is the main program when starting the NVIDIA FLARE client process.
+    This is the main program when starting the [BLINDED] FLARE client process.
     """
     # # For MacOS, it needs to use 'spawn' for creating multi-process.
     # if os.name == 'posix':

@@ -1,11 +1,11 @@
 .. _event_system:
 
-NVIDIA FLARE Event Mechanism
+[BLINDED] FLARE Event Mechanism
 ============================
-NVIDIA FLARE comes with a powerful event mechanism that allows dynamic notifications sent to all objects that are of a
-subclass of :class:`FLComponent<nvflare.apis.fl_component.FLComponent>`.
+[BLINDED] FLARE comes with a powerful event mechanism that allows dynamic notifications sent to all objects that are of a
+subclass of :class:`FLComponent<flare.apis.fl_component.FLComponent>`.
 
-All component types in NVIDIA FLARE (e.g. Filter, Executor, Responder, Controller, Widget, etc.) are subclasses of
+All component types in [BLINDED] FLARE (e.g. Filter, Executor, Responder, Controller, Widget, etc.) are subclasses of
 ``FLComponent``, hence they are all event handlers. You can create additional subclasses, and their objects will
 automatically become event handlers too.
 
@@ -85,7 +85,7 @@ Event handlers are called in sequence. The failure (exception) of one handler do
 
 Built-in Event Types
 --------------------
-NVIDIA FLARE's system-defined event types are specified in :class:`nvflare.apis.event_type.EventType`:
+[BLINDED] FLARE's system-defined event types are specified in :class:`flare.apis.event_type.EventType`:
 
 .. csv-table::
    :header: Event, Description, Data Key, Data Type, Server, Client
@@ -136,7 +136,7 @@ RUN Lifecycle Events
 --------------------
 The most important event types of all are START_RUN and END_RUN.
 
-In NVIDIA FLARE, a FL experiment is conducted in a RUN. During the course of a FL study, researchers usually need to conduct
+In [BLINDED] FLARE, a FL experiment is conducted in a RUN. During the course of a FL study, researchers usually need to conduct
 many RUNs to achieve expected results.
 
 START_RUN event occurs when a new RUN is about to start, usually triggered by the researcher via admin commands. If your
@@ -153,16 +153,16 @@ Local Events and Fed Events
 ---------------------------
 Local events are local to the client, and federated events or fed events are broadcast to other sites as well.
 
-The :class:`ConvertToFedEvent<nvflare.app_common.widgets.convert_to_fed_event.ConvertToFedEvent>` widget will convert
+The :class:`ConvertToFedEvent<flare.app_common.widgets.convert_to_fed_event.ConvertToFedEvent>` widget will convert
 local events to federated events.
 
-One example of how this is applied in use is in log streaming as seen in the `hello-pt-tb example <https://github.com/NVIDIA/NVFlare/tree/main/examples/hello-pt-tb>`_.
+One example of how this is applied in use is in log streaming as seen in the `hello-pt-tb example <https://github.com/[BLINDED]/Flare/tree/main/examples/hello-pt-tb>`_.
 
-The :class:`AnalyticsSender<nvflare.app_common.widgets.streaming.AnalyticsSender>` triggers an event called "analytix_log_stats",
+The :class:`AnalyticsSender<flare.app_common.widgets.streaming.AnalyticsSender>` triggers an event called "analytix_log_stats",
 as a local event on the client. If we want server side to receive this event, we will need to convert the local event
-to a federated event, and this can be done with the :class:`ConvertToFedEvent<nvflare.app_common.widgets.convert_to_fed_event.ConvertToFedEvent>` widget.
+to a federated event, and this can be done with the :class:`ConvertToFedEvent<flare.app_common.widgets.convert_to_fed_event.ConvertToFedEvent>` widget.
 
-The :class:`ConvertToFedEvent<nvflare.app_common.widgets.convert_to_fed_event.ConvertToFedEvent>` widget converts the event
+The :class:`ConvertToFedEvent<flare.app_common.widgets.convert_to_fed_event.ConvertToFedEvent>` widget converts the event
 to a federated event and adds a prefix to that event, which in the example becomes "fed.analytix_log_stats". This event
-is processed by the :class:`TBAnalyticsReceiver<nvflare.app_common.pt.tb_receiver.TBAnalyticsReceiver>` component
+is processed by the :class:`TBAnalyticsReceiver<flare.app_common.pt.tb_receiver.TBAnalyticsReceiver>` component
 on the server so the server can receive the streamed analytics.

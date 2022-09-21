@@ -1,7 +1,7 @@
- The nvflare/app_opt is the module with components or files which **optional** dependencies. 
+ The flare/app_opt is the module with components or files which **optional** dependencies. 
  That means there are dependencies are not required to be installed when user type
  ```
-     pip install nvflare
+     pip install flare
  ```
 
 User will import errors when using the functions in this module but the required dependency is not installed.
@@ -12,7 +12,7 @@ In this module, instead of directly using
   at top of the file, we encourage user to use option_import() function when you needed, for example
 
 ```
-   from nvflare.utils.import_utils import optional_import
+   from flare.utils.import_utils import optional_import
    ...
    < your code>
    torch = optional_import(module="torch.nn.functional", name = "conv1d")

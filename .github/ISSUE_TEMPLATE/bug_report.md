@@ -26,7 +26,7 @@ If applicable, add screenshots to help explain your problem.
 **Desktop (please complete the following information):**
  - OS: [e.g. ubuntu 16.04]
  - Python Version [e.g. 3.8]
- - NVFlare Version [e.g. 2.1]
+ - Flare Version [e.g. 2.1]
 
 **Additional context**
 Add any other context about the problem here.

@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,9 +16,9 @@ import logging
 from enum import Enum
 from typing import Tuple
 
-from nvflare.apis.controller_spec import ClientTask, Task, TaskCompletionStatus
-from nvflare.apis.fl_context import FLContext
-from nvflare.apis.shareable import Shareable
+from flare.apis.controller_spec import ClientTask, Task, TaskCompletionStatus
+from flare.apis.fl_context import FLContext
+from flare.apis.shareable import Shareable
 
 
 class TaskCheckStatus(Enum):

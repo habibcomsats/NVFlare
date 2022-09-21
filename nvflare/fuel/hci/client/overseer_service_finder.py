@@ -1,6 +1,6 @@
-from nvflare.apis.overseer_spec import OverseerAgent
-from nvflare.fuel.hci.reg import CommandModule
-from nvflare.ha.ha_admin_cmds import HACommandModule
+from flare.apis.overseer_spec import OverseerAgent
+from flare.fuel.hci.reg import CommandModule
+from flare.ha.ha_admin_cmds import HACommandModule
 
 from .api_spec import ServiceFinder
 

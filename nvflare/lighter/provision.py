@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -21,21 +21,21 @@ import shutil
 import sys
 import webbrowser
 
-from nvflare.fuel.utils.class_utils import instantiate_class
-from nvflare.lighter.spec import Participant, Project, Provisioner
-from nvflare.lighter.utils import load_yaml
+from flare.fuel.utils.class_utils import instantiate_class
+from flare.lighter.spec import Participant, Project, Provisioner
+from flare.lighter.utils import load_yaml
 
 adding_client_error_msg = """
 name: $SITE-NAME
 org: $ORGANIZATION_NAME
 components:
     resource_manager:    # This id is reserved by system.  Do not change it.
-        path: nvflare.app_common.resource_managers.gpu_resource_manager.GPUResourceManager
+        path: flare.app_common.resource_managers.gpu_resource_manager.GPUResourceManager
         args:
             num_of_gpus: 4,
             mem_per_gpu_in_GiB: 16
     resource_consumer:    # This id is reserved by system.  Do not change it.
-        path: nvflare.app_common.resource_consumers.gpu_resource_consumer.GPUResourceConsumer
+        path: flare.app_common.resource_consumers.gpu_resource_consumer.GPUResourceConsumer
         args:
 """
 
@@ -155,7 +155,7 @@ def handle_provision(args):
 
 def main():
     print("*****************************************************************************")
-    print("** provision command is deprecated, please use 'nvflare provision' instead **")
+    print("** provision command is deprecated, please use 'flare provision' instead **")
     print("*****************************************************************************")
 
     parser = argparse.ArgumentParser()

@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,14 +15,14 @@
 import os
 from abc import ABC, abstractmethod
 
-from nvflare.apis.event_type import EventType
-from nvflare.apis.executor import Executor
-from nvflare.apis.fl_constant import FLContextKey, ReturnCode
-from nvflare.apis.fl_context import FLContext
-from nvflare.apis.shareable import Shareable, make_reply
-from nvflare.apis.signal import Signal
-from nvflare.apis.workspace import Workspace
-from nvflare.app_common.app_constant import AppConstants
+from flare.apis.event_type import EventType
+from flare.apis.executor import Executor
+from flare.apis.fl_constant import FLContextKey, ReturnCode
+from flare.apis.fl_context import FLContext
+from flare.apis.shareable import Shareable, make_reply
+from flare.apis.signal import Signal
+from flare.apis.workspace import Workspace
+from flare.app_common.app_constant import AppConstants
 
 from .constants import XGB_TRAIN_TASK, XGBShareableHeader
 
@@ -124,7 +124,7 @@ class XGBExecutorBase(Executor, ABC):
             return make_reply(ReturnCode.EXECUTION_EXCEPTION)
 
     def train(self, shareable: Shareable, fl_ctx: FLContext, abort_signal: Signal) -> Shareable:
-        """XGBoost training task pipeline which handles NVFlare specific tasks"""
+        """XGBoost training task pipeline which handles Flare specific tasks"""
         if abort_signal.triggered:
             return make_reply(ReturnCode.TASK_ABORTED)
 

@@ -1,4 +1,4 @@
-# Copyright (c) 2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@ import os
 import subprocess
 import tempfile
 
-from nvflare.lighter import utils
+from flare.lighter import utils
 
 from .cert import CertPair, Entity, deserialize_ca_key, make_cert
 from .models import Client, Project, User
@@ -91,7 +91,7 @@ def gen_server(key, first_server=True):
     server_0["admin_host"] = entity.name
     server_0["admin_port"] = admin_port
     if project.ha_mode:
-        overseer_agent = {"path": "nvflare.ha.overseer_agent.HttpOverseerAgent"}
+        overseer_agent = {"path": "flare.ha.overseer_agent.HttpOverseerAgent"}
         overseer_agent["args"] = {
             "role": "server",
             "overseer_end_point": f"https://{project.overseer}:8443/api/v1",
@@ -101,7 +101,7 @@ def gen_server(key, first_server=True):
             "admin_port": str(admin_port),
         }
     else:
-        overseer_agent = {"path": "nvflare.ha.dummy_overseer_agent.DummyOverseerAgent"}
+        overseer_agent = {"path": "flare.ha.dummy_overseer_agent.DummyOverseerAgent"}
         overseer_agent["args"] = {"sp_end_point": f"{project.server1}:8003:8004"}
 
     config["overseer_agent"] = overseer_agent
@@ -197,7 +197,7 @@ def gen_client(key, id):
         "org_name": entity.org,
     }
     if project.ha_mode:
-        overseer_agent = {"path": "nvflare.ha.overseer_agent.HttpOverseerAgent"}
+        overseer_agent = {"path": "flare.ha.overseer_agent.HttpOverseerAgent"}
         overseer_agent["args"] = {
             "role": "client",
             "overseer_end_point": f"https://{project.overseer}:8443/api/v1",
@@ -205,7 +205,7 @@ def gen_client(key, id):
             "name": entity.name,
         }
     else:
-        overseer_agent = {"path": "nvflare.ha.dummy_overseer_agent.DummyOverseerAgent"}
+        overseer_agent = {"path": "flare.ha.dummy_overseer_agent.DummyOverseerAgent"}
         overseer_agent["args"] = {"sp_end_point": f"{project.server1}:8003:8004"}
     config["overseer_agent"] = overseer_agent
 
@@ -250,7 +250,7 @@ def gen_client(key, id):
         )
         resources = json.loads(template["local_client_resources"])
         for component in resources["components"]:
-            if "nvflare.app_common.resource_managers.gpu_resource_manager.GPUResourceManager" == component["path"]:
+            if "flare.app_common.resource_managers.gpu_resource_manager.GPUResourceManager" == component["path"]:
                 component["args"] = json.loads(client.capacity.capacity)
                 break
         _write(
@@ -296,7 +296,7 @@ def gen_user(key, id):
     replacement_dict = {"cn": server_name, "admin_port": "8003", "docker_image": ""}
 
     if project.ha_mode:
-        overseer_agent = {"path": "nvflare.ha.overseer_agent.HttpOverseerAgent"}
+        overseer_agent = {"path": "flare.ha.overseer_agent.HttpOverseerAgent"}
         overseer_agent["args"] = {
             "role": "admin",
             "overseer_end_point": f"https://{project.overseer}:8443/api/v1",
@@ -304,7 +304,7 @@ def gen_user(key, id):
             "name": entity.name,
         }
     else:
-        overseer_agent = {"path": "nvflare.ha.dummy_overseer_agent.DummyOverseerAgent"}
+        overseer_agent = {"path": "flare.ha.dummy_overseer_agent.DummyOverseerAgent"}
         overseer_agent["args"] = {"sp_end_point": f"{project.server1}:8003:8004"}
     agent_config = {"overseer_agent": overseer_agent}
     config["admin"] = agent_config

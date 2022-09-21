@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,10 +18,10 @@ from abc import ABC, abstractmethod
 from threading import Event, Lock, Thread
 from typing import Optional
 
-from nvflare.apis.event_type import EventType
-from nvflare.apis.fl_component import FLComponent
-from nvflare.apis.fl_context import FLContext
-from nvflare.apis.resource_manager_spec import ResourceManagerSpec
+from flare.apis.event_type import EventType
+from flare.apis.fl_component import FLComponent
+from flare.apis.fl_context import FLContext
+from flare.apis.resource_manager_spec import ResourceManagerSpec
 
 
 class BaseResourceManager(ResourceManagerSpec, FLComponent, ABC):

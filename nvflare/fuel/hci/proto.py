@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -46,7 +46,7 @@ class ConfirmMethod(object):
 
 class Buffer(object):
     def __init__(self):
-        """Buffer to append to for :class:`nvflare.fuel.hci.conn.Connection`."""
+        """Buffer to append to for :class:`flare.fuel.hci.conn.Connection`."""
         self.output = {"time": "{}".format(datetime.now()), "data": []}
 
     def append_table(self, headers: List[str]) -> Table:

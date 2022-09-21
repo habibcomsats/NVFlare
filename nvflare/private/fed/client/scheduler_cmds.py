@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,15 +15,15 @@
 import json
 from typing import List
 
-from nvflare.apis.fl_constant import ReturnCode, SystemComponents
-from nvflare.apis.resource_manager_spec import ResourceConsumerSpec, ResourceManagerSpec
-from nvflare.apis.shareable import Shareable
-from nvflare.fuel.utils import fobs
-from nvflare.private.admin_defs import Message
-from nvflare.private.defs import ERROR_MSG_PREFIX, RequestHeader, SysCommandTopic, TrainingTopic
-from nvflare.private.fed.client.admin import RequestProcessor
-from nvflare.private.fed.client.client_engine_internal_spec import ClientEngineInternalSpec
-from nvflare.private.scheduler_constants import ShareableHeader
+from flare.apis.fl_constant import ReturnCode, SystemComponents
+from flare.apis.resource_manager_spec import ResourceConsumerSpec, ResourceManagerSpec
+from flare.apis.shareable import Shareable
+from flare.fuel.utils import fobs
+from flare.private.admin_defs import Message
+from flare.private.defs import ERROR_MSG_PREFIX, RequestHeader, SysCommandTopic, TrainingTopic
+from flare.private.fed.client.admin import RequestProcessor
+from flare.private.fed.client.client_engine_internal_spec import ClientEngineInternalSpec
+from flare.private.scheduler_constants import ShareableHeader
 
 
 class CheckResourceProcessor(RequestProcessor):

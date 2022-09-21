@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,14 +18,14 @@ from collections import OrderedDict
 import torch
 import torch.nn as nn
 
-from nvflare.apis.dxo import MetaKey
-from nvflare.app_common.abstract.model import (
+from flare.apis.dxo import MetaKey
+from flare.app_common.abstract.model import (
     ModelLearnable,
     ModelLearnableKey,
     make_model_learnable,
     validate_model_learnable,
 )
-from nvflare.app_common.app_constant import ModelFormat
+from flare.app_common.app_constant import ModelFormat
 
 
 def feed_vars(model: nn.Module, model_params):

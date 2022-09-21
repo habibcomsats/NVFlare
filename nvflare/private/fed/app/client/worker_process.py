@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -23,16 +23,16 @@ import time
 
 import psutil
 
-from nvflare.apis.fl_constant import FLContextKey, WorkspaceConstants
-from nvflare.apis.workspace import Workspace
-from nvflare.fuel.sec.audit import AuditService
-from nvflare.fuel.sec.security_content_service import SecurityContentService
-from nvflare.fuel.utils.argument_utils import parse_vars
-from nvflare.private.defs import EngineConstant
-from nvflare.private.fed.app.fl_conf import FLClientStarterConfiger
-from nvflare.private.fed.client.client_app_runner import ClientAppRunner
-from nvflare.private.fed.client.client_status import ClientStatus
-from nvflare.private.fed.utils.fed_utils import add_logfile_handler
+from flare.apis.fl_constant import FLContextKey, WorkspaceConstants
+from flare.apis.workspace import Workspace
+from flare.fuel.sec.audit import AuditService
+from flare.fuel.sec.security_content_service import SecurityContentService
+from flare.fuel.utils.argument_utils import parse_vars
+from flare.private.defs import EngineConstant
+from flare.private.fed.app.fl_conf import FLClientStarterConfiger
+from flare.private.fed.client.client_app_runner import ClientAppRunner
+from flare.private.fed.client.client_status import ClientStatus
+from flare.private.fed.utils.fed_utils import add_logfile_handler
 
 
 def check_parent_alive(parent_pid, stop_event: threading.Event):
@@ -172,7 +172,7 @@ def remove_restart_file(workspace: Workspace):
 
 if __name__ == "__main__":
     """
-    This is the program when starting the child process for running the NVIDIA FLARE executor.
+    This is the program when starting the child process for running the [BLINDED] FLARE executor.
     """
 
     main()

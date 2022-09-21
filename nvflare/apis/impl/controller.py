@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,16 +18,16 @@ from abc import ABC
 from threading import Lock
 from typing import List, Optional, Tuple, Union
 
-from nvflare.apis.client import Client
-from nvflare.apis.controller_spec import ClientTask, ControllerSpec, SendOrder, Task, TaskCompletionStatus
-from nvflare.apis.fl_constant import FLContextKey, ReservedTopic
-from nvflare.apis.fl_context import FLContext
-from nvflare.apis.fl_exception import WorkflowError
-from nvflare.apis.responder import Responder
-from nvflare.apis.server_engine_spec import ServerEngineSpec
-from nvflare.apis.shareable import Shareable
-from nvflare.apis.signal import Signal
-from nvflare.widgets.info_collector import GroupInfoCollector, InfoCollector
+from flare.apis.client import Client
+from flare.apis.controller_spec import ClientTask, ControllerSpec, SendOrder, Task, TaskCompletionStatus
+from flare.apis.fl_constant import FLContextKey, ReservedTopic
+from flare.apis.fl_context import FLContext
+from flare.apis.fl_exception import WorkflowError
+from flare.apis.responder import Responder
+from flare.apis.server_engine_spec import ServerEngineSpec
+from flare.apis.shareable import Shareable
+from flare.apis.signal import Signal
+from flare.widgets.info_collector import GroupInfoCollector, InfoCollector
 
 from .any_relay_manager import AnyRelayTaskManager
 from .bcast_manager import BcastForeverTaskManager, BcastTaskManager

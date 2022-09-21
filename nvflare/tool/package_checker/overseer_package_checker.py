@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,11 +16,11 @@ import os
 
 from .check_rule import CheckAddressBinding
 from .package_checker import PackageChecker
-from .utils import NVFlareConfig
+from .utils import FlareConfig
 
 
 def _get_overseer_host_and_port(package_path: str):
-    gunicorn_conf_file = os.path.join(package_path, "startup", NVFlareConfig.OVERSEER)
+    gunicorn_conf_file = os.path.join(package_path, "startup", FlareConfig.OVERSEER)
     gunicorn_conf = {}
 
     with open(gunicorn_conf_file, "r") as f:
@@ -38,7 +38,7 @@ def _get_overseer_host_and_port(package_path: str):
 class OverseerPackageChecker(PackageChecker):
     def should_be_checked(self) -> bool:
         """Check if this package should be checked by this checker."""
-        gunicorn_conf_file = os.path.join(self.package_path, "startup", NVFlareConfig.OVERSEER)
+        gunicorn_conf_file = os.path.join(self.package_path, "startup", FlareConfig.OVERSEER)
         if os.path.exists(gunicorn_conf_file):
             return True
         return False

@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,14 +19,14 @@ from typing import List, Optional
 import grpc
 from google.protobuf.struct_pb2 import Struct
 
-import nvflare.private.fed.protos.federated_pb2 as fed_msg
-import nvflare.private.fed.protos.federated_pb2_grpc as fed_service
-from nvflare.apis.filter import Filter
-from nvflare.apis.fl_context import FLContext
-from nvflare.apis.fl_exception import FLCommunicationError
-from nvflare.private.defs import SpecialTaskName
-from nvflare.private.fed.client.client_engine_internal_spec import ClientEngineInternalSpec
-from nvflare.private.fed.utils.fed_utils import make_context_data, make_shareable_data, shareable_to_modeldata
+import flare.private.fed.protos.federated_pb2 as fed_msg
+import flare.private.fed.protos.federated_pb2_grpc as fed_service
+from flare.apis.filter import Filter
+from flare.apis.fl_context import FLContext
+from flare.apis.fl_exception import FLCommunicationError
+from flare.private.defs import SpecialTaskName
+from flare.private.fed.client.client_engine_internal_spec import ClientEngineInternalSpec
+from flare.private.fed.utils.fed_utils import make_context_data, make_shareable_data, shareable_to_modeldata
 
 
 def _get_client_state(project_name, token, ssid, fl_ctx: FLContext):

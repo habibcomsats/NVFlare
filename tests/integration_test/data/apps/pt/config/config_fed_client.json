@@ -9,7 +9,7 @@
         "args": {
           "lr": 0.01,
           "epochs": 1,
-          "data_path": "/tmp/nvflare/cifar10_data"
+          "data_path": "/tmp/flare/cifar10_data"
         }
       }
     },
@@ -18,7 +18,7 @@
       "executor": {
         "path": "cifar10validator.Cifar10Validator",
         "args": {
-          "data_path": "/tmp/nvflare/cifar10_data"
+          "data_path": "/tmp/flare/cifar10_data"
         }
       }
     }

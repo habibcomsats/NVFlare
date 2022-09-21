@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,12 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from nvflare.private.admin_defs import Message
-from nvflare.private.defs import ComponentCallerTopic, RequestHeader
-from nvflare.private.fed.client.admin import RequestProcessor
-from nvflare.private.fed.client.client_engine_internal_spec import ClientEngineInternalSpec
-from nvflare.widgets.comp_caller import ComponentCaller
-from nvflare.widgets.widget import WidgetID
+from flare.private.admin_defs import Message
+from flare.private.defs import ComponentCallerTopic, RequestHeader
+from flare.private.fed.client.admin import RequestProcessor
+from flare.private.fed.client.client_engine_internal_spec import ClientEngineInternalSpec
+from flare.widgets.comp_caller import ComponentCaller
+from flare.widgets.widget import WidgetID
 
 
 class ComponentCallerProcessor(RequestProcessor):

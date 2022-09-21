@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,10 +16,10 @@ import argparse
 import cmd
 import json
 
-from nvflare.fuel.hci.cmd_arg_utils import split_to_args
-from nvflare.fuel.hci.table import Table
-from nvflare.fuel.sec.authz import AuthzContext, Person, Policy, parse_policy_config
-from nvflare.security.security import COMMAND_CATEGORIES
+from flare.fuel.hci.cmd_arg_utils import split_to_args
+from flare.fuel.hci.table import Table
+from flare.fuel.sec.authz import AuthzContext, Person, Policy, parse_policy_config
+from flare.security.security import COMMAND_CATEGORIES
 
 
 class Commander(cmd.Cmd):

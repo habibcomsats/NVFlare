@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -28,9 +28,9 @@ from multiprocessing.connection import Listener
 from threading import Lock
 from typing import Dict, List, Tuple
 
-from nvflare.apis.client import Client
-from nvflare.apis.fl_component import FLComponent
-from nvflare.apis.fl_constant import (
+from flare.apis.client import Client
+from flare.apis.fl_component import FLComponent
+from flare.apis.fl_constant import (
     AdminCommandNames,
     FLContextKey,
     MachineStatus,
@@ -42,22 +42,22 @@ from nvflare.apis.fl_constant import (
     SnapshotKey,
     WorkspaceConstants,
 )
-from nvflare.apis.fl_context import FLContext, FLContextManager
-from nvflare.apis.fl_snapshot import RunSnapshot
-from nvflare.apis.impl.job_def_manager import JobDefManagerSpec
-from nvflare.apis.shareable import Shareable, make_reply
-from nvflare.apis.utils.common_utils import get_open_ports
-from nvflare.apis.utils.fl_context_utils import get_serializable_data
-from nvflare.apis.workspace import Workspace
-from nvflare.fuel.hci.zip_utils import zip_directory_to_bytes
-from nvflare.fuel.utils import fobs
-from nvflare.private.admin_defs import Message
-from nvflare.private.defs import RequestHeader, TrainingTopic
-from nvflare.private.fed.server.server_json_config import ServerJsonConfigurator
-from nvflare.private.fed.utils.fed_utils import security_close
-from nvflare.private.scheduler_constants import ShareableHeader
-from nvflare.widgets.info_collector import InfoCollector
-from nvflare.widgets.widget import Widget, WidgetID
+from flare.apis.fl_context import FLContext, FLContextManager
+from flare.apis.fl_snapshot import RunSnapshot
+from flare.apis.impl.job_def_manager import JobDefManagerSpec
+from flare.apis.shareable import Shareable, make_reply
+from flare.apis.utils.common_utils import get_open_ports
+from flare.apis.utils.fl_context_utils import get_serializable_data
+from flare.apis.workspace import Workspace
+from flare.fuel.hci.zip_utils import zip_directory_to_bytes
+from flare.fuel.utils import fobs
+from flare.private.admin_defs import Message
+from flare.private.defs import RequestHeader, TrainingTopic
+from flare.private.fed.server.server_json_config import ServerJsonConfigurator
+from flare.private.fed.utils.fed_utils import security_close
+from flare.private.scheduler_constants import ShareableHeader
+from flare.widgets.info_collector import InfoCollector
+from flare.widgets.widget import Widget, WidgetID
 
 from .admin import ClientReply
 from .client_manager import ClientManager
@@ -278,7 +278,7 @@ class ServerEngine(ServerEngineInternalSpec):
 
         command = (
             sys.executable
-            + " -m nvflare.private.fed.app.server.runner_process -m "
+            + " -m flare.private.fed.app.server.runner_process -m "
             + args.workspace
             + " -s fed_server.json -r "
             + app_root

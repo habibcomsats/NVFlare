@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -26,17 +26,17 @@ import grpc
 from requests import Request, RequestException, Response, Session, codes
 from requests.adapters import HTTPAdapter
 
-from nvflare.fuel.hci.conn import ALL_END
+from flare.fuel.hci.conn import ALL_END
 
 
-class NVFlareConfig:
+class FlareConfig:
     OVERSEER = "gunicorn.conf.py"
     SERVER = "fed_server.json"
     CLIENT = "fed_client.json"
     ADMIN = "fed_admin.json"
 
 
-class NVFlareRole:
+class FlareRole:
     SERVER = "server"
     CLIENT = "client"
     ADMIN = "admin"
@@ -92,7 +92,7 @@ def _send_request(
 def parse_overseer_agent_args(overseer_agent_conf: dict, required_args: list):
     result = {}
     overseer_agent_path = overseer_agent_conf.get("path")
-    if overseer_agent_path != "nvflare.ha.overseer_agent.HttpOverseerAgent":
+    if overseer_agent_path != "flare.ha.overseer_agent.HttpOverseerAgent":
         raise Exception(f"overseer agent {overseer_agent_path} is not supported.")
     for k in required_args:
         value = overseer_agent_conf.get("args", {}).get(k)
@@ -104,7 +104,7 @@ def parse_overseer_agent_args(overseer_agent_conf: dict, required_args: list):
 
 def _prepare_data(args: dict):
     data = dict(role=args["role"], project=args["project"])
-    if args["role"] == NVFlareRole.SERVER:
+    if args["role"] == FlareRole.SERVER:
         data["sp_end_point"] = ":".join([args["name"], args["fl_port"], args["admin_port"]])
     return data
 
@@ -114,13 +114,13 @@ def _get_ca_cert_file_name():
 
 
 def _get_cert_file_name(role: str):
-    if role == NVFlareRole.SERVER:
+    if role == FlareRole.SERVER:
         return "server.crt"
     return "client.crt"
 
 
 def _get_prv_key_file_name(role: str):
-    if role == NVFlareRole.SERVER:
+    if role == FlareRole.SERVER:
         return "server.key"
     return "client.key"
 

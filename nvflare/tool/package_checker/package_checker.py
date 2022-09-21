@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,8 +18,8 @@ from abc import ABC, abstractmethod
 from collections import defaultdict
 from subprocess import TimeoutExpired
 
-from nvflare.tool.package_checker.check_rule import CHECK_PASSED, CheckResult, CheckRule
-from nvflare.tool.package_checker.utils import run_command_in_subprocess, split_by_len
+from flare.tool.package_checker.check_rule import CHECK_PASSED, CheckResult, CheckRule
+from flare.tool.package_checker.utils import run_command_in_subprocess, split_by_len
 
 
 class PackageChecker(ABC):

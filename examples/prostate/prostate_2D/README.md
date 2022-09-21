@@ -12,7 +12,7 @@ From now on, we assume the PWD to be `./prostate_2D`.
 In this example, we run FL experiments in POC mode, starting with creating local FL workspace with
 
 ```
-python3 -m nvflare.lighter.poc
+python3 -m flare.lighter.poc
 ```
 
 Press y and enter when prompted.   
@@ -44,7 +44,7 @@ To enable multi-tasking, here we adjust the default value in `workspace_server/s
 
 (Optional) If using secure workspace, in secure project configuration `secure_project.yml`, we can set the available GPU indices as `gpu: [0, 1]` using the `ListResourceManager` and `max_jobs: 2` in `DefaultJobScheduler`.
 
-For details, please refer to the [documentation](https://nvflare.readthedocs.io/en/main/user_guide/job.html).
+For details, please refer to the [documentation](https://flare.readthedocs.io/en/main/user_guide/job.html).
 
 ## 2. Run automated experiments
 The next scripts will start the FL server and clients automatically to run FL experiments on localhost.
@@ -108,7 +108,7 @@ bash submit_job.sh prostate_ditto
 ```
 > **_NOTE:_** You can always use the admin console to manually abort a running job. 
   using `abort_job [JOB_ID]`. 
-> For a complete list of admin commands, see [here](https://nvflare.readthedocs.io/en/main/user_guide/operation.html).
+> For a complete list of admin commands, see [here](https://flare.readthedocs.io/en/main/user_guide/operation.html).
 
 > To log into the POC workspace admin console no username is required 
 > (use "admin" for commands requiring conformation with username). 

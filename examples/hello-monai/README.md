@@ -1,12 +1,12 @@
 # Hello MONAI
 
-Example of using [NVIDIA FLARE](https://nvflare.readthedocs.io/en/main/index.html) to train a medical image analysis model using federated averaging ([FedAvg]([FedAvg](https://arxiv.org/abs/1602.05629))) and [MONAI](https://monai.io/), the "Medical Open Network for Artificial Intelligence", as the deep learning training framework.
+Example of using [[BLINDED] FLARE](https://flare.readthedocs.io/en/main/index.html) to train a medical image analysis model using federated averaging ([FedAvg]([FedAvg](https://arxiv.org/abs/1602.05629))) and [MONAI](https://monai.io/), the "Medical Open Network for Artificial Intelligence", as the deep learning training framework.
 
-See this [Tutorial](https://github.com/Project-MONAI/tutorials/tree/master/federated_learning/nvflare/nvflare_spleen_example) for an example of how to use this trainer for 3D spleen segmentation in computed tomography.
+See this [Tutorial](https://github.com/Project-MONAI/tutorials/tree/master/federated_learning/flare/flare_spleen_example) for an example of how to use this trainer for 3D spleen segmentation in computed tomography.
 
-### 1. Install NVIDIA FLARE
+### 1. Install [BLINDED] FLARE
 
-Follow the [Installation](https://nvflare.readthedocs.io/en/main/quickstart.html) instructions.
+Follow the [Installation](https://flare.readthedocs.io/en/main/quickstart.html) instructions.
 Install additional requirements:
 
 ```
@@ -17,7 +17,7 @@ python3 -m pip install pytorch-ignite
 
 ### 2. Set up your FL workspace
 
-Follow the [Quickstart](https://nvflare.readthedocs.io/en/main/quickstart.html) instructions to set up your POC ("proof of concept") workspace.
+Follow the [Quickstart](https://flare.readthedocs.io/en/main/quickstart.html) instructions to set up your POC ("proof of concept") workspace.
 The folder structure is like:
 ```
 current_path/
@@ -49,4 +49,4 @@ shutdown client
 shutdown server
 ```
 
-> **_NOTE:_** For more information about the Admin client, see [here](https://nvflare.readthedocs.io/en/main/user_guide/operation.html).
+> **_NOTE:_** For more information about the Admin client, see [here](https://flare.readthedocs.io/en/main/user_guide/operation.html).

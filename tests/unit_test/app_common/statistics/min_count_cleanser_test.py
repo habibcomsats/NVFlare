@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
 
 import pytest
 
-from nvflare.app_common.statistics.min_count_cleanser import MinCountCleanser
+from flare.app_common.statistics.min_count_cleanser import MinCountCleanser
 
 MIN_COUNT_VALIDATION_TEST_CASES = [
     ({"count": {"train": {"age": 6}}}, 7, {"train": {"age": False}}),

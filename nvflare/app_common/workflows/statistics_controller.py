@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,19 +14,19 @@
 import time
 from typing import Callable, Dict, List, Optional
 
-from nvflare.apis.client import Client
-from nvflare.apis.dxo import from_shareable
-from nvflare.apis.fl_constant import ReturnCode
-from nvflare.apis.fl_context import FLContext
-from nvflare.apis.impl.controller import ClientTask, Controller, Task
-from nvflare.apis.shareable import Shareable
-from nvflare.apis.signal import Signal
-from nvflare.app_common.abstract.statistics_spec import Bin, Histogram, MetricConfig
-from nvflare.app_common.abstract.statistics_writer import StatisticsWriter
-from nvflare.app_common.app_constant import StatisticsConstants as StC
-from nvflare.app_common.statistics.numeric_stats import get_global_stats
-from nvflare.app_common.statistics.statisitcs_objects_decomposer import fobs_registration
-from nvflare.fuel.utils import fobs
+from flare.apis.client import Client
+from flare.apis.dxo import from_shareable
+from flare.apis.fl_constant import ReturnCode
+from flare.apis.fl_context import FLContext
+from flare.apis.impl.controller import ClientTask, Controller, Task
+from flare.apis.shareable import Shareable
+from flare.apis.signal import Signal
+from flare.app_common.abstract.statistics_spec import Bin, Histogram, MetricConfig
+from flare.app_common.abstract.statistics_writer import StatisticsWriter
+from flare.app_common.app_constant import StatisticsConstants as StC
+from flare.app_common.statistics.numeric_stats import get_global_stats
+from flare.app_common.statistics.statisitcs_objects_decomposer import fobs_registration
+from flare.fuel.utils import fobs
 
 
 class StatisticsController(Controller):

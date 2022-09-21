@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@ import json
 import random
 from typing import List
 
-from nvflare.app_common.abstract.statistics_spec import (
+from flare.app_common.abstract.statistics_spec import (
     Bin,
     BinRange,
     DataType,
@@ -24,8 +24,8 @@ from nvflare.app_common.abstract.statistics_spec import (
     HistogramType,
     MetricConfig,
 )
-from nvflare.app_common.app_constant import StatisticsConstants
-from nvflare.app_common.statistics.statisitcs_objects_decomposer import (
+from flare.app_common.app_constant import StatisticsConstants
+from flare.app_common.statistics.statisitcs_objects_decomposer import (
     BinDecomposer,
     BinRangeDecomposer,
     DataTypeDecomposer,
@@ -34,7 +34,7 @@ from nvflare.app_common.statistics.statisitcs_objects_decomposer import (
     HistogramTypeDecomposer,
     MetricConfigDecomposer,
 )
-from nvflare.fuel.utils import fobs
+from flare.fuel.utils import fobs
 
 
 class TestMetricConfigDecomposer:
@@ -97,7 +97,7 @@ class TestMetricConfigDecomposer:
             }
         """
         config_dict = json.loads(config)
-        from nvflare.app_common.workflows.statistics_controller import StatisticsController
+        from flare.app_common.workflows.statistics_controller import StatisticsController
 
         ordered_metrics = StatisticsConstants.ordered_metrics[StatisticsConstants.STATS_1st_METRICS]
         target_configs: List[MetricConfig] = StatisticsController._get_target_metrics(config_dict, ordered_metrics)

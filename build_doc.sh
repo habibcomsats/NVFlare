@@ -32,9 +32,9 @@ function print_error_msg() {
 }
 
 function clean_py() {
-    find nvflare -type f -name "*.py[co]" -delete
-    find nvflare -type f -name "*.so" -delete
-    find nvflare -type d -name "__pycache__" -exec rm -r "{}" +
+    find flare -type f -name "*.py[co]" -delete
+    find flare -type f -name "*.so" -delete
+    find flare -type d -name "__pycache__" -exec rm -r "{}" +
 
     find . -depth -maxdepth 1 -type d -name ".eggs" -exec rm -r "{}" +
     find . -depth -maxdepth 1 -type d -name "*.egg-info" -exec rm -r "{}" +
@@ -45,13 +45,13 @@ function clean_py() {
 
 function clean_docs() {
     find docs -type d -name "_build" -exec rm -r "{}" +
-    find docs/apidocs -type f -name "nvflare*" -delete
+    find docs/apidocs -type f -name "flare*" -delete
 }
 
 function build_html_docs() {
     # pip install -e ./
     pip install -r requirements-doc.txt
-    sphinx-apidoc --module-first -f -o docs/apidocs/ nvflare "*poc" "*private"
+    sphinx-apidoc --module-first -f -o docs/apidocs/ flare "*poc" "*private"
     sphinx-build -b html docs docs/_build
 }
 

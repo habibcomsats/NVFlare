@@ -6,7 +6,7 @@ Overview
 Introduction
 ************
 
-NVIDIA FLARE utilizes provisioning and admin clients to reduce the amount of human coordination involved to set up a
+[BLINDED] FLARE utilizes provisioning and admin clients to reduce the amount of human coordination involved to set up a
 federated learning project. A provisioning tool can be configured to create a startup kit for each site in an encrypted
 package. These packages can then be delivered to each site ready to go, streamlining the process to provision, start,
 and operate federated learning with a trusted setup.
@@ -40,7 +40,7 @@ After :ref:`installation`, the provisioning tool is available via ``provision`` 
 
 Provisioning a federated learning project
 =========================================
-The :ref:`provisioning` page has details on the contents of the provisioning tool and the underlying NVIDIA FLARE Open
+The :ref:`provisioning` page has details on the contents of the provisioning tool and the underlying [BLINDED] FLARE Open
 Provision API, which you can use to customize configurations to fit your own requirements.
 
 Edit the :ref:`programming_guide/provisioning_system:Project yaml file` in the directory with the provisioning tool to meet your
@@ -56,28 +56,28 @@ name in the workspace folder created where provision.py is run.
 
 .. attention::
 
-   In order to change configurations, it may be necessary to alter nvflare/lighter/impl/master_template.yml before
+   In order to change configurations, it may be necessary to alter flare/lighter/impl/master_template.yml before
    running provision with your checked out version of the code (make sure PYTHONPATH points to the location of where you
-   checked out the NVFlare repository).
+   checked out the Flare repository).
 
    You cannot directly edit the contents of the startup kits because the contents of the generated startup kits are
-   signed by :class:`SignatureBuilder<nvflare.lighter.impl.signature.SignatureBuilder>` so the system will detect if any
+   signed by :class:`SignatureBuilder<flare.lighter.impl.signature.SignatureBuilder>` so the system will detect if any
    of the files have been altered and may not run.
 
 The console displays a list of zip files and their passwords. We suggest you copy the console output
 and "packages" folder to a safe location. The passwords shown below are for demonstration purposes only::
 
-    Project yaml file: /home/nvflare-venv/project.yml.
+    Project yaml file: /home/flare-venv/project.yml.
     ┏━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━┓
     ┃ participant           ┃ org    ┃ destination               ┃ password         ┃
     ┡━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━┩
-    │ localhost             │ nvidia │ localhost.zip             │ Dby2BhwJdLKfStWl │
+    │ localhost             │ [BLINDED] │ localhost.zip             │ Dby2BhwJdLKfStWl │
     │ org1-a                │ org1   │ org1-a.zip                │ BlLXFKgWp0Qu28cS │
     │ org1-b                │ org1   │ org1-b.zip                │ Lu6w0aCf1RhAqSlJ │
     │ org2                  │ org2   │ org2.zip                  │ KdotOafkUl2ziRh5 │
     │ org3                  │ org3   │ org3.zip                  │ t05cHjnd4WNSo62x │
-    │ admin@nvidia.com      │ nvidia │ admin@nvidia.com.zip      │ eyTrthBudD7noW1s │
-    │ researcher@nvidia.com │ nvidia │ researcher@nvidia.com.zip │ s52b8h9ToIRuALpx │
+    │ admin@[BLINDED].com      │ [BLINDED] │ admin@[BLINDED].com.zip      │ eyTrthBudD7noW1s │
+    │ researcher@[BLINDED].com │ [BLINDED] │ researcher@[BLINDED].com.zip │ s52b8h9ToIRuALpx │
     │ researcher@org1.com   │ org1   │ researcher@org1.com.zip   │ dmlt3ySsAeU0V9F7 │
     │ researcher@org2.com   │ org2   │ researcher@org2.com.zip   │ GJS6eb410q0ijlCZ │
     │ it@org2.com           │ org2   │ it@org2.com.zip           │ s3lYvaL2tqX0Wrjb │
@@ -101,7 +101,7 @@ running the package will need write access there.
 
    It is important that this "startup" folder is not renamed because the code relies upon this for operation. Please
    note that a "transfer" directory and deployed applications will be created at the level of this "startup" folder. See the
-   section on `Internal folder and file structures for NVIDIA FLARE`_ below for more details.
+   section on `Internal folder and file structures for [BLINDED] FLARE`_ below for more details.
 
 ************************************************************************************
 Start: Instructions for each participant to start running FL with their startup kits
@@ -153,11 +153,11 @@ from the "startup" folder you unzipped to start the client.
 
 .. tip::
 
-   You need to first install NVIDIA FLARE package before running the ``start.sh`` shell script.  NVIDIA FLARE is available
-   on PyPi and can be installed with ``python3 -m pip install nvflare``.
+   You need to first install [BLINDED] FLARE package before running the ``start.sh`` shell script.  [BLINDED] FLARE is available
+   on PyPi and can be installed with ``python3 -m pip install flare``.
 
    Depending on the deployed application which shall start later, your environment may need some additional
-   Python packages.  If you haven't installed them, do it after you install NVIDIA FLARE.  NVIDIA FLARE does not dictate
+   Python packages.  If you haven't installed them, do it after you install [BLINDED] FLARE.  [BLINDED] FLARE does not dictate
    your deep learning environments.  It's completely up to you to set it up.
 
 .. note::
@@ -196,7 +196,7 @@ the admin client is launched.
 
 Install the wheel package first with::
 
-    python3 -m pip install nvflare
+    python3 -m pip install flare
 
 
 After installation, you can run the **fl_admin.sh** file to start communicating to the FL server.
@@ -214,7 +214,7 @@ the participant. As such, please safeguard its private key, client.key.
 
    You will need write access in the directory containing the "startup" folder because the "transfer" directory for
    uploading files as well as directories created for federated learning runs will live here. For details, see
-   `Internal folder and file structures for NVIDIA FLARE`_.
+   `Internal folder and file structures for [BLINDED] FLARE`_.
 
 *******************************************************
 Operate: Running federated learning as an administrator
@@ -227,12 +227,12 @@ started successfully as described in the preceding section, `Federated learning 
 admin commands can be used to operate a federated learning project. The FLAdminAPI provides a way to programmatically
 issue commands to operate the system so it can be run with a script.
 
-For a complete list of admin commands, see :ref:`operating_nvflare`.
+For a complete list of admin commands, see :ref:`operating_flare`.
 
 For examples of using the commands to operate a FL system, see the examples in the :ref:`quickstart` section.
 
 ****************************************************
-Internal folder and file structures for NVIDIA FLARE
+Internal folder and file structures for [BLINDED] FLARE
 ****************************************************
 
 Please refer to :ref:`server workspace <server_workspace>` and :ref:`client workspace <client_workspace>`

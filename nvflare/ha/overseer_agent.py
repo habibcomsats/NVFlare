@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -20,7 +20,7 @@ from typing import Any, Dict, Optional
 from requests import Request, RequestException, Response, Session, codes
 from requests.adapters import HTTPAdapter
 
-from nvflare.apis.overseer_spec import SP, OverseerAgent
+from flare.apis.overseer_spec import SP, OverseerAgent
 
 
 class HttpOverseerAgent(OverseerAgent):

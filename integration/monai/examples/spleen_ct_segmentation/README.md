@@ -1,5 +1,5 @@
 ## 3D spleen CT segmentation
-In the following, we show an example of running MONAI-bundle configurations with NVFlare.
+In the following, we show an example of running MONAI-bundle configurations with Flare.
 
 ### (Optional) 1. Set up a virtual environment
 ```
@@ -41,7 +41,7 @@ In resource restricted environments where you need to simulate several clients (
 you can run the simulator using:
 
 ```
-python3 -u -m nvflare.private.fed.app.simulator.simulator job --workspace /tmp/nvflare/sim_spleen_ct_seg --threads 1 --n_clients 2
+python3 -u -m flare.private.fed.app.simulator.simulator job --workspace /tmp/flare/sim_spleen_ct_seg --threads 1 --n_clients 2
 ```
 
 #### 4.2 Multiple threads, multiple gpus
@@ -50,13 +50,13 @@ We can also specify the client names via the `--clients` argument
 and assign them to the appropriate GPU device using the `--gpu` argument.
 
 ```
-python3 -u -m nvflare.private.fed.app.simulator.simulator job --workspace /tmp/nvflare/sim_spleen_ct_seg --threads 2 --clients site-1,site-2 --gpu 0,1
+python3 -u -m flare.private.fed.app.simulator.simulator job --workspace /tmp/flare/sim_spleen_ct_seg --threads 2 --clients site-1,site-2 --gpu 0,1
 ```
 
 #### 4.3 TensorBoard visualization
 To monitor the training job, you can start tensorboard:
 ```
-tensorboard --logdir /tmp/nvflare/sim_spleen_ct_seg
+tensorboard --logdir /tmp/flare/sim_spleen_ct_seg
 ```
 With the default setting and running on multiple gpus (section 4.2), the expected TensorBoard training curves look like this when training from scratch:
 
@@ -66,7 +66,7 @@ In order to load a pretrained model provided in the MONAI bundle, define the `so
 ```
     {
       "id": "persistor",
-      "path": "monai_nvflare.monai_bundle_persistor.MonaiBundlePersistor",
+      "path": "monai_flare.monai_bundle_persistor.MonaiBundlePersistor",
       "args": {
         "bundle_root": "config/spleen_ct_segmentation",
         "source_ckpt_filename": "models/model.pt"
@@ -74,20 +74,20 @@ In order to load a pretrained model provided in the MONAI bundle, define the `so
     }
 ```
 
-> **_NOTE:_** For more information about the simulator, see [here](https://nvflare.readthedocs.io).
+> **_NOTE:_** For more information about the simulator, see [here](https://flare.readthedocs.io).
 
-### 5. Run NVFlare in POC mode
+### 5. Run Flare in POC mode
 
 #### 5.1 Prepare POC workspace
 To run FL experiments in POC mode, create your local FL workspace the below command.  
 ```
-nvflare poc -n 2 --prepare
+flare poc -n 2 --prepare
 ```
 
 #### 5.2 Start server and clients
 Then, start the FL system using without admin console
 ```
-nvflare poc --start -ex admin
+flare poc --start -ex admin
 ```
 
 #### 5.3 Run the experiment
@@ -97,14 +97,14 @@ Submit the job by running:
 ```
 To monitor the training job, you can start tensorboard:
 ```
-tensorboard --logdir /tmp/nvflare/poc
+tensorboard --logdir /tmp/flare/poc
 ```
 
 #### 5.4 Shut down the server/clients
 
 To shut down the clients and server, run the following Admin commands:
 ```
-nvflare poc --stop
+flare poc --stop
 ```
 
-> **_NOTE:_** For more information about the Admin client, see [here](https://nvflare.readthedocs.io/en/main/user_guide/operation.html).
+> **_NOTE:_** For more information about the Admin client, see [here](https://flare.readthedocs.io/en/main/user_guide/operation.html).

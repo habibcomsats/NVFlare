@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,8 +17,8 @@ import pathlib
 import shutil
 import subprocess
 
-from nvflare.lighter.spec import Builder, Project
-from nvflare.lighter.utils import generate_password
+from flare.lighter.spec import Builder, Project
+from flare.lighter.utils import generate_password
 
 
 class WorkspaceBuilder(Builder):
@@ -115,7 +115,7 @@ class DistributionBuilder(Builder):
         dirs = [
             name
             for name in os.listdir(wip_dir)
-            if os.path.isdir(os.path.join(wip_dir, name)) and "nvflare_" not in name
+            if os.path.isdir(os.path.join(wip_dir, name)) and "flare_" not in name
         ]
         for dir in dirs:
             dest_zip_file = os.path.join(wip_dir, f"{dir}")

@@ -9,7 +9,7 @@
   "workflows": [
     {
       "id": "xgb_controller",
-      "path": "nvflare.app_opt.xgboost.controller.XGBFedController",
+      "path": "flare.app_opt.xgboost.controller.XGBFedController",
       "args": {
         "train_timeout": 30000
       }

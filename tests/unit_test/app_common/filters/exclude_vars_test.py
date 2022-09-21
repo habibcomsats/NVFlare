@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,9 +14,9 @@
 
 import pytest
 
-from nvflare.apis.dxo import DXO, DataKind, from_shareable
-from nvflare.apis.fl_context import FLContext
-from nvflare.app_common.filters import ExcludeVars
+from flare.apis.dxo import DXO, DataKind, from_shareable
+from flare.apis.fl_context import FLContext
+from flare.app_common.filters import ExcludeVars
 
 TEST_CASES = [
     ({"a": 1.0, "b": 2.0}, "a", {"b": 2.0}),

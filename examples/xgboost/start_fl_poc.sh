@@ -18,7 +18,7 @@ then
 fi
 
 # get num of gpus and assign to clients in a balanced manner
-n_gpus=$(nvidia-smi --list-gpus | wc -l)
+n_gpus=$([BLINDED]-smi --list-gpus | wc -l)
 echo "There are ${n_gpus} GPUs."
 # start server
 echo "STARTING SERVER"

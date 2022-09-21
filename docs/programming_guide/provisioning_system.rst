@@ -1,7 +1,7 @@
 .. _provisioning:
 
 ############################
-Provisioning in NVIDIA FLARE
+Provisioning in [BLINDED] FLARE
 ############################
 A necessary first step in establishing a federation is provisioning to establish the identities of the server, clients,
 and admin clients.
@@ -9,9 +9,9 @@ and admin clients.
 When operating federated learning, communication channels use shared SSL certificates generated
 during provisioning to establish the identities and secure communication between participants.
 
-Provisioning in NVIDIA FLARE generates mutual-trusted system-wide configurations for all participants
-so all of them can join the NVIDIA FLARE system across different locations. To achieve this, a provisioning tool powered
-by the Open Provision API and its builder modules is included in NVIDIA FLARE (:mod:`nvflare.lighter`)
+Provisioning in [BLINDED] FLARE generates mutual-trusted system-wide configurations for all participants
+so all of them can join the [BLINDED] FLARE system across different locations. To achieve this, a provisioning tool powered
+by the Open Provision API and its builder modules is included in [BLINDED] FLARE (:mod:`flare.lighter`)
 to create a startup kit for each participant with the necessary configuration artifacts.
 
 The configurations usually include, but are not limited to, the following information:
@@ -28,7 +28,7 @@ which meet their own requirements in addition to the default provisioning before
 server, client, and administrators.
 
 *******************************
-NVIDIA FLARE Open Provision API
+[BLINDED] FLARE Open Provision API
 *******************************
 
 Architecture
@@ -37,7 +37,7 @@ Architecture
 .. image:: ../resources/Open_Provision_API.png
     :height: 350px
 
-The above diagram describes the architecture of NVIDIA FLARE Open Provision API in blue. Those two green blocks are the
+The above diagram describes the architecture of [BLINDED] FLARE Open Provision API in blue. Those two green blocks are the
 sample python code (provision.py) collecting project configuration information (project.yml) and interacting with
 components of Open Provision API to accomplish a provisioning task. The Provisioner and blocks inside the blue box are
 classes or subclasses of Open Provision API.
@@ -59,7 +59,7 @@ This python file is the sample application to interact with the Open Provision A
 command line options, instantiates classes/subclasses defined from Open Provision API and displays helpful messages to users.
 As mentioned previously, developers are encouraged to modify provision.py or write their own applications that fit their own requirements.
 It is also possible to completely utilize Open Provision API without any standalone applications.  For example, if
-developers have their existing applications and would like to add provisioning capabilities for the NVIDIA FLARE system,
+developers have their existing applications and would like to add provisioning capabilities for the [BLINDED] FLARE system,
 they can add API calls to Open Provision API to generate required outputs.
 
 Provisioner
@@ -100,7 +100,7 @@ the Project instance::
 
 Participant
 -----------
-Each participant is one entity that communicates with other participants inside the NVIDIA FLARE system during runtime.
+Each participant is one entity that communicates with other participants inside the [BLINDED] FLARE system during runtime.
 Each participant has the following attributes: type, name, org and props.  The attribute ``props`` is a dictionary and
 stores additional information::
 
@@ -113,8 +113,8 @@ stores additional information::
            self.props = kwargs
 
 The name of each participant must be unique.  This is enforced in Project's __init__ method.  The type
-defines the behavior of this participant when it is alive in the NVIDIA FLARE system.  For example, type = 'server' defines
-that the participant acts as a server.  Three types are commonly used for a typical NVIDIA FLARE system: server, client, and
+defines the behavior of this participant when it is alive in the [BLINDED] FLARE system.  For example, type = 'server' defines
+that the participant acts as a server.  Three types are commonly used for a typical [BLINDED] FLARE system: server, client, and
 admin.  However, developers can freely add other types when needed, such as 'gateway,' 'proxy,' or 'database.'  The
 builders can take such information into consideration so that they can generate relevant results based on the type
 attribute.
@@ -122,7 +122,7 @@ attribute.
 Builder
 -------
 The builders in the above diagram are provided as a convenient way to generate commonly used zip files for a typical
-NVIDIA FLARE system.  Developers are encouraged to add / modify or even remove those builders to fit their own requirements.
+[BLINDED] FLARE system.  Developers are encouraged to add / modify or even remove those builders to fit their own requirements.
 
 Each builder is responsible for taking the information from project, its own __init__ arguments, and provisioner to
 generate data.  For example, the HEBuilder is responsible for generating tenseal context files for server and client,
@@ -219,7 +219,7 @@ And in project.yml, add an entry in the builders section::
 
 Case 2: enhancing an existing builder
 -------------------------------------
-The developer would like to push the generated zip file, done by nvflare.lighter.impl.workspace.DistributionBuilder, to
+The developer would like to push the generated zip file, done by flare.lighter.impl.workspace.DistributionBuilder, to
 a web server via a POST method.  This can be done easily by replacing the DistributionBuilder with a new builder as
 follows (after pip install requests)::
 
@@ -240,7 +240,7 @@ And just replace the existing one with the new builder under Builders in the pro
 
     - path: byob.WebPostDistributionBuilder
       args:
-        url: https://example.com/nvflare/provision
+        url: https://example.com/flare/provision
 
 For the above two cases, if developers opt to use Open Provision API directly instead of project.yml, they can do this
 (some code omitted for clarity)::
@@ -250,7 +250,7 @@ For the above two cases, if developers opt to use Open Provision API directly in
     # Adding other builders
     # ...
 
-    # Using our new WebPostDistributionBuilder builders.append(WebPostDistributionBuilder(url="https://example.com/nvflare/provision"))
+    # Using our new WebPostDistributionBuilder builders.append(WebPostDistributionBuilder(url="https://example.com/flare/provision"))
 
     # Instantiate Provisioner
     provisioner = Provisioner(workspace_full_path, builders)
@@ -262,13 +262,13 @@ builder is needed to write gateway specific configuration.  First, specify that 
 
     - name: gateway1
       type: gateway
-      org: nvidia
+      org: [BLINDED]
       port: 8102
 
 or in API style::
 
     participants = list()
-    p = Participant(name="gateway1", type="gateway", org="nvidia", port=8102)
+    p = Participant(name="gateway1", type="gateway", org="[BLINDED]", port=8102)
     participants.append(p)
 
 A new builder to write 'gateway.conf' can be implemented as follows (for reference)::
@@ -299,25 +299,25 @@ From the cases shown previously, implementing your own Builders only requires th
 
 Bundled builders
 ================
-The following is the list of bundled builders included by default in the NVIDIA FLARE package.  They are provided as a
+The following is the list of bundled builders included by default in the [BLINDED] FLARE package.  They are provided as a
 convenient tool.  As mentioned previously, developers are encouraged to add / modify / remove builders based on their
 own requirements:
 
-    - :class:`WorkspaceBuilder<nvflare.lighter.impl.workspace.WorkspaceBuilder>`
-    - :class:`TemplateBuilder<nvflare.lighter.impl.template.TemplateBuilder>`
-    - :class:`StaticFileBuilder<nvflare.lighter.impl.static_file.StaticFileBuilder>`
-    - :class:`AuthPolicyBuilder<nvflare.lighter.impl.auth_policy.AuthPolicyBuilder>`
-    - :class:`CertBuilder<nvflare.lighter.impl.cert.CertBuilder>`
-    - :class:`HEBuilder<nvflare.lighter.impl.he.HEBuilder>`
-    - :class:`SignatureBuilder<nvflare.lighter.impl.signature.SignatureBuilder>`
-    - :class:`DistributionBuilder<nvflare.lighter.impl.workspace.DistributionBuilder>`
+    - :class:`WorkspaceBuilder<flare.lighter.impl.workspace.WorkspaceBuilder>`
+    - :class:`TemplateBuilder<flare.lighter.impl.template.TemplateBuilder>`
+    - :class:`StaticFileBuilder<flare.lighter.impl.static_file.StaticFileBuilder>`
+    - :class:`AuthPolicyBuilder<flare.lighter.impl.auth_policy.AuthPolicyBuilder>`
+    - :class:`CertBuilder<flare.lighter.impl.cert.CertBuilder>`
+    - :class:`HEBuilder<flare.lighter.impl.he.HEBuilder>`
+    - :class:`SignatureBuilder<flare.lighter.impl.signature.SignatureBuilder>`
+    - :class:`DistributionBuilder<flare.lighter.impl.workspace.DistributionBuilder>`
 
 ::
 
     workspace structure
     └── example_project
         ├── prod_00
-        │   ├── admin@nvidia.com
+        │   ├── admin@[BLINDED].com
         │   │   └── startup
         │   ├── localhost
         │   │   └── startup
@@ -326,7 +326,7 @@ own requirements:
         │   └── site2
         │       └── startup
         ├── prod_01
-        │   ├── admin@nvidia.com
+        │   ├── admin@[BLINDED].com
         │   │   └── startup
         │   ├── localhost
         │   │   └── startup
@@ -335,7 +335,7 @@ own requirements:
         │   └── site2
         │       └── startup
         ├── prod_02
-        │   ├── admin@nvidia.com
+        │   ├── admin@[BLINDED].com
         │   │   └── startup
         │   ├── localhost
         │   │   └── startup
@@ -358,9 +358,9 @@ will ask you if you would like to have one sample copy of this file created.
 
 .. code-block:: shell
 
-  (nvflare-venv) ~/workspace$ provision
-  No project.yml found in current folder.  Is it OK to generate one at /home/nvflare/workspace/project.yml for you? (y/N) y
-  /home/nvflare/workspace/project.yml was created.  Please edit it to fit your FL configuration.
+  (flare-venv) ~/workspace$ provision
+  No project.yml found in current folder.  Is it OK to generate one at /home/flare/workspace/project.yml for you? (y/N) y
+  /home/flare/workspace/project.yml was created.  Please edit it to fit your FL configuration.
 
 
 Edit the project.yml configuration file to meet your project requirements:
@@ -399,7 +399,7 @@ Default project.yml file
 
 The following is an example of the default project.yml file.
 
-.. literalinclude:: ../../nvflare/lighter/project.yml
+.. literalinclude:: ../../flare/lighter/project.yml
   :language: yaml
 
 .. attention:: Please make sure that the Overseer and FL servers ports are accessible by all participating sites.
@@ -412,7 +412,7 @@ Running ``provision -h`` shows all available options.
 
 .. code-block:: shell
 
-  (nvflare_venv) ~/workspace/repos/flare$ provision -h
+  (flare_venv) ~/workspace/repos/flare$ provision -h
   usage: provision [-h] [-p PROJECT_FILE] [-w WORKSPACE] [-c CUSTOM_FOLDER] [-u]
 
   optional arguments:
@@ -431,7 +431,7 @@ Provisioning tool UI page
 
 The ``-u`` option will open the provisioning tool helper UI page in your browser.  This tool is built to help with
 setting up and generating a project.yml to work with the reference configuration of default bundled builders in the
-NVIDIA FLARE package. You may need to add to or edit the builders section before running ``provision -p project.yml`` if you
+[BLINDED] FLARE package. You may need to add to or edit the builders section before running ``provision -p project.yml`` if you
 have customized builders.
 
 .. image:: ../resources/provisioning_ui.png

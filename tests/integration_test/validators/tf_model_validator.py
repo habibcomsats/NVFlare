@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,10 +14,10 @@
 
 import os
 
-from nvflare.apis.fl_constant import WorkspaceConstants
-from nvflare.apis.utils.decomposers import flare_decomposers
-from nvflare.app_common.decomposers import common_decomposers
-from nvflare.fuel.utils import fobs
+from flare.apis.fl_constant import WorkspaceConstants
+from flare.apis.utils.decomposers import flare_decomposers
+from flare.app_common.decomposers import common_decomposers
+from flare.fuel.utils import fobs
 
 from .job_result_validator import FinishJobResultValidator
 

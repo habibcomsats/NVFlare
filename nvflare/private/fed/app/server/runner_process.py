@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,16 +19,16 @@ import logging
 import os
 import sys
 
-from nvflare.apis.workspace import Workspace
-from nvflare.fuel.common.excepts import ConfigError
-from nvflare.fuel.sec.audit import AuditService
-from nvflare.fuel.sec.security_content_service import SecurityContentService
-from nvflare.fuel.utils.argument_utils import parse_vars
-from nvflare.private.defs import AppFolderConstants
-from nvflare.private.fed.app.fl_conf import FLServerStarterConfiger
-from nvflare.private.fed.server.server_app_runner import ServerAppRunner
-from nvflare.private.fed.server.server_command_agent import ServerCommandAgent
-from nvflare.private.fed.utils.fed_utils import add_logfile_handler
+from flare.apis.workspace import Workspace
+from flare.fuel.common.excepts import ConfigError
+from flare.fuel.sec.audit import AuditService
+from flare.fuel.sec.security_content_service import SecurityContentService
+from flare.fuel.utils.argument_utils import parse_vars
+from flare.private.defs import AppFolderConstants
+from flare.private.fed.app.fl_conf import FLServerStarterConfiger
+from flare.private.fed.server.server_app_runner import ServerAppRunner
+from flare.private.fed.server.server_command_agent import ServerCommandAgent
+from flare.private.fed.utils.fed_utils import add_logfile_handler
 
 
 def main():
@@ -125,6 +125,6 @@ def main():
 
 if __name__ == "__main__":
     """
-    This is the program when starting the child process for running the NVIDIA FLARE server runner.
+    This is the program when starting the child process for running the [BLINDED] FLARE server runner.
     """
     main()

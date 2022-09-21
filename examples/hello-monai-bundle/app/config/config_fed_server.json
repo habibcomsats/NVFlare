@@ -32,7 +32,7 @@
     },
     {
       "id": "aggregator",
-      "path": "nvflare.app_common.aggregators.intime_accumulate_model_aggregator.InTimeAccumulateWeightedAggregator",
+      "path": "flare.app_common.aggregators.intime_accumulate_model_aggregator.InTimeAccumulateWeightedAggregator",
       "args": {
         "expected_data_kind": "WEIGHTS"
       }
@@ -41,7 +41,7 @@
   "workflows": [
       {
         "id": "scatter_and_gather",
-        "path": "nvflare.app_common.workflows.scatter_and_gather.ScatterAndGather",
+        "path": "flare.app_common.workflows.scatter_and_gather.ScatterAndGather",
         "args": {
             "min_clients" : 1,
             "num_rounds" : 10,

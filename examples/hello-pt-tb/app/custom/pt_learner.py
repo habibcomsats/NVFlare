@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -24,20 +24,20 @@ from torch.utils.tensorboard import SummaryWriter
 from torchvision.datasets import CIFAR10
 from torchvision.transforms import Compose, Normalize, ToTensor
 
-from nvflare.apis.dxo import DXO, DataKind, MetaKey, from_shareable
-from nvflare.apis.fl_constant import FLContextKey, ReservedKey, ReturnCode
-from nvflare.apis.fl_context import FLContext
-from nvflare.apis.shareable import Shareable, make_reply
-from nvflare.apis.signal import Signal
-from nvflare.app_common.abstract.learner_spec import Learner
-from nvflare.app_common.abstract.model import (
+from flare.apis.dxo import DXO, DataKind, MetaKey, from_shareable
+from flare.apis.fl_constant import FLContextKey, ReservedKey, ReturnCode
+from flare.apis.fl_context import FLContext
+from flare.apis.shareable import Shareable, make_reply
+from flare.apis.signal import Signal
+from flare.app_common.abstract.learner_spec import Learner
+from flare.app_common.abstract.model import (
     ModelLearnable,
     ModelLearnableKey,
     make_model_learnable,
     model_learnable_to_dxo,
 )
-from nvflare.app_common.app_constant import AppConstants
-from nvflare.app_common.pt.pt_fed_utils import PTModelPersistenceFormatManager
+from flare.app_common.app_constant import AppConstants
+from flare.app_common.pt.pt_fed_utils import PTModelPersistenceFormatManager
 
 
 class PTLearner(Learner):

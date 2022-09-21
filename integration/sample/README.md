@@ -28,5 +28,5 @@ Provide an overview of the current state, how things are currently done and what
 Every project and implementation has some assumptions behind it, either about the state of the world and what will be needed. State the main ones clearly here and evaluate the associated risks with that assumption being false.
 
 
-## Required NVFLARE version
-pip3 install nvflare>=2.2.0
+## Required FLARE version
+pip3 install flare>=2.2.0

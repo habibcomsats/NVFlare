@@ -21,7 +21,7 @@
       "tasks": ["train"],
       "filters":[
           {
-          "path": "nvflare.app_common.filters.svt_privacy.SVTPrivacy",
+          "path": "flare.app_common.filters.svt_privacy.SVTPrivacy",
           "args": {
             "fraction": 0.9,
             "epsilon": 0.001,

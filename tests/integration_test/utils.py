@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,10 +18,10 @@ import shutil
 
 import yaml
 
-from nvflare.fuel.hci.client.fl_admin_api import FLAdminAPI
+from flare.fuel.hci.client.fl_admin_api import FLAdminAPI
 
 RESOURCE_CONFIG = "resources.json"
-FILE_STORAGE = "nvflare.app_common.storages.filesystem_storage.FilesystemStorage"
+FILE_STORAGE = "flare.app_common.storages.filesystem_storage.FilesystemStorage"
 
 
 def read_yaml(yaml_file_path):

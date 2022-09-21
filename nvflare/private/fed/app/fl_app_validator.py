@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
 
 from typing import Dict, List, Optional, Tuple
 
-from nvflare.apis.app_validation import AppValidator
+from flare.apis.app_validation import AppValidator
 
 from .default_app_validator import DefaultAppValidator
 

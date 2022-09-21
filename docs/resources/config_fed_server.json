@@ -13,19 +13,19 @@
     },
     {
       "id": "shareable_generator",
-      "path": "nvflare.app_common.shareablegenerators.full_model_shareable_generator.FullModelShareableGenerator",
+      "path": "flare.app_common.shareablegenerators.full_model_shareable_generator.FullModelShareableGenerator",
       "args": {}
     },
     {
       "id": "aggregator",
-      "path": "nvflare.app_common.aggregators.intime_accumulate_model_aggregator.InTimeAccumulateWeightedAggregator",
+      "path": "flare.app_common.aggregators.intime_accumulate_model_aggregator.InTimeAccumulateWeightedAggregator",
       "args": {}
     }
   ],
   "workflows": [
     {
       "id": "fed_avg_ctl",
-      "path": "nvflare.app_common.workflows.fed_avg.fed_avg_ctl.FedAvgController",
+      "path": "flare.app_common.workflows.fed_avg.fed_avg_ctl.FedAvgController",
       "args": {
         "min_clients": 2,
         "num_rounds": 10,

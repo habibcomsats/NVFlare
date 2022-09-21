@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,8 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from nvflare.apis.app_validation import AppValidationKey, AppValidator
-from nvflare.fuel.sec.authz import AuthorizationService, AuthzContext, Person
+from flare.apis.app_validation import AppValidationKey, AppValidator
+from flare.fuel.sec.authz import AuthorizationService, AuthzContext, Person
 
 _RIGHT_BYOC = "byoc"
 

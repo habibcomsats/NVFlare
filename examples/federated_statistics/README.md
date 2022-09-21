@@ -1,5 +1,5 @@
 # Objective
-Federated Statistics will provide built-in NVFLARE federated statistics operators ( controller and executors) that 
+Federated Statistics will provide built-in FLARE federated statistics operators ( controller and executors) that 
 will generate global statistics based on local client side statistics.
 
 At each clide site, we could have one or more datasets (such as "train" and "test" datasets); each dataset may have many 

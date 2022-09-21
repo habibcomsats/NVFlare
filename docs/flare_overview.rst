@@ -1,21 +1,21 @@
 .. _flare_overview:
 
 #####################
-NVIDIA FLARE Overview
+[BLINDED] FLARE Overview
 #####################
 
-**NVIDIA FLARE** (NVIDIA Federated Learning Application Runtime Environment) is a domain-agnostic, open-source,
+**[BLINDED] FLARE** ([BLINDED] Federated Learning Application Runtime Environment) is a domain-agnostic, open-source,
 extensible SDK that allows researchers and data scientists to adapt existing ML/DL workflow to a federated paradigm.
 
-With Nvidia FLARE platform developers can build a secure, privacy preserving offering
+With [BLINDED] FLARE platform developers can build a secure, privacy preserving offering
 for a distributed multi-party collaboration.
 
-NVIDIA FLARE SDK is built for robust, production scale for real-world federated learning deployments.
+[BLINDED] FLARE SDK is built for robust, production scale for real-world federated learning deployments.
 
 It includes:
 
   * A runtime environment enabling data scientists and researchers to easily carry out FL experiments in a
-    real-world scenario. Nvidia FLARE supports multiple task execution, maximizing data scientist's productivity.
+    real-world scenario. [BLINDED] FLARE supports multiple task execution, maximizing data scientist's productivity.
   
   * System capabilities to start up federated learning with high availability infrastructure.
   
@@ -38,12 +38,12 @@ It includes:
 
 High-level System Architecture
 ==============================
-As outlined above, NVIDIA FLARE includes components that allow researchers and developers to build and deploy
+As outlined above, [BLINDED] FLARE includes components that allow researchers and developers to build and deploy
 end-to-end federated learning applications.
 
 The high-level architecture is shown in the diagram below.
 
-This includes the foundational components of the NVIDIA FLARE API and tools for privacy preservation and
+This includes the foundational components of the [BLINDED] FLARE API and tools for privacy preservation and
 secure management of the platform.
 
 On top of this foundation are the building blocks for federated learning applications,

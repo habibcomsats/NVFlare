@@ -21,7 +21,7 @@
     }
   ],
   "overseer_agent": {
-    "path": "nvflare.ha.dummy_overseer_agent.DummyOverseerAgent",
+    "path": "flare.ha.dummy_overseer_agent.DummyOverseerAgent",
     "args": {
       "sp_end_point": "localhost:8002:8003",
       "heartbeat_interval": 6

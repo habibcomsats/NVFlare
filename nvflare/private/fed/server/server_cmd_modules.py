@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,12 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from nvflare.fuel.hci.reg import CommandModule
-from nvflare.private.fed.server.info_coll_cmd import InfoCollectorCommandModule
-from nvflare.private.fed.server.job_cmds import JobCommandModule
-from nvflare.private.fed.server.shell_cmd import ShellCommandModule
-from nvflare.private.fed.server.sys_cmd import SystemCommandModule
-from nvflare.private.fed.server.training_cmds import TrainingCommandModule
+from flare.fuel.hci.reg import CommandModule
+from flare.private.fed.server.info_coll_cmd import InfoCollectorCommandModule
+from flare.private.fed.server.job_cmds import JobCommandModule
+from flare.private.fed.server.shell_cmd import ShellCommandModule
+from flare.private.fed.server.sys_cmd import SystemCommandModule
+from flare.private.fed.server.training_cmds import TrainingCommandModule
 
 
 class ServerCommandModules:

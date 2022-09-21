@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,17 +14,17 @@
 
 from typing import Dict, List, Optional
 
-from nvflare.apis.client_engine_spec import TaskAssignment
-from nvflare.apis.fl_component import FLComponent
-from nvflare.apis.fl_constant import FLContextKey, ReturnCode
-from nvflare.apis.fl_context import FLContext, FLContextManager
-from nvflare.apis.shareable import Shareable, make_reply
-from nvflare.apis.workspace import Workspace
-from nvflare.private.event import fire_event
-from nvflare.private.fed.utils.fed_utils import create_job_processing_context_properties
-from nvflare.widgets.fed_event import ClientFedEventRunner
-from nvflare.widgets.info_collector import InfoCollector
-from nvflare.widgets.widget import Widget, WidgetID
+from flare.apis.client_engine_spec import TaskAssignment
+from flare.apis.fl_component import FLComponent
+from flare.apis.fl_constant import FLContextKey, ReturnCode
+from flare.apis.fl_context import FLContext, FLContextManager
+from flare.apis.shareable import Shareable, make_reply
+from flare.apis.workspace import Workspace
+from flare.private.event import fire_event
+from flare.private.fed.utils.fed_utils import create_job_processing_context_properties
+from flare.widgets.fed_event import ClientFedEventRunner
+from flare.widgets.info_collector import InfoCollector
+from flare.widgets.widget import Widget, WidgetID
 
 from .client_aux_runner import ClientAuxRunner
 from .client_engine_executor_spec import ClientEngineExecutorSpec

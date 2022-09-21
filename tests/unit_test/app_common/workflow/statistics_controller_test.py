@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,10 +13,10 @@
 # limitations under the License.
 from typing import List
 
-from nvflare.app_common.abstract.statistics_spec import MetricConfig
-from nvflare.app_common.app_constant import StatisticsConstants as SC
-from nvflare.app_common.workflows.statistics_controller import StatisticsController
-from nvflare.fuel.utils import fobs
+from flare.app_common.abstract.statistics_spec import MetricConfig
+from flare.app_common.app_constant import StatisticsConstants as SC
+from flare.app_common.workflows.statistics_controller import StatisticsController
+from flare.fuel.utils import fobs
 
 from .mock_statistics_controller import MockStatisticsController
 

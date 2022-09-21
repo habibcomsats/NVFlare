@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,14 +14,14 @@
 import shutil
 import tempfile
 
-from nvflare.apis.event_type import EventType
-from nvflare.apis.utils.common_utils import get_open_ports
-from nvflare.private.fed.client.admin import FedAdminAgent
-from nvflare.private.fed.client.admin_msg_sender import AdminMessageSender
-from nvflare.private.fed.client.client_req_processors import ClientRequestProcessors
-from nvflare.private.fed.client.fed_client import FederatedClient
-from nvflare.private.fed.simulator.simulator_client_engine import SimulatorClientEngine
-from nvflare.private.fed.simulator.simulator_server import SimulatorServer
+from flare.apis.event_type import EventType
+from flare.apis.utils.common_utils import get_open_ports
+from flare.private.fed.client.admin import FedAdminAgent
+from flare.private.fed.client.admin_msg_sender import AdminMessageSender
+from flare.private.fed.client.client_req_processors import ClientRequestProcessors
+from flare.private.fed.client.fed_client import FederatedClient
+from flare.private.fed.simulator.simulator_client_engine import SimulatorClientEngine
+from flare.private.fed.simulator.simulator_server import SimulatorServer
 
 from ..server.server_train import create_admin_server
 from .base_client_deployer import BaseClientDeployer

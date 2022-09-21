@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,15 +17,15 @@ import logging
 import time
 from typing import List
 
-from nvflare.apis.client import Client
-from nvflare.apis.fl_constant import AdminCommandNames
-from nvflare.fuel.hci.conn import Connection
-from nvflare.fuel.hci.proto import ConfirmMethod
-from nvflare.fuel.hci.reg import CommandModule, CommandModuleSpec, CommandSpec
-from nvflare.private.defs import ClientStatusKey, ScopeInfoKey, TrainingTopic
-from nvflare.private.fed.server.admin import new_message
-from nvflare.private.fed.server.server_engine_internal_spec import ServerEngineInternalSpec
-from nvflare.private.fed.utils.fed_utils import get_scope_info
+from flare.apis.client import Client
+from flare.apis.fl_constant import AdminCommandNames
+from flare.fuel.hci.conn import Connection
+from flare.fuel.hci.proto import ConfirmMethod
+from flare.fuel.hci.reg import CommandModule, CommandModuleSpec, CommandSpec
+from flare.private.defs import ClientStatusKey, ScopeInfoKey, TrainingTopic
+from flare.private.fed.server.admin import new_message
+from flare.private.fed.server.server_engine_internal_spec import ServerEngineInternalSpec
+from flare.private.fed.utils.fed_utils import get_scope_info
 
 from .cmd_utils import CommandUtil
 from .server_engine import ServerEngine

@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,11 +14,11 @@
 
 import time
 
-from nvflare.apis.executor import Executor
-from nvflare.apis.fl_constant import ReturnCode
-from nvflare.apis.fl_context import FLContext
-from nvflare.apis.shareable import Shareable, make_reply
-from nvflare.apis.signal import Signal
+from flare.apis.executor import Executor
+from flare.apis.fl_constant import ReturnCode
+from flare.apis.fl_context import FLContext
+from flare.apis.shareable import Shareable, make_reply
+from flare.apis.signal import Signal
 
 
 class ExceptionTrainer(Executor):

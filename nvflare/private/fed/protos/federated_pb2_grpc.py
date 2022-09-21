@@ -2,7 +2,7 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-from nvflare.private.fed.protos import federated_pb2 as nvflare_dot_private_dot_fed_dot_protos_dot_federated__pb2
+from flare.private.fed.protos import federated_pb2 as flare_dot_private_dot_fed_dot_protos_dot_federated__pb2
 
 
 class FederatedTrainingStub(object):
@@ -17,33 +17,33 @@ class FederatedTrainingStub(object):
         """
         self.Register = channel.unary_unary(
                 '/fedlearn.FederatedTraining/Register',
-                request_serializer=nvflare_dot_private_dot_fed_dot_protos_dot_federated__pb2.ClientLogin.SerializeToString,
-                response_deserializer=nvflare_dot_private_dot_fed_dot_protos_dot_federated__pb2.FederatedSummary.FromString,
+                request_serializer=flare_dot_private_dot_fed_dot_protos_dot_federated__pb2.ClientLogin.SerializeToString,
+                response_deserializer=flare_dot_private_dot_fed_dot_protos_dot_federated__pb2.FederatedSummary.FromString,
                 )
         self.Quit = channel.unary_unary(
                 '/fedlearn.FederatedTraining/Quit',
-                request_serializer=nvflare_dot_private_dot_fed_dot_protos_dot_federated__pb2.ClientState.SerializeToString,
-                response_deserializer=nvflare_dot_private_dot_fed_dot_protos_dot_federated__pb2.FederatedSummary.FromString,
+                request_serializer=flare_dot_private_dot_fed_dot_protos_dot_federated__pb2.ClientState.SerializeToString,
+                response_deserializer=flare_dot_private_dot_fed_dot_protos_dot_federated__pb2.FederatedSummary.FromString,
                 )
         self.GetTask = channel.unary_unary(
                 '/fedlearn.FederatedTraining/GetTask',
-                request_serializer=nvflare_dot_private_dot_fed_dot_protos_dot_federated__pb2.ClientState.SerializeToString,
-                response_deserializer=nvflare_dot_private_dot_fed_dot_protos_dot_federated__pb2.CurrentTask.FromString,
+                request_serializer=flare_dot_private_dot_fed_dot_protos_dot_federated__pb2.ClientState.SerializeToString,
+                response_deserializer=flare_dot_private_dot_fed_dot_protos_dot_federated__pb2.CurrentTask.FromString,
                 )
         self.SubmitUpdate = channel.unary_unary(
                 '/fedlearn.FederatedTraining/SubmitUpdate',
-                request_serializer=nvflare_dot_private_dot_fed_dot_protos_dot_federated__pb2.Contribution.SerializeToString,
-                response_deserializer=nvflare_dot_private_dot_fed_dot_protos_dot_federated__pb2.FederatedSummary.FromString,
+                request_serializer=flare_dot_private_dot_fed_dot_protos_dot_federated__pb2.Contribution.SerializeToString,
+                response_deserializer=flare_dot_private_dot_fed_dot_protos_dot_federated__pb2.FederatedSummary.FromString,
                 )
         self.Heartbeat = channel.unary_unary(
                 '/fedlearn.FederatedTraining/Heartbeat',
-                request_serializer=nvflare_dot_private_dot_fed_dot_protos_dot_federated__pb2.Token.SerializeToString,
-                response_deserializer=nvflare_dot_private_dot_fed_dot_protos_dot_federated__pb2.FederatedSummary.FromString,
+                request_serializer=flare_dot_private_dot_fed_dot_protos_dot_federated__pb2.Token.SerializeToString,
+                response_deserializer=flare_dot_private_dot_fed_dot_protos_dot_federated__pb2.FederatedSummary.FromString,
                 )
         self.AuxCommunicate = channel.unary_unary(
                 '/fedlearn.FederatedTraining/AuxCommunicate',
-                request_serializer=nvflare_dot_private_dot_fed_dot_protos_dot_federated__pb2.AuxMessage.SerializeToString,
-                response_deserializer=nvflare_dot_private_dot_fed_dot_protos_dot_federated__pb2.AuxReply.FromString,
+                request_serializer=flare_dot_private_dot_fed_dot_protos_dot_federated__pb2.AuxMessage.SerializeToString,
+                response_deserializer=flare_dot_private_dot_fed_dot_protos_dot_federated__pb2.AuxReply.FromString,
                 )
 
 
@@ -98,33 +98,33 @@ def add_FederatedTrainingServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'Register': grpc.unary_unary_rpc_method_handler(
                     servicer.Register,
-                    request_deserializer=nvflare_dot_private_dot_fed_dot_protos_dot_federated__pb2.ClientLogin.FromString,
-                    response_serializer=nvflare_dot_private_dot_fed_dot_protos_dot_federated__pb2.FederatedSummary.SerializeToString,
+                    request_deserializer=flare_dot_private_dot_fed_dot_protos_dot_federated__pb2.ClientLogin.FromString,
+                    response_serializer=flare_dot_private_dot_fed_dot_protos_dot_federated__pb2.FederatedSummary.SerializeToString,
             ),
             'Quit': grpc.unary_unary_rpc_method_handler(
                     servicer.Quit,
-                    request_deserializer=nvflare_dot_private_dot_fed_dot_protos_dot_federated__pb2.ClientState.FromString,
-                    response_serializer=nvflare_dot_private_dot_fed_dot_protos_dot_federated__pb2.FederatedSummary.SerializeToString,
+                    request_deserializer=flare_dot_private_dot_fed_dot_protos_dot_federated__pb2.ClientState.FromString,
+                    response_serializer=flare_dot_private_dot_fed_dot_protos_dot_federated__pb2.FederatedSummary.SerializeToString,
             ),
             'GetTask': grpc.unary_unary_rpc_method_handler(
                     servicer.GetTask,
-                    request_deserializer=nvflare_dot_private_dot_fed_dot_protos_dot_federated__pb2.ClientState.FromString,
-                    response_serializer=nvflare_dot_private_dot_fed_dot_protos_dot_federated__pb2.CurrentTask.SerializeToString,
+                    request_deserializer=flare_dot_private_dot_fed_dot_protos_dot_federated__pb2.ClientState.FromString,
+                    response_serializer=flare_dot_private_dot_fed_dot_protos_dot_federated__pb2.CurrentTask.SerializeToString,
             ),
             'SubmitUpdate': grpc.unary_unary_rpc_method_handler(
                     servicer.SubmitUpdate,
-                    request_deserializer=nvflare_dot_private_dot_fed_dot_protos_dot_federated__pb2.Contribution.FromString,
-                    response_serializer=nvflare_dot_private_dot_fed_dot_protos_dot_federated__pb2.FederatedSummary.SerializeToString,
+                    request_deserializer=flare_dot_private_dot_fed_dot_protos_dot_federated__pb2.Contribution.FromString,
+                    response_serializer=flare_dot_private_dot_fed_dot_protos_dot_federated__pb2.FederatedSummary.SerializeToString,
             ),
             'Heartbeat': grpc.unary_unary_rpc_method_handler(
                     servicer.Heartbeat,
-                    request_deserializer=nvflare_dot_private_dot_fed_dot_protos_dot_federated__pb2.Token.FromString,
-                    response_serializer=nvflare_dot_private_dot_fed_dot_protos_dot_federated__pb2.FederatedSummary.SerializeToString,
+                    request_deserializer=flare_dot_private_dot_fed_dot_protos_dot_federated__pb2.Token.FromString,
+                    response_serializer=flare_dot_private_dot_fed_dot_protos_dot_federated__pb2.FederatedSummary.SerializeToString,
             ),
             'AuxCommunicate': grpc.unary_unary_rpc_method_handler(
                     servicer.AuxCommunicate,
-                    request_deserializer=nvflare_dot_private_dot_fed_dot_protos_dot_federated__pb2.AuxMessage.FromString,
-                    response_serializer=nvflare_dot_private_dot_fed_dot_protos_dot_federated__pb2.AuxReply.SerializeToString,
+                    request_deserializer=flare_dot_private_dot_fed_dot_protos_dot_federated__pb2.AuxMessage.FromString,
+                    response_serializer=flare_dot_private_dot_fed_dot_protos_dot_federated__pb2.AuxReply.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -149,8 +149,8 @@ class FederatedTraining(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/fedlearn.FederatedTraining/Register',
-            nvflare_dot_private_dot_fed_dot_protos_dot_federated__pb2.ClientLogin.SerializeToString,
-            nvflare_dot_private_dot_fed_dot_protos_dot_federated__pb2.FederatedSummary.FromString,
+            flare_dot_private_dot_fed_dot_protos_dot_federated__pb2.ClientLogin.SerializeToString,
+            flare_dot_private_dot_fed_dot_protos_dot_federated__pb2.FederatedSummary.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -166,8 +166,8 @@ class FederatedTraining(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/fedlearn.FederatedTraining/Quit',
-            nvflare_dot_private_dot_fed_dot_protos_dot_federated__pb2.ClientState.SerializeToString,
-            nvflare_dot_private_dot_fed_dot_protos_dot_federated__pb2.FederatedSummary.FromString,
+            flare_dot_private_dot_fed_dot_protos_dot_federated__pb2.ClientState.SerializeToString,
+            flare_dot_private_dot_fed_dot_protos_dot_federated__pb2.FederatedSummary.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -183,8 +183,8 @@ class FederatedTraining(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/fedlearn.FederatedTraining/GetTask',
-            nvflare_dot_private_dot_fed_dot_protos_dot_federated__pb2.ClientState.SerializeToString,
-            nvflare_dot_private_dot_fed_dot_protos_dot_federated__pb2.CurrentTask.FromString,
+            flare_dot_private_dot_fed_dot_protos_dot_federated__pb2.ClientState.SerializeToString,
+            flare_dot_private_dot_fed_dot_protos_dot_federated__pb2.CurrentTask.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -200,8 +200,8 @@ class FederatedTraining(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/fedlearn.FederatedTraining/SubmitUpdate',
-            nvflare_dot_private_dot_fed_dot_protos_dot_federated__pb2.Contribution.SerializeToString,
-            nvflare_dot_private_dot_fed_dot_protos_dot_federated__pb2.FederatedSummary.FromString,
+            flare_dot_private_dot_fed_dot_protos_dot_federated__pb2.Contribution.SerializeToString,
+            flare_dot_private_dot_fed_dot_protos_dot_federated__pb2.FederatedSummary.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -217,8 +217,8 @@ class FederatedTraining(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/fedlearn.FederatedTraining/Heartbeat',
-            nvflare_dot_private_dot_fed_dot_protos_dot_federated__pb2.Token.SerializeToString,
-            nvflare_dot_private_dot_fed_dot_protos_dot_federated__pb2.FederatedSummary.FromString,
+            flare_dot_private_dot_fed_dot_protos_dot_federated__pb2.Token.SerializeToString,
+            flare_dot_private_dot_fed_dot_protos_dot_federated__pb2.FederatedSummary.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -234,7 +234,7 @@ class FederatedTraining(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/fedlearn.FederatedTraining/AuxCommunicate',
-            nvflare_dot_private_dot_fed_dot_protos_dot_federated__pb2.AuxMessage.SerializeToString,
-            nvflare_dot_private_dot_fed_dot_protos_dot_federated__pb2.AuxReply.FromString,
+            flare_dot_private_dot_fed_dot_protos_dot_federated__pb2.AuxMessage.SerializeToString,
+            flare_dot_private_dot_fed_dot_protos_dot_federated__pb2.AuxReply.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

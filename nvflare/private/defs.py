@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,8 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from nvflare.apis.fl_constant import WorkspaceConstants
-from nvflare.fuel.hci.server.constants import ConnProps
+from flare.apis.fl_constant import WorkspaceConstants
+from flare.fuel.hci.server.constants import ConnProps
 
 
 class SpecialTaskName(object):
@@ -134,4 +134,4 @@ class SSLConstants:
     ROOT_CERT = "ssl_root_cert"
 
 
-ERROR_MSG_PREFIX = "NVFLARE_ERROR"
+ERROR_MSG_PREFIX = "FLARE_ERROR"

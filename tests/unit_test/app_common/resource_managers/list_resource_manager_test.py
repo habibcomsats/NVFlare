@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,9 +17,9 @@ from collections import deque
 
 import pytest
 
-from nvflare.apis.event_type import EventType
-from nvflare.apis.fl_context import FLContext, FLContextManager
-from nvflare.app_common.resource_managers.list_resource_manager import ListResourceManager
+from flare.apis.event_type import EventType
+from flare.apis.fl_context import FLContext, FLContextManager
+from flare.app_common.resource_managers.list_resource_manager import ListResourceManager
 
 
 class MockEngine:

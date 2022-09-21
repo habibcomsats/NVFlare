@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,9 +14,9 @@
 import enum
 from typing import List
 
-from nvflare.fuel.hci.conn import Connection
-from nvflare.fuel.hci.reg import CommandEntry
-from nvflare.fuel.sec.authz import AuthorizationService, AuthzContext, Person
+from flare.fuel.hci.conn import Connection
+from flare.fuel.hci.reg import CommandEntry
+from flare.fuel.sec.authz import AuthorizationService, AuthzContext, Person
 
 from .constants import ConnProps
 from .reg import CommandFilter

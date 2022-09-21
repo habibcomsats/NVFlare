@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,11 +19,11 @@ from monai.bundle.config_item import ConfigItem
 from monai.fl.client.monai_algo import check_bundle_config
 from monai.fl.utils.constants import RequiredBundleKeys
 
-from nvflare.apis.event_type import EventType
-from nvflare.apis.fl_constant import FLContextKey
-from nvflare.apis.fl_context import FLContext
-from nvflare.app_common.app_constant import DefaultCheckpointFileName
-from nvflare.app_common.pt.pt_file_model_persistor import PTFileModelPersistor
+from flare.apis.event_type import EventType
+from flare.apis.fl_constant import FLContextKey
+from flare.apis.fl_context import FLContext
+from flare.app_common.app_constant import DefaultCheckpointFileName
+from flare.app_common.pt.pt_file_model_persistor import PTFileModelPersistor
 
 
 class MonaiBundlePersistor(PTFileModelPersistor):

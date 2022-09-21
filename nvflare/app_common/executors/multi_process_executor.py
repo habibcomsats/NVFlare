@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -21,22 +21,22 @@ import time
 from abc import abstractmethod
 from multiprocessing.connection import Client, Listener
 
-from nvflare.apis.event_type import EventType
-from nvflare.apis.executor import Executor
-from nvflare.apis.fl_component import FLComponent
-from nvflare.apis.fl_constant import FLContextKey, ReturnCode
-from nvflare.apis.fl_context import FLContext
-from nvflare.apis.shareable import Shareable, make_reply
-from nvflare.apis.signal import Signal
-from nvflare.apis.utils.common_utils import get_open_ports
-from nvflare.apis.utils.fl_context_utils import get_serializable_data
-from nvflare.fuel.common.multi_process_executor_constants import CommunicateData, CommunicationMetaData
-from nvflare.fuel.utils.class_utils import ModuleScanner
-from nvflare.fuel.utils.component_builder import ComponentBuilder
+from flare.apis.event_type import EventType
+from flare.apis.executor import Executor
+from flare.apis.fl_component import FLComponent
+from flare.apis.fl_constant import FLContextKey, ReturnCode
+from flare.apis.fl_context import FLContext
+from flare.apis.shareable import Shareable, make_reply
+from flare.apis.signal import Signal
+from flare.apis.utils.common_utils import get_open_ports
+from flare.apis.utils.fl_context_utils import get_serializable_data
+from flare.fuel.common.multi_process_executor_constants import CommunicateData, CommunicationMetaData
+from flare.fuel.utils.class_utils import ModuleScanner
+from flare.fuel.utils.component_builder import ComponentBuilder
 
 
 class WorkerComponentBuilder(ComponentBuilder):
-    FL_PACKAGES = ["nvflare"]
+    FL_PACKAGES = ["flare"]
     FL_MODULES = ["client", "app"]
 
     def __init__(self) -> None:
@@ -150,7 +150,7 @@ class MultiProcessExecutor(Executor):
 
             command = (
                 self.get_multi_process_command()
-                + " -m nvflare.private.fed.app.client.sub_worker_process"
+                + " -m flare.private.fed.app.client.sub_worker_process"
                 + " -m "
                 + fl_ctx.get_prop(FLContextKey.ARGS).workspace
                 + " -c "

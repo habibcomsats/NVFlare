@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,13 +16,13 @@ import copy
 import torch
 from pt.learners.cifar10_learner import CIFAR10Learner
 
-from nvflare.apis.dxo import DXO, DataKind, MetaKey, from_shareable
-from nvflare.apis.fl_constant import ReturnCode
-from nvflare.apis.fl_context import FLContext
-from nvflare.apis.shareable import Shareable, make_reply
-from nvflare.apis.signal import Signal
-from nvflare.app_common.app_constant import AlgorithmConstants, AppConstants
-from nvflare.app_common.pt.pt_scaffold import PTScaffoldHelper, get_lr_values
+from flare.apis.dxo import DXO, DataKind, MetaKey, from_shareable
+from flare.apis.fl_constant import ReturnCode
+from flare.apis.fl_context import FLContext
+from flare.apis.shareable import Shareable, make_reply
+from flare.apis.signal import Signal
+from flare.app_common.app_constant import AlgorithmConstants, AppConstants
+from flare.app_common.pt.pt_scaffold import PTScaffoldHelper, get_lr_values
 
 
 class CIFAR10ScaffoldLearner(CIFAR10Learner):

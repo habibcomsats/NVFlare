@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,18 +16,18 @@
 
 from typing import List, Optional
 
-from nvflare.apis.event_type import EventType
-from nvflare.apis.executor import Executor
-from nvflare.apis.filter import Filter
-from nvflare.apis.fl_component import FLComponent
-from nvflare.apis.fl_context import FLContext
-from nvflare.apis.shareable import Shareable
-from nvflare.apis.utils.decomposers import flare_decomposers
-from nvflare.app_common.decomposers import common_decomposers
-from nvflare.fuel.utils import fobs
-from nvflare.private.defs import SpecialTaskName
-from nvflare.private.event import fire_event
-from nvflare.private.fed.utils.numproto import proto_to_bytes
+from flare.apis.event_type import EventType
+from flare.apis.executor import Executor
+from flare.apis.filter import Filter
+from flare.apis.fl_component import FLComponent
+from flare.apis.fl_context import FLContext
+from flare.apis.shareable import Shareable
+from flare.apis.utils.decomposers import flare_decomposers
+from flare.app_common.decomposers import common_decomposers
+from flare.fuel.utils import fobs
+from flare.private.defs import SpecialTaskName
+from flare.private.event import fire_event
+from flare.private.fed.utils.numproto import proto_to_bytes
 
 from .fed_client_base import FederatedClientBase
 

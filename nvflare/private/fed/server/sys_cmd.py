@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,11 +16,11 @@ import json
 
 import psutil
 
-from nvflare.fuel.hci.conn import Connection
-from nvflare.fuel.hci.reg import CommandModule, CommandModuleSpec, CommandSpec
-from nvflare.private.defs import SysCommandTopic
-from nvflare.private.fed.server.admin import new_message
-from nvflare.private.fed.server.cmd_utils import CommandUtil
+from flare.fuel.hci.conn import Connection
+from flare.fuel.hci.reg import CommandModule, CommandModuleSpec, CommandSpec
+from flare.private.defs import SysCommandTopic
+from flare.private.fed.server.admin import new_message
+from flare.private.fed.server.cmd_utils import CommandUtil
 
 
 def _parse_replies(conn, replies):

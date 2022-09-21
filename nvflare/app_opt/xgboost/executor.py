@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,11 +14,11 @@
 
 import os
 
-from nvflare.apis.fl_constant import FLContextKey, ReturnCode
-from nvflare.apis.fl_context import FLContext
-from nvflare.apis.shareable import Shareable, make_reply
-from nvflare.app_opt.xgboost.executor_base import XGBExecutorBase, XGBoostParams
-from nvflare.utils.import_utils import optional_import
+from flare.apis.fl_constant import FLContextKey, ReturnCode
+from flare.apis.fl_context import FLContext
+from flare.apis.shareable import Shareable, make_reply
+from flare.app_opt.xgboost.executor_base import XGBExecutorBase, XGBoostParams
+from flare.utils.import_utils import optional_import
 
 
 class XGBExecutor(XGBExecutorBase):

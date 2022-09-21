@@ -1,4 +1,4 @@
-# Copyright (c) 2022, NVIDIA CORPORATION.
+# Copyright (c) 2022, [BLINDED] CORPORATION.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -20,12 +20,12 @@ from analysis_constants import SupportedTasks
 from monai.data import ITKReader, load_decathlon_datalist
 from monai.transforms import LoadImage
 
-from nvflare.apis.dxo import DXO, DataKind
-from nvflare.apis.executor import Executor
-from nvflare.apis.fl_constant import ReservedKey, ReturnCode
-from nvflare.apis.fl_context import FLContext
-from nvflare.apis.shareable import Shareable, make_reply
-from nvflare.apis.signal import Signal
+from flare.apis.dxo import DXO, DataKind
+from flare.apis.executor import Executor
+from flare.apis.fl_constant import ReservedKey, ReturnCode
+from flare.apis.fl_context import FLContext
+from flare.apis.shareable import Shareable, make_reply
+from flare.apis.signal import Signal
 
 
 class AnalysisExecutor(Executor):

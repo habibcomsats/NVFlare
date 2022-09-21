@@ -7,19 +7,19 @@ Before You Start
 ----------------
 
 Before jumping into this guide, make sure you have an environment with
-`NVIDIA FLARE <https://pypi.org/project/nvflare/>`_ installed.
+`[BLINDED] FLARE <https://pypi.org/project/flare/>`_ installed.
 
 You can follow the :ref:`installation <installation>` guide on the general concept of setting up a
-Python virtual environment (the recommended environment) and how to install NVIDIA FLARE.
+Python virtual environment (the recommended environment) and how to install [BLINDED] FLARE.
 
 
 Introduction
 -------------
 
-This tutorial is meant solely to demonstrate how the NVIDIA FLARE system works, without introducing any actual deep
+This tutorial is meant solely to demonstrate how the [BLINDED] FLARE system works, without introducing any actual deep
 learning concepts.
 
-Through this exercise, you will learn how to use NVIDIA FLARE with numpy to perform basic
+Through this exercise, you will learn how to use [BLINDED] FLARE with numpy to perform basic
 computations across two clients with the included Scatter and Gather workflow, which broadcasts the training tasks then
 aggregates the results that come back.
 
@@ -46,34 +46,34 @@ Let's get started. First clone the repo, if you haven't already:
 
 .. code-block:: shell
 
-  $ git clone https://github.com/NVIDIA/NVFlare.git
+  $ git clone https://github.com/[BLINDED]/Flare.git
 
-Remember to activate your NVIDIA FLARE Python virtual environment from the installation guide.
+Remember to activate your [BLINDED] FLARE Python virtual environment from the installation guide.
 Ensure numpy is installed.
 
 .. code-block:: shell
 
-  (nvflare-env) $ python3 -m pip install numpy
+  (flare-env) $ python3 -m pip install numpy
 
 Now that you have all your dependencies installed, let's implement the federated learning system.
 
 
-NVIDIA FLARE Client
+[BLINDED] FLARE Client
 -------------------
  
 You will first notice that the ``hello-numpy-sag`` application does not contain a ``custom`` folder.
 
 The code for the client and server components has been implemented in the
-`nvflare/app-common/np <https://github.com/NVIDIA/NVFlare/tree/main/nvflare/app_common/np>`_ folder of the NVFlare code tree.
+`flare/app-common/np <https://github.com/[BLINDED]/Flare/tree/main/flare/app_common/np>`_ folder of the Flare code tree.
 
-These files, for example the trainer in `np_trainer.py <https://github.com/NVIDIA/NVFlare/tree/main/nvflare/app_common/np/np_trainer.py>`_
+These files, for example the trainer in `np_trainer.py <https://github.com/[BLINDED]/Flare/tree/main/flare/app_common/np/np_trainer.py>`_
 can be copied into a ``custom`` folder in the ``hello-numpy-sag`` application as ``custom_trainer.py`` and modified to perform additional tasks.
 
 The ``config_fed_client.json`` configuration discussed below would then be modified to point to this custom code by providing the custom path.
 
-For example, replacing ``nvflare.app_common.np.np_trainer.NPTrainer`` with ``custom_trainer.NPTrainer``.
+For example, replacing ``flare.app_common.np.np_trainer.NPTrainer`` with ``custom_trainer.NPTrainer``.
 
-In the ``np_trainer.py`` trainer, we first import nvflare and numpy.
+In the ``np_trainer.py`` trainer, we first import flare and numpy.
 We then implement the ``execute`` function to enable the clients to perform
 a simple addition of a diff to represent one calculation of training a round.
 
@@ -91,13 +91,13 @@ The FL server can ``aggregate`` (in this case average) the clients' results to p
 You can learn more about ``Shareable`` and ``FLContext`` in the :ref:`programming guide <programming_guide>`.
 
 
-NVIDIA FLARE Server & Application
+[BLINDED] FLARE Server & Application
 ---------------------------------
 
 Model Persistor
 ^^^^^^^^^^^^^^^^^
 
-.. literalinclude:: ../../nvflare/app_common/np/np_model_persistor.py
+.. literalinclude:: ../../flare/app_common/np/np_model_persistor.py
    :language: python
    :linenos:
    :caption: np_model_persistor.py
@@ -106,7 +106,7 @@ The model persistor is used to load and save models on the server.
 Here, the model refer to weights packaged into a ``ModelLearnable`` object.
 
 Internally, DXO is used to manage data after
-:class:`FullModelShareableGenerator<nvflare.app_common.shareablegenerators.full_model_shareable_generator.FullModelShareableGenerator>`
+:class:`FullModelShareableGenerator<flare.app_common.shareablegenerators.full_model_shareable_generator.FullModelShareableGenerator>`
 converts Learnable to Shareable on the FL server.
 
 The DXO helps all of the FL components agree on the format.
@@ -138,7 +138,7 @@ If you had implemented your own custom ``NPTrainer`` training routine,
 for example in ``hello-numpy-sag/custom/custom_trainer.py``,
 this config_fed_client.json configuration would be modified to point to this custom code by providing the custom path.
 
-For example, replacing ``nvflare.app_common.np.np_trainer.NPTrainer`` with ``custom_trainer.NPTrainer``.
+For example, replacing ``flare.app_common.np.np_trainer.NPTrainer`` with ``custom_trainer.NPTrainer``.
 
 
 Federated Numpy with Scatter and Gather Workflow!
@@ -160,8 +160,8 @@ Congratulations!
 
 You've successfully built and run your first numpy federated learning system.
 
-You now have a decent grasp of the main FL concepts, and are ready to start exploring how NVIDIA FLARE can be applied to many other tasks.
+You now have a decent grasp of the main FL concepts, and are ready to start exploring how [BLINDED] FLARE can be applied to many other tasks.
 
 The full application for this exercise can be found in
-`examples/hello-numpy-sag <https://github.com/NVIDIA/NVFlare/tree/main/examples/hello-numpy-sag>`_,
-with the client and server components implemented in the `nvflare/app-common/np <https://github.com/NVIDIA/NVFlare/tree/main/nvflare/app_common/np>`_ folder of the NVFlare code tree.
+`examples/hello-numpy-sag <https://github.com/[BLINDED]/Flare/tree/main/examples/hello-numpy-sag>`_,
+with the client and server components implemented in the `flare/app-common/np <https://github.com/[BLINDED]/Flare/tree/main/flare/app_common/np>`_ folder of the Flare code tree.

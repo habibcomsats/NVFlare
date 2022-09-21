@@ -1,4 +1,4 @@
-# Copyright (c) 2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,13 +15,13 @@
 
 from unittest.mock import MagicMock, Mock, patch
 
-import nvflare.private.fed.protos.federated_pb2 as fed_msg
-from nvflare.private.fed.server.fed_server import FederatedServer
+import flare.private.fed.protos.federated_pb2 as fed_msg
+from flare.private.fed.server.fed_server import FederatedServer
 
 
 class TestFederatedServer:
     def test_heart_beat_abort_jobs(self):
-        with patch("nvflare.private.fed.server.fed_server.ServerEngine") as mock_engine:
+        with patch("flare.private.fed.server.fed_server.ServerEngine") as mock_engine:
             server = FederatedServer(
                 project_name="project_name",
                 min_num_clients=1,

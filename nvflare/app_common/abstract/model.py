@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,7 +17,7 @@
 This import simply lets you call the Learnable 'Model'.
 Model Learnable is a dict that contains two items: weights and meta info
 """
-from nvflare.apis.dxo import DXO, DataKind
+from flare.apis.dxo import DXO, DataKind
 
 from .learnable import Learnable as ModelLearnable
 

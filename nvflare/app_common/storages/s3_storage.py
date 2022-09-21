@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -21,8 +21,8 @@ from minio import Minio
 from minio.commonconfig import REPLACE, CopySource
 from minio.error import MinioException
 
-from nvflare.apis.storage import StorageException, StorageSpec
-from nvflare.apis.utils.format_check import validate_class_methods_args
+from flare.apis.storage import StorageException, StorageSpec
+from flare.apis.utils.format_check import validate_class_methods_args
 
 URI_ROOT = os.path.abspath(os.sep)
 _USER_META_KEY = "user_metadata"

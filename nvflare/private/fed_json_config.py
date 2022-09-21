@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,9 +14,9 @@
 
 import re
 
-from nvflare.apis.filter import Filter, FilterChainType, FilterContextKey, FilterSource
-from nvflare.fuel.utils.json_scanner import Node
-from nvflare.private.json_configer import ConfigContext, ConfigError, JsonConfigurator
+from flare.apis.filter import Filter, FilterChainType, FilterContextKey, FilterSource
+from flare.fuel.utils.json_scanner import Node
+from flare.private.json_configer import ConfigContext, ConfigError, JsonConfigurator
 
 
 class FilterChain(object):

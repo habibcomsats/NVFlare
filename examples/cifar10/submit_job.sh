@@ -18,7 +18,7 @@ then
 else
   echo "Submit secure job ${config} with alpha=${alpha}"
   workspace="${PWD}/workspaces/secure_workspace"
-  admin_username="admin@nvidia.com"
+  admin_username="admin@[BLINDED].com"
 fi
 
 # submit job

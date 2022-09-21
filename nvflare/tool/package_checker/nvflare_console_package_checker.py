@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,12 +15,12 @@
 import os
 
 from .client_package_checker import ClientPackageChecker
-from .utils import NVFlareConfig, NVFlareRole
+from .utils import FlareConfig, FlareRole
 
 
-class NVFlareConsolePackageChecker(ClientPackageChecker):
-    NVF_CONFIG = NVFlareConfig.ADMIN
-    NVF_ROLE = NVFlareRole.ADMIN
+class FlareConsolePackageChecker(ClientPackageChecker):
+    NVF_CONFIG = FlareConfig.ADMIN
+    NVF_ROLE = FlareRole.ADMIN
 
     def get_dry_run_command(self) -> str:
         return os.path.join(self.package_path, "startup", "fl_admin.sh")

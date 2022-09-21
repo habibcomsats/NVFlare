@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,11 +15,11 @@
 import threading
 import time
 
-from nvflare.apis.event_type import EventType
-from nvflare.apis.fl_constant import ReturnCode
-from nvflare.apis.fl_context import FLContext
-from nvflare.apis.shareable import ReservedHeaderKey, Shareable, make_reply
-from nvflare.private.aux_runner import AuxRunner
+from flare.apis.event_type import EventType
+from flare.apis.fl_constant import ReturnCode
+from flare.apis.fl_context import FLContext
+from flare.apis.shareable import ReservedHeaderKey, Shareable, make_reply
+from flare.private.aux_runner import AuxRunner
 
 from .client_engine_executor_spec import ClientEngineExecutorSpec
 

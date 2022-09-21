@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -20,8 +20,8 @@ import uuid
 from pathlib import Path
 from typing import List, Tuple
 
-from nvflare.apis.storage import StorageException, StorageSpec
-from nvflare.apis.utils.format_check import validate_class_methods_args
+from flare.apis.storage import StorageException, StorageSpec
+from flare.apis.utils.format_check import validate_class_methods_args
 
 
 def _write(path: str, content):

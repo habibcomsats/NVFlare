@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -20,13 +20,13 @@ import numpy as np
 import tenseal as ts
 from tenseal.tensors.ckksvector import CKKSVector
 
-import nvflare.app_common.homomorphic_encryption.he_constant as he
-from nvflare.apis.dxo import DXO, DataKind, MetaKey
-from nvflare.apis.dxo_filter import DXOFilter
-from nvflare.apis.event_type import EventType
-from nvflare.apis.fl_context import FLContext
-from nvflare.apis.shareable import Shareable
-from nvflare.app_common.homomorphic_encryption.homomorphic_encrypt import (
+import flare.app_common.homomorphic_encryption.he_constant as he
+from flare.apis.dxo import DXO, DataKind, MetaKey
+from flare.apis.dxo_filter import DXOFilter
+from flare.apis.event_type import EventType
+from flare.apis.fl_context import FLContext
+from flare.apis.shareable import Shareable
+from flare.app_common.homomorphic_encryption.homomorphic_encrypt import (
     count_encrypted_layers,
     load_tenseal_context_from_workspace,
 )

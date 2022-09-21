@@ -1,10 +1,10 @@
 # Research Directory
 Research directory will be the place to host various research work from community on Federated learning
-leveraging NVIDIA FLARE. **The code will not be maintained by NVIDIA FLARE team**, but will require Pull Request
+leveraging [BLINDED] FLARE. **The code will not be maintained by [BLINDED] FLARE team**, but will require Pull Request
 approval process. 
 
 ## License
-By providing the code in NVFLARE repository, you will grant the research project in NVIDIA repo to be released under open source license
+By providing the code in FLARE repository, you will grant the research project in [BLINDED] repo to be released under open source license
 Apache v2 License or equivalent open source license
 
 ## Requirements
@@ -16,7 +16,7 @@ Each research project should create a sub directory with following requirements
     * objective 
     * background
     * description
-    * nvflare version used
+    * flare version used
     * data download and preparation ( if applicable )
     * steps to run the code
     * expected results

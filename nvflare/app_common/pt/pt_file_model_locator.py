@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,12 +14,12 @@
 
 from typing import List
 
-from nvflare.apis.dxo import DXO
-from nvflare.apis.event_type import EventType
-from nvflare.apis.fl_context import FLContext
-from nvflare.app_common.abstract.model import model_learnable_to_dxo
-from nvflare.app_common.abstract.model_locator import ModelLocator
-from nvflare.app_common.pt.pt_file_model_persistor import PTFileModelPersistor
+from flare.apis.dxo import DXO
+from flare.apis.event_type import EventType
+from flare.apis.fl_context import FLContext
+from flare.app_common.abstract.model import model_learnable_to_dxo
+from flare.app_common.abstract.model_locator import ModelLocator
+from flare.app_common.pt.pt_file_model_persistor import PTFileModelPersistor
 
 
 class PTFileModelLocator(ModelLocator):

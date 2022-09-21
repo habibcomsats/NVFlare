@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -21,12 +21,12 @@ from itertools import permutations
 
 import pytest
 
-from nvflare.apis.client import Client
-from nvflare.apis.controller_spec import ClientTask, SendOrder, Task, TaskCompletionStatus
-from nvflare.apis.fl_context import FLContext, FLContextManager
-from nvflare.apis.impl.controller import Controller
-from nvflare.apis.shareable import ReservedHeaderKey, Shareable
-from nvflare.apis.signal import Signal
+from flare.apis.client import Client
+from flare.apis.controller_spec import ClientTask, SendOrder, Task, TaskCompletionStatus
+from flare.apis.fl_context import FLContext, FLContextManager
+from flare.apis.impl.controller import Controller
+from flare.apis.shareable import ReservedHeaderKey, Shareable
+from flare.apis.signal import Signal
 from tests.unit_test.utils.test_utils import skip_if_quick
 
 logger = logging.getLogger()

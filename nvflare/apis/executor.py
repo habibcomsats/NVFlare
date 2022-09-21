@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
 
 from abc import ABC, abstractmethod
 
-from nvflare.apis.signal import Signal
+from flare.apis.signal import Signal
 
 from .fl_component import FLComponent
 from .fl_context import FLContext

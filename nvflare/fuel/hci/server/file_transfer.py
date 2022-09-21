@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,19 +17,19 @@ import tempfile
 import traceback
 from typing import List
 
-import nvflare.fuel.hci.file_transfer_defs as ftd
-from nvflare.fuel.hci.base64_utils import (
+import flare.fuel.hci.file_transfer_defs as ftd
+from flare.fuel.hci.base64_utils import (
     b64str_to_binary_file,
     b64str_to_bytes,
     b64str_to_text_file,
     binary_file_to_b64str,
     text_file_to_b64str,
 )
-from nvflare.fuel.hci.conn import Connection
-from nvflare.fuel.hci.reg import CommandModule, CommandModuleSpec, CommandSpec
-from nvflare.fuel.hci.server.constants import ConnProps
-from nvflare.fuel.hci.zip_utils import unzip_all_from_bytes
-from nvflare.private.fed.server.cmd_utils import CommandUtil
+from flare.fuel.hci.conn import Connection
+from flare.fuel.hci.reg import CommandModule, CommandModuleSpec, CommandSpec
+from flare.fuel.hci.server.constants import ConnProps
+from flare.fuel.hci.zip_utils import unzip_all_from_bytes
+from flare.private.fed.server.cmd_utils import CommandUtil
 
 
 class FileTransferModule(CommandModule, CommandUtil):

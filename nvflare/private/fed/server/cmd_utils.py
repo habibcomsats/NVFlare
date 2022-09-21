@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,10 +14,10 @@
 
 from typing import List
 
-from nvflare.apis.job_def import JobMetaKey
-from nvflare.apis.server_engine_spec import ServerEngineSpec
-from nvflare.fuel.hci.conn import Connection
-from nvflare.fuel.hci.server.authz import PreAuthzReturnCode
+from flare.apis.job_def import JobMetaKey
+from flare.apis.server_engine_spec import ServerEngineSpec
+from flare.fuel.hci.conn import Connection
+from flare.fuel.hci.server.authz import PreAuthzReturnCode
 
 
 class CommandUtil(object):

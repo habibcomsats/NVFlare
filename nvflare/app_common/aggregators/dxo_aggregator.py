@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,11 +15,11 @@
 import logging
 from typing import Any, Dict, Optional
 
-from nvflare.apis.dxo import DXO, DataKind, MetaKey
-from nvflare.apis.fl_component import FLComponent
-from nvflare.apis.fl_context import FLContext
-from nvflare.app_common.aggregators.weighted_aggregation_helper import WeightedAggregationHelper
-from nvflare.app_common.app_constant import AppConstants
+from flare.apis.dxo import DXO, DataKind, MetaKey
+from flare.apis.fl_component import FLComponent
+from flare.apis.fl_context import FLContext
+from flare.app_common.aggregators.weighted_aggregation_helper import WeightedAggregationHelper
+from flare.app_common.app_constant import AppConstants
 
 
 class DXOAggregator(FLComponent):

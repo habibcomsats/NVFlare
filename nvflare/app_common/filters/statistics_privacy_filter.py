@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,13 +14,13 @@
 
 from typing import List, Optional, Union
 
-from nvflare.apis.dxo import DXO, DataKind
-from nvflare.apis.dxo_filter import DXOFilter
-from nvflare.apis.fl_context import FLContext
-from nvflare.apis.shareable import Shareable
-from nvflare.app_common.app_constant import StatisticsConstants as StC
-from nvflare.app_common.statistics.metrics_privacy_cleanser import MetricsPrivacyCleanser
-from nvflare.fuel.utils import fobs
+from flare.apis.dxo import DXO, DataKind
+from flare.apis.dxo_filter import DXOFilter
+from flare.apis.fl_context import FLContext
+from flare.apis.shareable import Shareable
+from flare.app_common.app_constant import StatisticsConstants as StC
+from flare.app_common.statistics.metrics_privacy_cleanser import MetricsPrivacyCleanser
+from flare.fuel.utils import fobs
 
 
 class StatisticsPrivacyFilter(DXOFilter):

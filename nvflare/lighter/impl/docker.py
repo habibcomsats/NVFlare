@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@ import shutil
 
 import yaml
 
-from nvflare.lighter.spec import Builder
+from flare.lighter.spec import Builder
 
 
 class DockerBuilder(Builder):
@@ -34,7 +34,7 @@ class DockerBuilder(Builder):
         info_dict = copy.deepcopy(self.services["__overseer__"])
         info_dict["volumes"] = [f"./{overseer.name}:/workspace"]
         info_dict["ports"] = [f"{port}:{port}"]
-        info_dict["build"] = "nvflare_compose"
+        info_dict["build"] = "flare_compose"
         self.services[overseer.name] = info_dict
 
     def _build_server(self, server, ctx):
@@ -82,7 +82,7 @@ class DockerBuilder(Builder):
         self.compose["services"] = self.services
         with open(self.compose_file_path, "wt") as f:
             yaml.dump(self.compose, f)
-        compose_build_dir = os.path.join(self.get_wip_dir(ctx), "nvflare_compose")
+        compose_build_dir = os.path.join(self.get_wip_dir(ctx), "flare_compose")
         os.mkdir(compose_build_dir)
         with open(os.path.join(compose_build_dir, "Dockerfile"), "wt") as f:
             f.write(f"FROM {self.base_image}\n")

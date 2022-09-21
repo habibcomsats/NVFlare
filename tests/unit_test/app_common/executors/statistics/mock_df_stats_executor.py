@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,8 +18,8 @@ import numpy as np
 import pandas as pd
 from pandas.core.series import Series
 
-from nvflare.apis.fl_context import FLContext
-from nvflare.app_common.abstract.statistics_spec import (
+from flare.apis.fl_context import FLContext
+from flare.app_common.abstract.statistics_spec import (
     BinRange,
     DataType,
     Feature,
@@ -27,7 +27,7 @@ from nvflare.app_common.abstract.statistics_spec import (
     HistogramType,
     Statistics,
 )
-from nvflare.app_common.statistics.numpy_utils import get_std_histogram_buckets
+from flare.app_common.statistics.numpy_utils import get_std_histogram_buckets
 
 
 class MockDFStatistics(Statistics):

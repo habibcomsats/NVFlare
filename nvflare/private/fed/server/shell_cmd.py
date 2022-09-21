@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,11 +17,11 @@ import re
 import subprocess
 from typing import List
 
-from nvflare.fuel.hci.cmd_arg_utils import join_args
-from nvflare.fuel.hci.conn import Connection
-from nvflare.fuel.hci.reg import CommandModule, CommandModuleSpec, CommandSpec
-from nvflare.fuel.hci.server.authz import PreAuthzReturnCode
-from nvflare.fuel.hci.shell_cmd_val import (
+from flare.fuel.hci.cmd_arg_utils import join_args
+from flare.fuel.hci.conn import Connection
+from flare.fuel.hci.reg import CommandModule, CommandModuleSpec, CommandSpec
+from flare.fuel.hci.server.authz import PreAuthzReturnCode
+from flare.fuel.hci.shell_cmd_val import (
     CatValidator,
     GrepValidator,
     HeadValidator,
@@ -29,10 +29,10 @@ from nvflare.fuel.hci.shell_cmd_val import (
     ShellCommandValidator,
     TailValidator,
 )
-from nvflare.private.admin_defs import Message
-from nvflare.private.defs import SysCommandTopic
-from nvflare.private.fed.server.admin import ClientReply, new_message
-from nvflare.private.fed.server.server_engine_internal_spec import ServerEngineInternalSpec
+from flare.private.admin_defs import Message
+from flare.private.defs import SysCommandTopic
+from flare.private.fed.server.admin import ClientReply, new_message
+from flare.private.fed.server.server_engine_internal_spec import ServerEngineInternalSpec
 
 
 class _CommandExecutor(object):

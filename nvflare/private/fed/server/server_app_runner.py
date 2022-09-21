@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,13 +14,13 @@
 
 import os
 
-from nvflare.apis.fl_constant import MachineStatus
-from nvflare.apis.workspace import Workspace
-from nvflare.private.fed.app.fl_conf import create_privacy_manager
-from nvflare.private.fed.server.server_engine import ServerEngine
-from nvflare.private.fed.server.server_json_config import ServerJsonConfigurator
-from nvflare.private.fed.server.server_status import ServerStatus
-from nvflare.private.privacy_manager import PrivacyService
+from flare.apis.fl_constant import MachineStatus
+from flare.apis.workspace import Workspace
+from flare.private.fed.app.fl_conf import create_privacy_manager
+from flare.private.fed.server.server_engine import ServerEngine
+from flare.private.fed.server.server_json_config import ServerJsonConfigurator
+from flare.private.fed.server.server_status import ServerStatus
+from flare.private.privacy_manager import PrivacyService
 
 
 def _set_up_run_config(workspace: Workspace, server, conf):

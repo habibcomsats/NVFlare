@@ -1,4 +1,4 @@
-# Copyright (c) 2022, NVIDIA CORPORATION.
+# Copyright (c) 2022, [BLINDED] CORPORATION.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -44,9 +44,9 @@ import os
 import numpy as np
 import torchvision.datasets as datasets
 
-from nvflare.apis.event_type import EventType
-from nvflare.apis.fl_component import FLComponent
-from nvflare.apis.fl_context import FLContext
+from flare.apis.event_type import EventType
+from flare.apis.fl_component import FLComponent
+from flare.apis.fl_context import FLContext
 
 CIFAR10_ROOT = "/tmp/cifar10"   # will be used for all CIFAR-10 experiments
 

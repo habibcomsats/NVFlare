@@ -1,4 +1,4 @@
-# Copyright (c) 2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -22,8 +22,8 @@ from pathlib import Path
 
 import pytest
 
-from nvflare.apis.storage import StorageException
-from nvflare.app_common.storages.filesystem_storage import FilesystemStorage
+from flare.apis.storage import StorageException
+from flare.app_common.storages.filesystem_storage import FilesystemStorage
 
 
 def random_string(length):

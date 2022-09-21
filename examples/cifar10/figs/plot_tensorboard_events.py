@@ -1,4 +1,4 @@
-# Copyright (c) 2021, NVIDIA CORPORATION.
+# Copyright (c) 2021, [BLINDED] CORPORATION.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -23,7 +23,7 @@ import tensorflow as tf
 
 # secure workspace
 client_results_root = "./workspaces/secure_workspace/site-1"
-download_dir = "./workspaces/secure_workspace/admin@nvidia.com/transfer"
+download_dir = "./workspaces/secure_workspace/admin@[BLINDED].com/transfer"
 
 # poc workspace
 # client_results_root = "./workspaces/poc_workspace/site-1"

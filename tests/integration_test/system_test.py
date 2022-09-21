@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@ from tests.integration_test.utils import (
     read_yaml,
 )
 
-POC_PATH = "../../nvflare/poc"
+POC_PATH = "../../flare/poc"
 
 
 def get_module_class_from_full_path(full_path):
@@ -75,7 +75,7 @@ def _cleanup(additional_paths=None, site_launcher=None):
 
 
 test_configs = read_yaml("./test_cases.yml")
-framework = os.environ.get("NVFLARE_TEST_FRAMEWORK", "numpy")
+framework = os.environ.get("FLARE_TEST_FRAMEWORK", "numpy")
 if framework not in ["numpy", "tensorflow", "pytorch"]:
     print(f"Framework {framework} is not supported, using default numpy.")
     framework = "numpy"

@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -11,8 +11,8 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-from nvflare.fuel.utils.fobs.decomposer import Decomposer
-from nvflare.fuel.utils.fobs.fobs import (
+from flare.fuel.utils.fobs.decomposer import Decomposer
+from flare.fuel.utils.fobs.fobs import (
     deserialize,
     deserialize_stream,
     num_decomposers,

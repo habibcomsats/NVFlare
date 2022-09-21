@@ -15,12 +15,12 @@
     },
     {
       "id": "shareable_generator",
-      "path": "nvflare.app_common.shareablegenerators.full_model_shareable_generator.FullModelShareableGenerator",
+      "path": "flare.app_common.shareablegenerators.full_model_shareable_generator.FullModelShareableGenerator",
       "args": {}
     },
     {
       "id": "aggregator",
-      "path": "nvflare.app_common.aggregators.intime_accumulate_model_aggregator.InTimeAccumulateWeightedAggregator",
+      "path": "flare.app_common.aggregators.intime_accumulate_model_aggregator.InTimeAccumulateWeightedAggregator",
       "args": {
         "expected_data_kind": "WEIGHTS"
       }
@@ -29,7 +29,7 @@
   "workflows": [
     {
       "id": "scatter_gather_ctl",
-      "path": "nvflare.app_common.workflows.scatter_and_gather.ScatterAndGather",
+      "path": "flare.app_common.workflows.scatter_and_gather.ScatterAndGather",
       "args": {
         "min_clients": 2,
         "num_rounds": 3,

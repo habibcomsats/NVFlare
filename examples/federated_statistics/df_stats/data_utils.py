@@ -4,7 +4,7 @@ import shutil
 
 import wget
 
-data_root_dir = "/tmp/nvflare/data"
+data_root_dir = "/tmp/flare/data"
 
 
 def parse_args(prog_name: str):

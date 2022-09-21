@@ -1,4 +1,4 @@
-# Copyright (c) 2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,7 +19,7 @@ from unittest.mock import patch
 
 import pytest
 
-from nvflare.private.fed.app.simulator.simulator_runner import SimulatorRunner
+from flare.private.fed.app.simulator.simulator_runner import SimulatorRunner
 
 
 class TestSimulatorRunner:
@@ -29,11 +29,11 @@ class TestSimulatorRunner:
     def teardown_method(self) -> None:
         shutil.rmtree(self.workspace)
 
-    @patch("nvflare.private.fed.app.deployer.simulator_deployer.SimulatorServer.deploy")
-    @patch("nvflare.private.fed.app.server.server_train.FedAdminServer")
-    @patch("nvflare.private.fed.app.deployer.simulator_deployer.FederatedClient.register")
-    @patch("nvflare.private.fed.app.deployer.simulator_deployer.FederatedClient.start_heartbeat")
-    @patch("nvflare.private.fed.app.deployer.simulator_deployer.FedAdminAgent")
+    @patch("flare.private.fed.app.deployer.simulator_deployer.SimulatorServer.deploy")
+    @patch("flare.private.fed.app.server.server_train.FedAdminServer")
+    @patch("flare.private.fed.app.deployer.simulator_deployer.FederatedClient.register")
+    @patch("flare.private.fed.app.deployer.simulator_deployer.FederatedClient.start_heartbeat")
+    @patch("flare.private.fed.app.deployer.simulator_deployer.FedAdminAgent")
     def test_valid_job_simulate_setup(self, mock_server, mock_admin, mock_register, mock_heartbeat, mock_agent):
         workspace = tempfile.mkdtemp()
         job_folder = os.path.join(os.path.dirname(__file__), "../../../../data/jobs/valid_job")
@@ -46,11 +46,11 @@ class TestSimulatorRunner:
             client_names.append(client)
         assert sorted(client_names) == sorted(expected_clients)
 
-    @patch("nvflare.private.fed.app.deployer.simulator_deployer.SimulatorServer.deploy")
-    @patch("nvflare.private.fed.app.server.server_train.FedAdminServer")
-    @patch("nvflare.private.fed.app.deployer.simulator_deployer.FederatedClient.register")
-    @patch("nvflare.private.fed.app.deployer.simulator_deployer.FederatedClient.start_heartbeat")
-    @patch("nvflare.private.fed.app.deployer.simulator_deployer.FedAdminAgent")
+    @patch("flare.private.fed.app.deployer.simulator_deployer.SimulatorServer.deploy")
+    @patch("flare.private.fed.app.server.server_train.FedAdminServer")
+    @patch("flare.private.fed.app.deployer.simulator_deployer.FederatedClient.register")
+    @patch("flare.private.fed.app.deployer.simulator_deployer.FederatedClient.start_heartbeat")
+    @patch("flare.private.fed.app.deployer.simulator_deployer.FedAdminAgent")
     def test_client_names_setup(self, mock_server, mock_admin, mock_register, mock_heartbeat, mock_agent):
         workspace = tempfile.mkdtemp()
         job_folder = os.path.join(os.path.dirname(__file__), "../../../../data/jobs/valid_job")
@@ -63,11 +63,11 @@ class TestSimulatorRunner:
             client_names.append(client)
         assert sorted(client_names) == sorted(expected_clients)
 
-    @patch("nvflare.private.fed.app.deployer.simulator_deployer.SimulatorServer.deploy")
-    @patch("nvflare.private.fed.app.server.server_train.FedAdminServer")
-    @patch("nvflare.private.fed.app.deployer.simulator_deployer.FederatedClient.register")
-    @patch("nvflare.private.fed.app.deployer.simulator_deployer.FederatedClient.start_heartbeat")
-    @patch("nvflare.private.fed.app.deployer.simulator_deployer.FedAdminAgent")
+    @patch("flare.private.fed.app.deployer.simulator_deployer.SimulatorServer.deploy")
+    @patch("flare.private.fed.app.server.server_train.FedAdminServer")
+    @patch("flare.private.fed.app.deployer.simulator_deployer.FederatedClient.register")
+    @patch("flare.private.fed.app.deployer.simulator_deployer.FederatedClient.start_heartbeat")
+    @patch("flare.private.fed.app.deployer.simulator_deployer.FedAdminAgent")
     def test_no_app_for_client(self, mock_server, mock_admin, mock_register, mock_heartbeat, mock_agent):
         workspace = tempfile.mkdtemp()
         job_folder = os.path.join(os.path.dirname(__file__), "../../../../data/jobs/valid_job")

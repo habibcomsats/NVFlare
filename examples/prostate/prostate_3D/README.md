@@ -12,7 +12,7 @@ From now on, we assume the PWD to be `./prostate_3D`.
 In this example, we run FL experiments in POC mode, starting with creating local FL workspace with
 
 ```
-python3 -m nvflare.lighter.poc
+python3 -m flare.lighter.poc
 ```
 
 Press y and enter when prompted.   
@@ -44,7 +44,7 @@ To enable multi-tasking, here we adjust the default value in `workspace_server/s
 
 (Optional) If using secure workspace, in secure project configuration `secure_project.yml`, we can set the available GPU indices as `gpu: [0, 1]` using the `ListResourceManager` and `max_jobs: 2` in `DefaultJobScheduler`.
 
-For details, please refer to the [documentation](https://nvflare.readthedocs.io/en/main/user_guide/job.html).
+For details, please refer to the [documentation](https://flare.readthedocs.io/en/main/user_guide/job.html).
 
 ## 2. Run automated experiments
 The next scripts will start the FL server and clients automatically to run FL experiments on localhost.
@@ -79,7 +79,7 @@ bash ./submit_job.sh [config]
 `[config]` is the experiment job that will be submitted for the FL training, in this example, this includes `prostate_central`, `prostate_fedavg`, `prostate_fedprox`, and `prostate_ditto`.  
 
 Note that in order to make it working under most system resource conditions, the current config set `"cache_dataset": 0.0`, which could be slow. If resource permits, it will make the training much faster by caching the dataset. More information available [here](https://docs.monai.io/en/stable/data.html#cachedataset).  
-For reference, with `"cache_dataset": 1.0` setting (cache all data), the centralized training (200 round, 10 epoch per round) takes around 46 hours on a 12GB NVIDIA TITAN Xp GPU. 
+For reference, with `"cache_dataset": 1.0` setting (cache all data), the centralized training (200 round, 10 epoch per round) takes around 46 hours on a 12GB [BLINDED] TITAN Xp GPU. 
 
 ### 2.3 Centralized training
 To simulate a centralized training baseline, we run FL with 1 client using all the training data. 
@@ -109,7 +109,7 @@ bash submit_job.sh prostate_ditto
 ```
 > **_NOTE:_** You can always use the admin console to manually abort a running job. 
   using `abort_job [JOB_ID]`. 
-> For a complete list of admin commands, see [here](https://nvflare.readthedocs.io/en/main/user_guide/operation.html).
+> For a complete list of admin commands, see [here](https://flare.readthedocs.io/en/main/user_guide/operation.html).
 
 > To log into the POC workspace admin console no username is required 
 > (use "admin" for commands requiring conformation with username). 

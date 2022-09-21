@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,10 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from nvflare.apis.fl_component import FLComponent
-from nvflare.apis.fl_context import FLContext
-from nvflare.apis.shareable import ReturnCode, Shareable, make_reply
-from nvflare.apis.signal import Signal
+from flare.apis.fl_component import FLComponent
+from flare.apis.fl_context import FLContext
+from flare.apis.shareable import ReturnCode, Shareable, make_reply
+from flare.apis.signal import Signal
 
 
 class Learner(FLComponent):

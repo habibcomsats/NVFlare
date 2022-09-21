@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 import argparse
 from pprint import pprint
 
-from nvflare.ha.overseer_agent import HttpOverseerAgent
+from flare.ha.overseer_agent import HttpOverseerAgent
 
 
 def setup_basic_info():

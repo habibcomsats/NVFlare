@@ -8,7 +8,7 @@
   "workflows": [
     {
       "id": "fed_stats_controller",
-      "path": "nvflare.app_common.workflows.statistics_controller.StatisticsController",
+      "path": "flare.app_common.workflows.statistics_controller.StatisticsController",
       "args": {
         "metric_configs": {
           "count": {},
@@ -32,10 +32,10 @@
   "components": [
     {
       "id": "stats_writer",
-      "path": "nvflare.app_common.statistics.json_stats_file_persistor.JsonStatsFileWriter",
+      "path": "flare.app_common.statistics.json_stats_file_persistor.JsonStatsFileWriter",
       "args": {
         "output_path": "statistics/adults_stats.json",
-        "json_encoder_path": "nvflare.app_common.utils.json_utils.ObjectEncoder"
+        "json_encoder_path": "flare.app_common.utils.json_utils.ObjectEncoder"
       }
     }
   ]

@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,13 +18,13 @@ import os
 import time
 from typing import Dict
 
-from nvflare.apis.job_def import RunStatus
-from nvflare.fuel.hci.client.api_status import APIStatus
-from nvflare.fuel.hci.client.fl_admin_api import FLAdminAPI
-from nvflare.fuel.hci.client.fl_admin_api_constants import FLDetailKey
-from nvflare.fuel.hci.client.fl_admin_api_spec import TargetType
-from nvflare.ha.dummy_overseer_agent import DummyOverseerAgent
-from nvflare.ha.overseer_agent import HttpOverseerAgent
+from flare.apis.job_def import RunStatus
+from flare.fuel.hci.client.api_status import APIStatus
+from flare.fuel.hci.client.fl_admin_api import FLAdminAPI
+from flare.fuel.hci.client.fl_admin_api_constants import FLDetailKey
+from flare.fuel.hci.client.fl_admin_api_spec import TargetType
+from flare.ha.dummy_overseer_agent import DummyOverseerAgent
+from flare.ha.overseer_agent import HttpOverseerAgent
 from tests.integration_test.utils import run_admin_api_tests
 
 
@@ -44,7 +44,7 @@ def _parse_workflow_states(stats_message: dict):
     if not stats_message:
         return workflow_states
     for k, v in stats_message.items():
-        # each controller inherit from nvflare/apis/impl/controller has tasks
+        # each controller inherit from flare/apis/impl/controller has tasks
         if v.get("tasks"):
             workflow_states[k] = v.copy()
             workflow_states[k].pop("tasks")
@@ -120,7 +120,7 @@ class AdminController:
 
     def initialize(self, workspace_root_dir: str, upload_root_dir: str, ha: bool):
         success = False
-        self.admin_user_name = "admin@nvidia.com" if ha else "admin"
+        self.admin_user_name = "admin@[BLINDED].com" if ha else "admin"
         admin_json_file = os.path.join(workspace_root_dir, self.admin_user_name, "startup", "fed_admin.json")
         if not os.path.exists(admin_json_file):
             raise RuntimeError("Missing admin json file.")

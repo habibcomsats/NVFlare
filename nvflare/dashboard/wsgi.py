@@ -1,4 +1,4 @@
-# Copyright (c) 2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -20,7 +20,7 @@ from application import init_app
 app = init_app()
 
 if __name__ == "__main__":
-    web_root = os.environ.get("NVFL_WEB_ROOT", "/var/tmp/nvflare/dashboard")
+    web_root = os.environ.get("NVFL_WEB_ROOT", "/var/tmp/flare/dashboard")
     web_crt = os.path.join(web_root, "cert", "web.crt")
     web_key = os.path.join(web_root, "cert", "web.key")
     port = os.environ.get("NVFL_WEB_PORT", "8443")

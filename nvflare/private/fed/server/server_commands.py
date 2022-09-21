@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,12 +19,12 @@ import time
 from abc import ABC, abstractmethod
 from typing import List
 
-from nvflare.apis.fl_constant import AdminCommandNames, FLContextKey, ReservedKey, ServerCommandKey, ServerCommandNames
-from nvflare.apis.fl_context import FLContext
-from nvflare.apis.shareable import Shareable
-from nvflare.apis.utils.fl_context_utils import get_serializable_data
-from nvflare.fuel.utils import fobs
-from nvflare.widgets.widget import WidgetID
+from flare.apis.fl_constant import AdminCommandNames, FLContextKey, ReservedKey, ServerCommandKey, ServerCommandNames
+from flare.apis.fl_context import FLContext
+from flare.apis.shareable import Shareable
+from flare.apis.utils.fl_context_utils import get_serializable_data
+from flare.fuel.utils import fobs
+from flare.widgets.widget import WidgetID
 
 
 class CommandProcessor(ABC):

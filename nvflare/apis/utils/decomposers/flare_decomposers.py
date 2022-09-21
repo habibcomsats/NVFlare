@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -11,9 +11,9 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""Decomposers for objects used by NVFlare itself
+"""Decomposers for objects used by Flare itself
 
-This module contains all the decomposers used to run NVFlare.
+This module contains all the decomposers used to run Flare.
 The decomposers are registered at server/client startup.
 
 """
@@ -21,16 +21,16 @@ import os
 from argparse import Namespace
 from typing import Any
 
-from nvflare.apis.analytix import AnalyticsDataType
-from nvflare.apis.client import Client
-from nvflare.apis.dxo import DXO
-from nvflare.apis.fl_context import FLContext
-from nvflare.apis.fl_snapshot import RunSnapshot
-from nvflare.apis.shareable import Shareable
-from nvflare.apis.signal import Signal
-from nvflare.apis.workspace import Workspace
-from nvflare.fuel.utils import fobs
-from nvflare.fuel.utils.fobs.decomposer import Decomposer
+from flare.apis.analytix import AnalyticsDataType
+from flare.apis.client import Client
+from flare.apis.dxo import DXO
+from flare.apis.fl_context import FLContext
+from flare.apis.fl_snapshot import RunSnapshot
+from flare.apis.shareable import Shareable
+from flare.apis.signal import Signal
+from flare.apis.workspace import Workspace
+from flare.fuel.utils import fobs
+from flare.fuel.utils.fobs.decomposer import Decomposer
 
 
 class ShareableDecomposer(Decomposer):

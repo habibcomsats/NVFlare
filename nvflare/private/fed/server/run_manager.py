@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,13 +15,13 @@
 import time
 from typing import List, Optional
 
-from nvflare.apis.fl_component import FLComponent
-from nvflare.apis.fl_constant import MachineStatus
-from nvflare.apis.fl_context import FLContext, FLContextManager
-from nvflare.apis.server_engine_spec import ServerEngineSpec
-from nvflare.apis.workspace import Workspace
-from nvflare.private.event import fire_event
-from nvflare.private.fed.utils.fed_utils import create_job_processing_context_properties
+from flare.apis.fl_component import FLComponent
+from flare.apis.fl_constant import MachineStatus
+from flare.apis.fl_context import FLContext, FLContextManager
+from flare.apis.server_engine_spec import ServerEngineSpec
+from flare.apis.workspace import Workspace
+from flare.private.event import fire_event
+from flare.private.fed.utils.fed_utils import create_job_processing_context_properties
 
 from .client_manager import ClientManager
 from .server_aux_runner import ServerAuxRunner

@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,12 +14,12 @@
 import json
 import os
 
-from nvflare.apis.fl_constant import FLContextKey
-from nvflare.apis.fl_context import FLContext
-from nvflare.apis.storage import StorageException
-from nvflare.app_common.abstract.statistics_writer import StatisticsWriter
-from nvflare.app_common.utils.json_utils import ObjectEncoder
-from nvflare.fuel.utils.class_utils import get_class
+from flare.apis.fl_constant import FLContextKey
+from flare.apis.fl_context import FLContext
+from flare.apis.storage import StorageException
+from flare.app_common.abstract.statistics_writer import StatisticsWriter
+from flare.app_common.utils.json_utils import ObjectEncoder
+from flare.fuel.utils.class_utils import get_class
 
 
 class JsonStatsFileWriter(StatisticsWriter):

@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,14 +17,14 @@ import traceback
 
 import numpy as np
 
-from nvflare.apis.dxo import DXO, DataKind, from_shareable
-from nvflare.apis.fl_context import FLContext
-from nvflare.apis.impl.controller import Task
-from nvflare.apis.signal import Signal
-from nvflare.app_common.abstract.model import model_learnable_to_dxo
-from nvflare.app_common.app_constant import AlgorithmConstants, AppConstants
-from nvflare.app_common.app_event_type import AppEventType
-from nvflare.app_common.workflows.scatter_and_gather import ScatterAndGather
+from flare.apis.dxo import DXO, DataKind, from_shareable
+from flare.apis.fl_context import FLContext
+from flare.apis.impl.controller import Task
+from flare.apis.signal import Signal
+from flare.app_common.abstract.model import model_learnable_to_dxo
+from flare.app_common.app_constant import AlgorithmConstants, AppConstants
+from flare.app_common.app_event_type import AppEventType
+from flare.app_common.workflows.scatter_and_gather import ScatterAndGather
 
 
 class ScatterAndGatherScaffold(ScatterAndGather):

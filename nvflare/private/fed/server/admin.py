@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,17 +16,17 @@ import threading
 import time
 from typing import List
 
-from nvflare.fuel.hci.conn import Connection
-from nvflare.fuel.hci.reg import CommandModule
-from nvflare.fuel.hci.server.audit import CommandAudit
-from nvflare.fuel.hci.server.authz import AuthzFilter
-from nvflare.fuel.hci.server.builtin import new_command_register_with_builtin_module
-from nvflare.fuel.hci.server.constants import ConnProps
-from nvflare.fuel.hci.server.hci import AdminServer
-from nvflare.fuel.hci.server.login import LoginModule, SessionManager, SimpleAuthenticator
-from nvflare.fuel.sec.audit import Auditor, AuditService
-from nvflare.private.admin_defs import Message
-from nvflare.private.defs import ERROR_MSG_PREFIX, RequestHeader
+from flare.fuel.hci.conn import Connection
+from flare.fuel.hci.reg import CommandModule
+from flare.fuel.hci.server.audit import CommandAudit
+from flare.fuel.hci.server.authz import AuthzFilter
+from flare.fuel.hci.server.builtin import new_command_register_with_builtin_module
+from flare.fuel.hci.server.constants import ConnProps
+from flare.fuel.hci.server.hci import AdminServer
+from flare.fuel.hci.server.login import LoginModule, SessionManager, SimpleAuthenticator
+from flare.fuel.sec.audit import Auditor, AuditService
+from flare.private.admin_defs import Message
+from flare.private.defs import ERROR_MSG_PREFIX, RequestHeader
 
 
 def new_message(conn: Connection, topic, body, require_authz: bool) -> Message:

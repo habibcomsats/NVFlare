@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,19 +18,19 @@ import numpy as np
 import torch
 from bundle_configer import BundleConfiger
 
-from nvflare.apis.dxo import DXO, DataKind, MetaKey, from_shareable
-from nvflare.apis.event_type import EventType
-from nvflare.apis.executor import Executor
-from nvflare.apis.fl_constant import FLContextKey, ReturnCode
-from nvflare.apis.fl_context import FLContext
-from nvflare.apis.shareable import Shareable
-from nvflare.apis.signal import Signal
-from nvflare.app_common.app_constant import AppConstants
+from flare.apis.dxo import DXO, DataKind, MetaKey, from_shareable
+from flare.apis.event_type import EventType
+from flare.apis.executor import Executor
+from flare.apis.fl_constant import FLContextKey, ReturnCode
+from flare.apis.fl_context import FLContext
+from flare.apis.shareable import Shareable
+from flare.apis.signal import Signal
+from flare.app_common.app_constant import AppConstants
 
 
 class MONAIBundleTrainer(Executor):
     """
-    This class implements a MONAI based trainer that can be used for Federated Learning with NVIDIA FLARE.
+    This class implements a MONAI based trainer that can be used for Federated Learning with [BLINDED] FLARE.
 
     Args:
         aggregation_epochs: the number of training epochs for a round. Defaults to 1.
@@ -95,7 +95,7 @@ class MONAIBundleTrainer(Executor):
         This function is used to load provided weights for the network.
         Before loading weights, tensors might need to be reshaped to support HE for secure aggregation.
         More info of HE:
-        https://github.com/NVIDIA/clara-train-examples/blob/master/PyTorch/NoteBooks/FL/Homomorphic_Encryption.ipynb
+        https://github.com/[BLINDED]/clara-train-examples/blob/master/PyTorch/NoteBooks/FL/Homomorphic_Encryption.ipynb
 
         """
         net = self.train_engine.network

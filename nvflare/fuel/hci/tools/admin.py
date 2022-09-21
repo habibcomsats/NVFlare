@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,12 +15,12 @@
 import argparse
 import os
 
-from nvflare.apis.workspace import Workspace
-from nvflare.fuel.common.excepts import ConfigError
-from nvflare.fuel.hci.client.cli import AdminClient, CredentialType
-from nvflare.fuel.hci.client.file_transfer import FileTransferModule
-from nvflare.fuel.hci.client.overseer_service_finder import ServiceFinderByOverseer
-from nvflare.private.fed.app.fl_conf import FLAdminClientStarterConfigurator
+from flare.apis.workspace import Workspace
+from flare.fuel.common.excepts import ConfigError
+from flare.fuel.hci.client.cli import AdminClient, CredentialType
+from flare.fuel.hci.client.file_transfer import FileTransferModule
+from flare.fuel.hci.client.overseer_service_finder import ServiceFinderByOverseer
+from flare.private.fed.app.fl_conf import FLAdminClientStarterConfigurator
 
 
 def main():

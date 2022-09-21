@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -24,14 +24,14 @@ from pt.utils.cifar10_dataset import CIFAR10_Idx
 from torch.utils.tensorboard import SummaryWriter
 from torchvision import datasets, transforms
 
-from nvflare.apis.dxo import DXO, DataKind, MetaKey, from_shareable
-from nvflare.apis.fl_constant import FLContextKey, ReturnCode
-from nvflare.apis.fl_context import FLContext
-from nvflare.apis.shareable import ReservedHeaderKey, Shareable, make_reply
-from nvflare.apis.signal import Signal
-from nvflare.app_common.abstract.learner_spec import Learner
-from nvflare.app_common.app_constant import AppConstants, ModelName, ValidateType
-from nvflare.app_common.pt.pt_fedproxloss import PTFedProxLoss
+from flare.apis.dxo import DXO, DataKind, MetaKey, from_shareable
+from flare.apis.fl_constant import FLContextKey, ReturnCode
+from flare.apis.fl_context import FLContext
+from flare.apis.shareable import ReservedHeaderKey, Shareable, make_reply
+from flare.apis.signal import Signal
+from flare.app_common.abstract.learner_spec import Learner
+from flare.app_common.app_constant import AppConstants, ModelName, ValidateType
+from flare.app_common.pt.pt_fedproxloss import PTFedProxLoss
 
 
 class CIFAR10Learner(Learner):  # also supports CIFAR10ScaffoldLearner

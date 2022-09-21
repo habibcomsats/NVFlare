@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,18 +18,18 @@ import threading
 import time
 from typing import List
 
-from nvflare.apis.client import Client
-from nvflare.apis.event_type import EventType
-from nvflare.apis.fl_component import FLComponent
-from nvflare.apis.fl_constant import AdminCommandNames, FLContextKey, RunProcessKey, SystemComponents
-from nvflare.apis.fl_context import FLContext
-from nvflare.apis.job_def import ALL_SITES, Job, JobMetaKey, RunStatus
-from nvflare.apis.workspace import Workspace
-from nvflare.fuel.hci.zip_utils import zip_directory_to_bytes
-from nvflare.private.admin_defs import Message, MsgHeader, ReturnCode
-from nvflare.private.defs import RequestHeader, TrainingTopic
-from nvflare.private.fed.server.admin import check_client_replies
-from nvflare.private.fed.utils.app_deployer import AppDeployer
+from flare.apis.client import Client
+from flare.apis.event_type import EventType
+from flare.apis.fl_component import FLComponent
+from flare.apis.fl_constant import AdminCommandNames, FLContextKey, RunProcessKey, SystemComponents
+from flare.apis.fl_context import FLContext
+from flare.apis.job_def import ALL_SITES, Job, JobMetaKey, RunStatus
+from flare.apis.workspace import Workspace
+from flare.fuel.hci.zip_utils import zip_directory_to_bytes
+from flare.private.admin_defs import Message, MsgHeader, ReturnCode
+from flare.private.defs import RequestHeader, TrainingTopic
+from flare.private.fed.server.admin import check_client_replies
+from flare.private.fed.utils.app_deployer import AppDeployer
 
 
 def _send_to_clients(admin_server, client_sites: List[str], engine, message):

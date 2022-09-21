@@ -2,9 +2,9 @@
 
 FLContext
 =========
-.. currentmodule:: nvflare.apis.fl_context.FLContext
+.. currentmodule:: flare.apis.fl_context.FLContext
 
-One of the most important features of NVIDIA FLARE is :mod:`nvflare.apis.fl_context` to pass data between the FL
+One of the most important features of [BLINDED] FLARE is :mod:`flare.apis.fl_context` to pass data between the FL
 components. ``FLContext`` is available to every method of all FLComponent types (Controller, Aggregator, Filter,
 Executor, Widget).
 
@@ -80,7 +80,7 @@ ClientEngineSpec for services they provide.
 
 Job ID (fl_ctx.get_job_id())
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-FL application is always running within a RUN, which has a unique ID number. From NVIDIA FLARE version 2.1.0, job ID is
+FL application is always running within a RUN, which has a unique ID number. From [BLINDED] FLARE version 2.1.0, job ID is
 used as the run number, and it no longer has to be an integer.
 
 Identity Name (fl_ctx.get_identity_name())
@@ -110,22 +110,22 @@ The name of the workspace root folder.
 
 Workspace Object (fl_ctx.get_prop(FLContextKey.WORKSPACE_OBJECT))
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-The workspace object (of :class:`nvflare.apis.workspace.Workspace` type).
+The workspace object (of :class:`flare.apis.workspace.Workspace` type).
 
 Secure Mode (fl_ctx.get_prop(FLContextKey.SECURE_MODE, True))
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Whether NVIDIA FLARE is running in secure mode or not.
+Whether [BLINDED] FLARE is running in secure mode or not.
 
 
 FL Context Lifecycle
 --------------------
-The NVIDIA FLARE system is a multi-threaded messaging environment. A new FLContext instance is created when processing a new
+The [BLINDED] FLARE system is a multi-threaded messaging environment. A new FLContext instance is created when processing a new
 message (in the messaging thread). At any time, there could be multiple instances of FL Contexts.
 
 The following is the general lifecycle of a FL Context:
 
     - **Created**: Never create a new FL Context directly with FLContext()! Always call engine.new_context(). Engine
-      creates a new FL Context with the FL Context Manager :class:`nvflare.api.fl_context.FLContext` (FLCM) associated with the engine. The FLCM keeps the
+      creates a new FL Context with the FL Context Manager :class:`flare.api.fl_context.FLContext` (FLCM) associated with the engine. The FLCM keeps the
       permanent props and all sticky props created by components. When creating a new FL Context, the FLCM copies
       these props to the created FL Context.
     - **Used**: The FL Context is used by system and/or application logic - props are read and placed into the context.
@@ -283,7 +283,7 @@ Additional props are available from the peer context, depending on the communica
 
 Create ad-hoc FL Context
 ------------------------
-All the contexts discussed above are created and managed by the NVIDIA FLARE framework. They should meet most of your
+All the contexts discussed above are created and managed by the [BLINDED] FLARE framework. They should meet most of your
 needs. However, you can create ad-hoc contexts in your program if necessary. To be thread safe, you should create a new
 FLContext instance for each thread - threads should not share the same FLContext object. To create a FLContext object,
 do this::
@@ -317,5 +317,5 @@ In other words, when an FL client is communicating with other clients, the non-p
 will be sent to those clients.
 
 There are many predefined keys used by different ``FLComponent`` functions. If you want to use the components that
-NVIDIA FLARE provide, please refer to `Data available in the shared FLContext`_ and :mod:`nvflare.apis.fl_constant` for
+[BLINDED] FLARE provide, please refer to `Data available in the shared FLContext`_ and :mod:`flare.apis.fl_constant` for
 details. Otherwise, you can write your own components by extending ``FLComponent``.

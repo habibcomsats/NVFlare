@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,16 +19,16 @@ from functools import partial
 from multiprocessing.dummy import Pool as ThreadPool
 from typing import List, Optional
 
-from nvflare.apis.filter import Filter
-from nvflare.apis.fl_component import FLComponent
-from nvflare.apis.fl_constant import FLContextKey
-from nvflare.apis.fl_context import FLContext
-from nvflare.apis.fl_exception import FLCommunicationError
-from nvflare.apis.overseer_spec import SP
-from nvflare.apis.shareable import Shareable
-from nvflare.apis.signal import Signal
-from nvflare.fuel.utils.argument_utils import parse_vars
-from nvflare.private.defs import EngineConstant
+from flare.apis.filter import Filter
+from flare.apis.fl_component import FLComponent
+from flare.apis.fl_constant import FLContextKey
+from flare.apis.fl_context import FLContext
+from flare.apis.fl_exception import FLCommunicationError
+from flare.apis.overseer_spec import SP
+from flare.apis.shareable import Shareable
+from flare.apis.signal import Signal
+from flare.fuel.utils.argument_utils import parse_vars
+from flare.private.defs import EngineConstant
 
 from .client_status import ClientStatus
 from .communicator import Communicator

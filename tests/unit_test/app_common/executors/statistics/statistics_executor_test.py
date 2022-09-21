@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,10 +17,10 @@ from typing import Dict, List
 
 import pytest
 
-from nvflare.apis.fl_context import FLContext
-from nvflare.apis.shareable import Shareable
-from nvflare.app_common.abstract.statistics_spec import Feature, HistogramType, MetricConfig
-from nvflare.app_common.executors.statistics.statistics_executor import StatisticsExecutor
+from flare.apis.fl_context import FLContext
+from flare.apis.shareable import Shareable
+from flare.app_common.abstract.statistics_spec import Feature, HistogramType, MetricConfig
+from flare.app_common.executors.statistics.statistics_executor import StatisticsExecutor
 from tests.unit_test.app_common.executors.statistics.mock_df_stats_executor import MockDFStatistics
 
 

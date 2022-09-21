@@ -2,7 +2,7 @@
 
 Shareable
 =========
-A :class:`Shareable<nvflare.apis.shareable.Shareable>` object represents a communication between server and client.
+A :class:`Shareable<flare.apis.shareable.Shareable>` object represents a communication between server and client.
 Technically a Shareable object is implemented as a Python dict. This dict contains two kinds of information:
 
 Headers
@@ -16,7 +16,7 @@ Content
 All other items in the Shareable object are the contents of the communication. You can place any elements into the
 Shareable object, but never use ReservedHeaderKey.HEADERS as the key of your content elements.
 
-For all methods of Shareable, see :class:`nvflare.apis.shareable.Shareable`.
+For all methods of Shareable, see :class:`flare.apis.shareable.Shareable`.
 
 Peer Properties
 ---------------
@@ -40,7 +40,7 @@ A cookie is just a named piece of data (key/value pair). During the task request
 
 The headers of the Shareable object can keep a special public prop called "Cookie Jar", which is just a Python dict.
 
-The NVIDIA FLARE framework guarantees that the cookie jar prop will be sent back to the server when the client submits
+The [BLINDED] FLARE framework guarantees that the cookie jar prop will be sent back to the server when the client submits
 the task result to the server.
 
 .. note::

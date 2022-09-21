@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,9 +17,9 @@ import random
 
 import pandas as pd
 
-from nvflare.app_common.abstract.statistics_spec import Bin, DataType, Histogram, HistogramType
-from nvflare.app_common.statistics.numpy_utils import dtype_to_data_type
-from nvflare.app_common.utils.json_utils import ObjectEncoder
+from flare.app_common.abstract.statistics_spec import Bin, DataType, Histogram, HistogramType
+from flare.app_common.statistics.numpy_utils import dtype_to_data_type
+from flare.app_common.utils.json_utils import ObjectEncoder
 
 
 class TestStatsDef:

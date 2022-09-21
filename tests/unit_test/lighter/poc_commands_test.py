@@ -1,4 +1,4 @@
-# Copyright (c) 2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,9 +14,9 @@
 
 import pytest
 
-from nvflare.cli_exception import CLIException
-from nvflare.lighter.poc_commands import client_gpu_assignments, get_gpu_ids, get_package_command
-from nvflare.lighter.service_constants import FlareServiceConstants as SC
+from flare.cli_exception import CLIException
+from flare.lighter.poc_commands import client_gpu_assignments, get_gpu_ids, get_package_command
+from flare.lighter.service_constants import FlareServiceConstants as SC
 
 
 class TestPOCCommands:
@@ -59,11 +59,11 @@ class TestPOCCommands:
             gpu_ids = get_gpu_ids([0, 1], host_gpu_ids)
 
     def test_get_package_command(self):
-        cmd = get_package_command(SC.CMD_START, "/tmp/nvflare/poc", SC.FLARE_SERVER)
-        assert "/tmp/nvflare/poc/server/startup/start.sh" == cmd
+        cmd = get_package_command(SC.CMD_START, "/tmp/flare/poc", SC.FLARE_SERVER)
+        assert "/tmp/flare/poc/server/startup/start.sh" == cmd
 
-        cmd = get_package_command(SC.CMD_START, "/tmp/nvflare/poc", SC.FLARE_CONSOLE)
-        assert "/tmp/nvflare/poc/admin/startup/fl_admin.sh" == cmd
+        cmd = get_package_command(SC.CMD_START, "/tmp/flare/poc", SC.FLARE_CONSOLE)
+        assert "/tmp/flare/poc/admin/startup/fl_admin.sh" == cmd
 
-        cmd = get_package_command(SC.CMD_START, "/tmp/nvflare/poc", "site-2000")
-        assert "/tmp/nvflare/poc/site-2000/startup/start.sh" == cmd
+        cmd = get_package_command(SC.CMD_START, "/tmp/flare/poc", "site-2000")
+        assert "/tmp/flare/poc/site-2000/startup/start.sh" == cmd

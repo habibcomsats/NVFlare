@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,8 +17,8 @@ from datetime import datetime
 
 from flask import jsonify, request
 
-from nvflare.ha.overseer.app import app
-from nvflare.ha.overseer.utils import (
+from flare.ha.overseer.app import app
+from flare.ha.overseer.utils import (
     get_all_sp,
     get_primary_sp,
     get_system_state,

@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -26,13 +26,13 @@ import grpc
 from google.protobuf.struct_pb2 import Struct
 from google.protobuf.timestamp_pb2 import Timestamp
 
-import nvflare.private.fed.protos.admin_pb2 as admin_msg
-import nvflare.private.fed.protos.admin_pb2_grpc as admin_service
-import nvflare.private.fed.protos.federated_pb2 as fed_msg
-import nvflare.private.fed.protos.federated_pb2_grpc as fed_service
-from nvflare.apis.event_type import EventType
-from nvflare.apis.fl_component import FLComponent
-from nvflare.apis.fl_constant import (
+import flare.private.fed.protos.admin_pb2 as admin_msg
+import flare.private.fed.protos.admin_pb2_grpc as admin_service
+import flare.private.fed.protos.federated_pb2 as fed_msg
+import flare.private.fed.protos.federated_pb2_grpc as fed_service
+from flare.apis.event_type import EventType
+from flare.apis.fl_component import FLComponent
+from flare.apis.fl_constant import (
     FLContextKey,
     MachineStatus,
     ReservedKey,
@@ -41,20 +41,20 @@ from nvflare.apis.fl_constant import (
     SnapshotKey,
     WorkspaceConstants,
 )
-from nvflare.apis.fl_context import FLContext
-from nvflare.apis.shareable import ReservedHeaderKey, ReturnCode, Shareable, make_reply
-from nvflare.apis.utils.decomposers import flare_decomposers
-from nvflare.apis.workspace import Workspace
-from nvflare.app_common.decomposers import common_decomposers
-from nvflare.fuel.hci.zip_utils import unzip_all_from_bytes
-from nvflare.fuel.utils import fobs
-from nvflare.fuel.utils.argument_utils import parse_vars
-from nvflare.private.defs import SpecialTaskName
-from nvflare.private.fed.server.server_runner import ServerRunner
-from nvflare.private.fed.utils.fed_utils import shareable_to_modeldata
-from nvflare.private.fed.utils.messageproto import message_to_proto, proto_to_message
-from nvflare.private.fed.utils.numproto import proto_to_bytes
-from nvflare.widgets.fed_event import ServerFedEventRunner
+from flare.apis.fl_context import FLContext
+from flare.apis.shareable import ReservedHeaderKey, ReturnCode, Shareable, make_reply
+from flare.apis.utils.decomposers import flare_decomposers
+from flare.apis.workspace import Workspace
+from flare.app_common.decomposers import common_decomposers
+from flare.fuel.hci.zip_utils import unzip_all_from_bytes
+from flare.fuel.utils import fobs
+from flare.fuel.utils.argument_utils import parse_vars
+from flare.private.defs import SpecialTaskName
+from flare.private.fed.server.server_runner import ServerRunner
+from flare.private.fed.utils.fed_utils import shareable_to_modeldata
+from flare.private.fed.utils.messageproto import message_to_proto, proto_to_message
+from flare.private.fed.utils.numproto import proto_to_bytes
+from flare.widgets.fed_event import ServerFedEventRunner
 
 from .client_manager import ClientManager
 from .run_manager import RunManager

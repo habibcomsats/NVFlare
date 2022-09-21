@@ -1,4 +1,4 @@
-nvflare>=2.1
+flare>=2.1
 numpy
 itk-io
 monai

@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,13 +15,13 @@
 import threading
 import time
 
-from nvflare.apis.client_engine_spec import ClientEngineSpec
-from nvflare.apis.event_type import EventType
-from nvflare.apis.fl_constant import EventScope, FedEventHeader, FLContextKey, ReservedKey, ReturnCode
-from nvflare.apis.fl_context import FLContext
-from nvflare.apis.server_engine_spec import ServerEngineSpec
-from nvflare.apis.shareable import Shareable, make_reply
-from nvflare.widgets.widget import Widget
+from flare.apis.client_engine_spec import ClientEngineSpec
+from flare.apis.event_type import EventType
+from flare.apis.fl_constant import EventScope, FedEventHeader, FLContextKey, ReservedKey, ReturnCode
+from flare.apis.fl_context import FLContext
+from flare.apis.server_engine_spec import ServerEngineSpec
+from flare.apis.shareable import Shareable, make_reply
+from flare.widgets.widget import Widget
 
 FED_EVENT_TOPIC = "fed.event"
 

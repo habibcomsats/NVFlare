@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
 
 # TODO:: remove this file
 
-# HA test cases (referenced from NVFlare 2.1 Test Plan- High Availability)
+# HA test cases (referenced from Flare 2.1 Test Plan- High Availability)
 
 # supported trigger events:
 #   - match a string based on log output from server

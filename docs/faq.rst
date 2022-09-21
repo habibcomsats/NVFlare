@@ -8,36 +8,36 @@ Frequently Asked Questions
 General
 *******
 
-#. What is NVIDIA FLARE?
+#. What is [BLINDED] FLARE?
 
-    NVIDIA FLARE is a general-purpose framework designed for collaborative computing.  In this collaborative
+    [BLINDED] FLARE is a general-purpose framework designed for collaborative computing.  In this collaborative
     computing framework, workflows are not limited to aggregation-based federated learning (usually called a Fed-Average workflow),
-    and applications are not limited to deep learning.  NVIDIA FLARE is fundamentally a messaging system running in a multithreaded
+    and applications are not limited to deep learning.  [BLINDED] FLARE is fundamentally a messaging system running in a multithreaded
     environment.
 
-#. What does NVIDIA FLARE stand for?
+#. What does [BLINDED] FLARE stand for?
 
-    NVIDIA Federated Learning Application Runtime Environment.
+    [BLINDED] Federated Learning Application Runtime Environment.
 
-#. Does NVIDIA FLARE depend on Tensorflow or PyTorch?
+#. Does [BLINDED] FLARE depend on Tensorflow or PyTorch?
 
-    No.  NVIDIA FLARE is a Python library that implements a general collaborative computing framework.  The :ref:`Controllers <controllers>`,
+    No.  [BLINDED] FLARE is a Python library that implements a general collaborative computing framework.  The :ref:`Controllers <controllers>`,
     :ref:`Executors <executor>`, and :ref:`Tasks <tasks>` that one defines to execute the collaborative computing workflow
     are entirely independent.
 
-#. Is NVIDIA FLARE designed for deep learning model training only?
+#. Is [BLINDED] FLARE designed for deep learning model training only?
 
-    No.  NVIDIA FLARE implements a communication framework that can support any collaborative computing workflow.  This
+    No.  [BLINDED] FLARE implements a communication framework that can support any collaborative computing workflow.  This
     could be deep learning, machine learning, or even simple statistical workflows.
 
-#. Does NVIDIA FLARE require a GPU?
+#. Does [BLINDED] FLARE require a GPU?
 
     No.  Hardware requirements are dependent only on what is implemented in the :ref:`Controller <controllers>` workflow and client :ref:`Tasks <tasks>`.
     Client training tasks will typically benefit from GPU acceleration.  Server :ref:`Controller <controllers>` workflows may or may not require a GPU.
 
-#. How does NVIDIA FLARE implement its collaborative computing framework?
+#. How does [BLINDED] FLARE implement its collaborative computing framework?
 
-    NVIDIA FLARE collaborative computing is achieved through :ref:`Controller/Worker <controllers>` interaction.
+    [BLINDED] FLARE collaborative computing is achieved through :ref:`Controller/Worker <controllers>` interaction.
 
 #. What is a Controller?
 
@@ -74,7 +74,7 @@ General
 
 #. What is FLContext and what kind of information does it contain?
 
-    :ref:`FLContext <fl_context>` is one of the key features of NVIDIA FLARE and is available to every method of all :ref:`FLComponent <fl_component>`
+    :ref:`FLContext <fl_context>` is one of the key features of [BLINDED] FLARE and is available to every method of all :ref:`FLComponent <fl_component>`
     types (Controller, Aggregator, Executor, Filter, Widget, ...). An FLContext object contains contextual information
     of the FL environment: overall system settings (peer name, job id / run number, workspace location, etc.). FLContext
     also contains an important object called Engine, through which you can access important services provided by the
@@ -90,7 +90,7 @@ General
     they are subscribed to and consume the data of the event. The fed event mechanism even allows the pub-sub go across
     network boundaries.
 
-#. What additional components may be implemented with NVIDIA FLARE to support the Controller Workflow, and where do they run (server or client):
+#. What additional components may be implemented with [BLINDED] FLARE to support the Controller Workflow, and where do they run (server or client):
 
     LearnablePersistor - Server
         The LearnablePersistor is a method implemented for the server to save the state of the Learnable object, for
@@ -122,8 +122,8 @@ Operational
 
 #. What is :ref:`Provisioning <provisioning>`?
 
-    NVIDIA FLARE includes an Open Provision API that allows you to generate mutual-trusted system-wide configurations,
-    or startup kits, that allow all participants to join the NVIDIA FLARE system from across different locations.  This
+    [BLINDED] FLARE includes an Open Provision API that allows you to generate mutual-trusted system-wide configurations,
+    or startup kits, that allow all participants to join the [BLINDED] FLARE system from across different locations.  This
     mutual-trust is a mandatory feature of Open Provision API as every participant authenticates others by the
     information inside the configuration.  The configurations usually include, but are not limited to:
 
@@ -156,12 +156,12 @@ Operational
     After provisioning, the Admin API is used to submit a job to the FL server, and the JobRunner on the server can pick
     it up to deploy and run.
 
-#. What is an Application in NVIDIA FLARE?
+#. What is an Application in [BLINDED] FLARE?
 
     An :ref:`Application <application>` is a named directory structure that defines the client and server configuration
     and any custom code required to implement the Controller/Worker workflow.
 
-#. What is the basic directory structure of an NVIDIA FLARE Application?
+#. What is the basic directory structure of an [BLINDED] FLARE Application?
 
     Typically the Application configuration is defined in a ``config/``
     subdirectory and defines paths to Controller and Worker executors.  Custom code can be defined in a ``custom/``
@@ -181,17 +181,17 @@ Operational
 
 #. What is the difference between the Admin client and the FL client?
 
-    The :ref:`Admin client <operating_nvflare>` is used to control the state of the server's controller workflow and only interacts with the
+    The :ref:`Admin client <operating_flare>` is used to control the state of the server's controller workflow and only interacts with the
     server.  FL clients poll the server and perform tasks based on the state of the server.  The Admin client does not
     interact directly with FL client.
 
 #. Where does the Admin client run?
 
-    The :ref:`Admin client <operating_nvflare>` runs as a standalone process, typically on a researcher's workstation or laptop.
+    The :ref:`Admin client <operating_flare>` runs as a standalone process, typically on a researcher's workstation or laptop.
 
 #. What can you do with the Admin client?
 
-    The :ref:`Admin client <operating_nvflare>` is used to orchestrate the FL study, including starting and stopping server
+    The :ref:`Admin client <operating_flare>` is used to orchestrate the FL study, including starting and stopping server
     and clients, deploying applications, and managing FL experiments.
 
 #. Why am I getting an error about my custom files not being found?
@@ -206,16 +206,16 @@ Operational
 Security
 ********
 
-#. What is the scope of security in NVIDIA FLARE?
+#. What is the scope of security in [BLINDED] FLARE?
 
-    Security is multi-faceted and cannot be completely controlled for or provided by the NVIDIA FLARE API.  The Open
+    Security is multi-faceted and cannot be completely controlled for or provided by the [BLINDED] FLARE API.  The Open
     Provision API provides examples of basic communication and identity security using GRPC via shared self-signed
     certificates and authorization policies.  These security measures may be sufficient but can be extended with the
     provided APIs.
 
 #. What about data privacy?
 
-    NVIDIA FLARE comes with a few techniques to help with data privacy during FL: differential privacy and homomorphic encryption
+    [BLINDED] FLARE comes with a few techniques to help with data privacy during FL: differential privacy and homomorphic encryption
     (see :ref:`Privacy filters<filters_for_privacy>`).
 
 ************************
@@ -291,7 +291,7 @@ Server related questions
 
 #. What happens if the FL server crashes?
 
-    See :ref:`high_availability` for the features implemented in NVIDIA FLARE 2.1.0 around FL server failover.
+    See :ref:`high_availability` for the features implemented in [BLINDED] FLARE 2.1.0 around FL server failover.
 
 #. Why does my FL server keep crashing after a certain round?
 
@@ -372,4 +372,4 @@ Known issues
    work around for this is to run ``abort client`` before the ``shutdown`` command.
 #. If a snapshot is in a corrupted state, the server may try to restore the job and get stuck. To resolve this, delete
    the snapshot from the location configured in project.yml for the snapshot_persistor storage (by default
-   ``/tmp/nvflare/jobs-storage``), and ``abort_job`` should be able to stop the job on the server.
+   ``/tmp/flare/jobs-storage``), and ``abort_job`` should be able to stop the job on the server.

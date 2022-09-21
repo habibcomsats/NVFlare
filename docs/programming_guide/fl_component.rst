@@ -2,12 +2,12 @@
 
 FLComponent
 ===========
-.. currentmodule:: nvflare.apis.fl_component.FLComponent
+.. currentmodule:: flare.apis.fl_component.FLComponent
 
-:class:`nvflare.apis.fl_component.FLComponent` is the base class of all the FL components. Executors, controllers, filters, aggregators, and their subtypes for
+:class:`flare.apis.fl_component.FLComponent` is the base class of all the FL components. Executors, controllers, filters, aggregators, and their subtypes for
 example trainer are all FLComponents now.
 
-.. literalinclude:: ../../nvflare/apis/fl_component.py
+.. literalinclude:: ../../flare/apis/fl_component.py
     :language: python
     :lines: 7-21
 
@@ -26,7 +26,7 @@ be called to end the task, or :meth:`system_panic<system_panic>` can be called t
 
 Default data in the built-in FLComponents
 -----------------------------------------
-For the built-in FLComponents provided by NVIDIA FLARE, we assure the following data is set in the ``Shareable`` and ``FLContext``.
+For the built-in FLComponents provided by [BLINDED] FLARE, we assure the following data is set in the ``Shareable`` and ``FLContext``.
 
 You can also define the structure of ``Sharable`` objects that fits your needs and
 add your training associated data into ``FLContext``.

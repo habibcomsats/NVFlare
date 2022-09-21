@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,14 +16,14 @@ from abc import ABC, abstractmethod
 from threading import Lock
 from typing import List, Optional
 
-from nvflare.apis.analytix import AnalyticsData, AnalyticsDataType
-from nvflare.apis.dxo import DXO
-from nvflare.apis.event_type import EventType
-from nvflare.apis.fl_component import FLComponent
-from nvflare.apis.fl_constant import EventScope, FLContextKey, ReservedKey
-from nvflare.apis.fl_context import FLContext
-from nvflare.apis.shareable import Shareable
-from nvflare.widgets.widget import Widget
+from flare.apis.analytix import AnalyticsData, AnalyticsDataType
+from flare.apis.dxo import DXO
+from flare.apis.event_type import EventType
+from flare.apis.fl_component import FLComponent
+from flare.apis.fl_constant import EventScope, FLContextKey, ReservedKey
+from flare.apis.fl_context import FLContext
+from flare.apis.shareable import Shareable
+from flare.widgets.widget import Widget
 
 ANALYTIC_EVENT_TYPE = "analytix_log_stats"
 

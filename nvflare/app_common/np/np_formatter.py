@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,10 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from nvflare.apis.dxo import DataKind, from_bytes
-from nvflare.apis.fl_context import FLContext
-from nvflare.app_common.abstract.formatter import Formatter
-from nvflare.app_common.app_constant import AppConstants
+from flare.apis.dxo import DataKind, from_bytes
+from flare.apis.fl_context import FLContext
+from flare.app_common.abstract.formatter import Formatter
+from flare.app_common.app_constant import AppConstants
 
 
 class NPFormatter(Formatter):

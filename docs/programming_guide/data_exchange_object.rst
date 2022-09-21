@@ -2,11 +2,11 @@
 
 Data Exchange Object (DXO)
 ==========================
-.. currentmodule:: nvflare.apis.dxo.DXO
+.. currentmodule:: flare.apis.dxo.DXO
 
-The Data Exchange Format (:class:`nvflare.apis.dxo.DXO`) in NVIDIA FLARE standardizes the data passed between the communicating parties.
+The Data Exchange Format (:class:`flare.apis.dxo.DXO`) in [BLINDED] FLARE standardizes the data passed between the communicating parties.
 
-.. literalinclude:: ../../nvflare/apis/dxo.py
+.. literalinclude:: ../../flare/apis/dxo.py
     :language: python
     :lines: 29-40
 
@@ -15,6 +15,6 @@ The Data Exchange Format (:class:`nvflare.apis.dxo.DXO`) in NVIDIA FLARE standar
 ``meta`` is a dict that can contain additional properties.
 
 The method :meth:`to_shareable()<to_shareable>` produces a :ref:`shareable`, and a DXO can be retrieved from a
-:ref:`shareable` with :meth:`nvflare.apis.dxo.from_shareable`.
+:ref:`shareable` with :meth:`flare.apis.dxo.from_shareable`.
 
 It is recommended to use DXO to maintain consistency in managing the data throughout the FL system.

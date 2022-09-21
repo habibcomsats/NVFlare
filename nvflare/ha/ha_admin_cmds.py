@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,9 +15,9 @@
 import json
 import logging
 
-from nvflare.apis.overseer_spec import OverseerAgent
-from nvflare.fuel.hci.client.api_status import APIStatus
-from nvflare.fuel.hci.reg import CommandModule, CommandModuleSpec, CommandSpec
+from flare.apis.overseer_spec import OverseerAgent
+from flare.fuel.hci.client.api_status import APIStatus
+from flare.fuel.hci.reg import CommandModule, CommandModuleSpec, CommandSpec
 
 
 def list_sp(args, api):

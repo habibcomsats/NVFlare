@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@ import traceback
 from abc import ABC
 from typing import List
 
-from nvflare.apis.utils.format_check import name_check
+from flare.apis.utils.format_check import name_check
 
 
 class Participant(object):

@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,11 +15,11 @@
 import json
 from typing import List
 
-from nvflare.private.admin_defs import Message, error_reply, ok_reply
-from nvflare.private.defs import RequestHeader, ScopeInfoKey, TrainingTopic
-from nvflare.private.fed.client.admin import RequestProcessor
-from nvflare.private.fed.client.client_engine_internal_spec import ClientEngineInternalSpec
-from nvflare.private.fed.utils.fed_utils import get_scope_info
+from flare.private.admin_defs import Message, error_reply, ok_reply
+from flare.private.defs import RequestHeader, ScopeInfoKey, TrainingTopic
+from flare.private.fed.client.admin import RequestProcessor
+from flare.private.fed.client.client_engine_internal_spec import ClientEngineInternalSpec
+from flare.private.fed.utils.fed_utils import get_scope_info
 
 
 class StartAppProcessor(RequestProcessor):

@@ -2,7 +2,7 @@
 .idea/
 .ipynb_checkpoints/
 
-# nvflare artifacts
+# flare artifacts
 log.txt
 client_token.txt
 *.fl
@@ -15,7 +15,7 @@ __pycache__
 .pyc
 
 # virtual environments
-nvflare_cifar10
+flare_cifar10
 
 # data
 dataset

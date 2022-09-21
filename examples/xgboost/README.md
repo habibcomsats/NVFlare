@@ -3,7 +3,7 @@
 ## Introduction to XGBoost and HIGGS Data
 
 ### XGBoost
-This example shows how to use [NVIDIA FLARE](https://nvflare.readthedocs.io/en/main/index.html) on tabular data applications.
+This example shows how to use [[BLINDED] FLARE](https://flare.readthedocs.io/en/main/index.html) on tabular data applications.
 It uses [XGBoost](https://github.com/dmlc/xgboost),
 which is an optimized distributed gradient boosting library.
 
@@ -11,7 +11,7 @@ which is an optimized distributed gradient boosting library.
 This example illustrates a binary classification task based on [HIGGS dataset](https://archive.ics.uci.edu/ml/datasets/HIGGS). This dataset contains 11 million instances, each with 28 attributes.
 
 ## Federated Training of XGBoost under Tree-based Schemes
-Several mechanisms have been proposed for training an XGBoost model under federated learning setting. In this example, we illustrate the use of NVFlare under horizontal federated learning, and tree-based collaboration.
+Several mechanisms have been proposed for training an XGBoost model under federated learning setting. In this example, we illustrate the use of Flare under horizontal federated learning, and tree-based collaboration.
 ### Horizontal Federated Learning
 Under horizontal setting, each participant / client joining the federated learning will have part of the whole data / instances, while each instance has full features. This is in contrast to vertical federated learning, where each client has part of the feature values.
 ### Tree-based Collaboration
@@ -58,9 +58,9 @@ This will generate data splits for two client sizes: 5 and 20, and 3 split condi
 > **_NOTE:_** The generated train config files will be stored in the folder `./data_splits`, and will be used by job_configs by specifying the path within `config_fed_client.json` 
 
 ## Run automated experiments
-To run this example with NVFlare, follow the below steps.
+To run this example with Flare, follow the below steps.
 ### Environment Preparation
-Follow the [Installation](https://nvflare.readthedocs.io/en/main/quickstart.html) instructions.
+Follow the [Installation](https://flare.readthedocs.io/en/main/quickstart.html) instructions.
 Install additional requirements for this xgboost example:
 ```
 python3 -m pip install pandas
@@ -75,7 +75,7 @@ python3 -m pip install tensorflow
 python3 -m pip install seaborn
 ```
 ### Set up FL workspace
-Follow the [Quickstart](https://nvflare.readthedocs.io/en/main/quickstart.html) instructions to set up your POC ("proof of concept") workspace.
+Follow the [Quickstart](https://flare.readthedocs.io/en/main/quickstart.html) instructions to set up your POC ("proof of concept") workspace.
 
 Here, we run the following script
 ```
@@ -88,7 +88,7 @@ bash create_poc_workspace.sh 20
 for our two experimental settings: 5-client and 20-client.
 
 ### Prepare job configs under various training schemes
-We then prepare the job configs for NVFlare jobs corresponding to various settings by running
+We then prepare the job configs for Flare jobs corresponding to various settings by running
 ```
 bash job_config_gen.sh
 ```
@@ -140,7 +140,7 @@ To shut down the clients and server, run the following Admin commands:
 shutdown client
 shutdown server
 ```
-> **_NOTE:_** For more information about the Admin client, see [here](https://nvflare.readthedocs.io/en/main/user_guide/operation.html).
+> **_NOTE:_** For more information about the Admin client, see [here](https://flare.readthedocs.io/en/main/user_guide/operation.html).
 
 ## Results on 5- and 20-client under various training settings
 For comparison, we train baseline models in a centralized manner with same round of training

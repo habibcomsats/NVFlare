@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,9 +18,9 @@ import ssl
 import threading
 import traceback
 
-from nvflare.fuel.hci.conn import Connection, receive_til_end
-from nvflare.fuel.hci.proto import validate_proto
-from nvflare.fuel.hci.security import IdentityKey, get_identity_info
+from flare.fuel.hci.conn import Connection, receive_til_end
+from flare.fuel.hci.proto import validate_proto
+from flare.fuel.hci.security import IdentityKey, get_identity_info
 
 from .constants import ConnProps
 from .reg import ServerCommandRegister

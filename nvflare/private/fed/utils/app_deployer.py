@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,10 +16,10 @@ import json
 import os
 import shutil
 
-from nvflare.apis.job_def import JobMetaKey
-from nvflare.apis.workspace import Workspace
-from nvflare.fuel.hci.zip_utils import unzip_all_from_bytes
-from nvflare.private.privacy_manager import PrivacyService
+from flare.apis.job_def import JobMetaKey
+from flare.apis.workspace import Workspace
+from flare.fuel.hci.zip_utils import unzip_all_from_bytes
+from flare.private.privacy_manager import PrivacyService
 
 from .app_authz import AppAuthzService
 

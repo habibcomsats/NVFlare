@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,12 +17,12 @@ import os
 import sys
 import traceback
 
-SECURE_LOGGING_VAR_NAME = "NVFLARE_SECURE_LOGGING"
+SECURE_LOGGING_VAR_NAME = "FLARE_SECURE_LOGGING"
 
 
 def is_secure() -> bool:
     """Is logging set in secure mode?
-    This is controlled by the system environment variable NVFLARE_SECURE_LOGGING.
+    This is controlled by the system environment variable FLARE_SECURE_LOGGING.
     To set secure mode, set this var to 'true' or '1'.
 
     Returns: whether logging is set in secure mode.

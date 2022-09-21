@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -20,12 +20,12 @@ import sys
 import time
 from typing import Dict, List, Optional
 
-from nvflare.cli_exception import CLIException
-from nvflare.fuel.utils.gpu_utils import get_host_gpu_ids
-from nvflare.lighter.poc import generate_poc
-from nvflare.lighter.service_constants import FlareServiceConstants as SC
+from flare.cli_exception import CLIException
+from flare.fuel.utils.gpu_utils import get_host_gpu_ids
+from flare.lighter.poc import generate_poc
+from flare.lighter.service_constants import FlareServiceConstants as SC
 
-DEFAULT_WORKSPACE = "/tmp/nvflare/poc"
+DEFAULT_WORKSPACE = "/tmp/flare/poc"
 
 
 def client_gpu_assignments(clients: List[str], gpu_ids: List[int]) -> Dict[str, List[int]]:
@@ -76,21 +76,21 @@ def get_stop_cmd(poc_workspace: str, service_dir_name: str):
     return f"touch {stop_file}"
 
 
-def check_nvflare_home():
-    nvflare_home = os.getenv("NVFLARE_HOME")
-    if not nvflare_home:
+def check_flare_home():
+    flare_home = os.getenv("FLARE_HOME")
+    if not flare_home:
         raise CLIException(
-            "NVFLARE_HOME environment variable is not set. Please set NVFLARE_HOME=<NVFLARE install dir>"
+            "FLARE_HOME environment variable is not set. Please set FLARE_HOME=<FLARE install dir>"
         )
-    return nvflare_home
+    return flare_home
 
 
-def get_nvflare_home() -> str:
-    nvflare_home = check_nvflare_home()
+def get_flare_home() -> str:
+    flare_home = check_flare_home()
 
-    if nvflare_home.endswith("/"):
-        nvflare_home = nvflare_home[:-1]
-    return nvflare_home
+    if flare_home.endswith("/"):
+        flare_home = flare_home[:-1]
+    return flare_home
 
 
 def get_upload_dir(poc_workspace: str) -> str:
@@ -108,7 +108,7 @@ def get_upload_dir(poc_workspace: str) -> str:
 
 
 def prepare_examples(poc_workspace: str):
-    src = os.path.join(get_nvflare_home(), SC.EXAMPLES)
+    src = os.path.join(get_flare_home(), SC.EXAMPLES)
     dst = os.path.join(poc_workspace, f"{SC.FLARE_CONSOLE}/{get_upload_dir(poc_workspace)}")
     print(f"link examples from {src} to {dst}")
     os.symlink(src, dst)
@@ -355,9 +355,9 @@ def handle_poc_cmd(cmd_args):
     if cmd_args.exclude != "":
         excluded = [cmd_args.exclude]
 
-    check_nvflare_home()
+    check_flare_home()
 
-    poc_workspace = os.getenv("NVFLARE_POC_WORKSPACE")
+    poc_workspace = os.getenv("FLARE_POC_WORKSPACE")
     if poc_workspace is None or len(poc_workspace.strip()) == 0:
         poc_workspace = DEFAULT_WORKSPACE
 

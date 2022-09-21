@@ -9,7 +9,7 @@ then
 fi
 
 # There should be $n_clients site-N folders.
-python3 -m nvflare.lighter.poc -n "${n_clients}"
+python3 -m flare.lighter.poc -n "${n_clients}"
 
 mv poc ${workspace}
 # copy additional one for centralized training

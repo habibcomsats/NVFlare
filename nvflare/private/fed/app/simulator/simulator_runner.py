@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -25,24 +25,24 @@ from argparse import Namespace
 from concurrent.futures import ThreadPoolExecutor
 from multiprocessing.connection import Client
 
-from nvflare.apis.fl_component import FLComponent
-from nvflare.apis.fl_constant import MachineStatus, WorkspaceConstants
-from nvflare.apis.job_def import ALL_SITES, JobMetaKey
-from nvflare.apis.utils.common_utils import get_open_ports
-from nvflare.apis.workspace import Workspace
-from nvflare.fuel.common.multi_process_executor_constants import CommunicationMetaData
-from nvflare.fuel.hci.server.authz import AuthorizationService
-from nvflare.fuel.hci.zip_utils import convert_legacy_zip, split_path, unzip_all_from_bytes, zip_directory_to_bytes
-from nvflare.fuel.sec.audit import AuditService
-from nvflare.lighter.poc_commands import get_host_gpu_ids
-from nvflare.private.defs import AppFolderConstants
-from nvflare.private.fed.app.deployer.simulator_deployer import SimulatorDeployer
-from nvflare.private.fed.client.client_status import ClientStatus
-from nvflare.private.fed.server.job_meta_validator import JobMetaValidator
-from nvflare.private.fed.simulator.simulator_app_runner import SimulatorServerAppRunner
-from nvflare.private.fed.simulator.simulator_const import SimulatorConstants
-from nvflare.private.fed.utils.fed_utils import add_logfile_handler
-from nvflare.security.security import EmptyAuthorizer
+from flare.apis.fl_component import FLComponent
+from flare.apis.fl_constant import MachineStatus, WorkspaceConstants
+from flare.apis.job_def import ALL_SITES, JobMetaKey
+from flare.apis.utils.common_utils import get_open_ports
+from flare.apis.workspace import Workspace
+from flare.fuel.common.multi_process_executor_constants import CommunicationMetaData
+from flare.fuel.hci.server.authz import AuthorizationService
+from flare.fuel.hci.zip_utils import convert_legacy_zip, split_path, unzip_all_from_bytes, zip_directory_to_bytes
+from flare.fuel.sec.audit import AuditService
+from flare.lighter.poc_commands import get_host_gpu_ids
+from flare.private.defs import AppFolderConstants
+from flare.private.fed.app.deployer.simulator_deployer import SimulatorDeployer
+from flare.private.fed.client.client_status import ClientStatus
+from flare.private.fed.server.job_meta_validator import JobMetaValidator
+from flare.private.fed.simulator.simulator_app_runner import SimulatorServerAppRunner
+from flare.private.fed.simulator.simulator_const import SimulatorConstants
+from flare.private.fed.utils.fed_utils import add_logfile_handler
+from flare.security.security import EmptyAuthorizer
 
 
 class SimulatorRunner(FLComponent):
@@ -379,7 +379,7 @@ class SimulatorClientRunner(FLComponent):
         open_port = get_open_ports(1)[0]
         command = (
             sys.executable
-            + " -m nvflare.private.fed.app.simulator.simulator_worker -o "
+            + " -m flare.private.fed.app.simulator.simulator_worker -o "
             + self.args.workspace
             + " --client "
             + client.client_name

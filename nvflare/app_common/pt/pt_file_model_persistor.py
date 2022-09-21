@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,15 +19,15 @@ from collections import OrderedDict
 
 import torch
 
-from nvflare.apis.event_type import EventType
-from nvflare.apis.fl_constant import FLContextKey
-from nvflare.apis.fl_context import FLContext
-from nvflare.app_common.abstract.model import ModelLearnable
-from nvflare.app_common.abstract.model_persistor import ModelPersistor
-from nvflare.app_common.app_constant import AppConstants, DefaultCheckpointFileName, EnvironmentKey
-from nvflare.app_common.app_event_type import AppEventType
-from nvflare.app_common.model_desc import ModelDescriptor
-from nvflare.app_common.pt.pt_fed_utils import PTModelPersistenceFormatManager
+from flare.apis.event_type import EventType
+from flare.apis.fl_constant import FLContextKey
+from flare.apis.fl_context import FLContext
+from flare.app_common.abstract.model import ModelLearnable
+from flare.app_common.abstract.model_persistor import ModelPersistor
+from flare.app_common.app_constant import AppConstants, DefaultCheckpointFileName, EnvironmentKey
+from flare.app_common.app_event_type import AppEventType
+from flare.app_common.model_desc import ModelDescriptor
+from flare.app_common.pt.pt_fed_utils import PTModelPersistenceFormatManager
 
 
 class PTFileModelPersistor(ModelPersistor):

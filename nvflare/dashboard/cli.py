@@ -1,4 +1,4 @@
-# Copyright (c) 2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,7 +17,7 @@ import os
 import signal
 
 import docker
-from nvflare.lighter.utils import generate_password
+from flare.lighter.utils import generate_password
 
 
 def start(port, folder, dashboard_image, env_vars, passphrase):
@@ -42,22 +42,22 @@ def start(port, folder, dashboard_image, env_vars, passphrase):
     try:
         container_obj = client.containers.run(
             dashboard_image,
-            entrypoint=["/usr/local/bin/python3", "nvflare/dashboard/wsgi.py"],
+            entrypoint=["/usr/local/bin/python3", "flare/dashboard/wsgi.py"],
             detach=True,
             auto_remove=True,
-            name="nvflare-dashboard",
+            name="flare-dashboard",
             ports={8443: port},
-            volumes={folder: {"bind": "/var/tmp/nvflare/dashboard", "model": "rw"}},
+            volumes={folder: {"bind": "/var/tmp/flare/dashboard", "model": "rw"}},
             environment=environment,
         )
     except docker.errors.APIError as e:
-        print(f"Either {dashboard_image} image does not exist or another nvflare-dashboard instance is still running.")
+        print(f"Either {dashboard_image} image does not exist or another flare-dashboard instance is still running.")
         print("Please either provide an existing container image or stop the running container instance.")
         print(e)
         exit(1)
     if container_obj:
         print("Dashboard container started")
-        print("Container name nvflare-dashboard")
+        print("Container name flare-dashboard")
         print(f"id is {container_obj.id}")
     else:
         print("Container failed to start")
@@ -66,12 +66,12 @@ def start(port, folder, dashboard_image, env_vars, passphrase):
 def stop():
     client = docker.from_env()
     try:
-        container_obj = client.containers.get("nvflare-dashboard")
+        container_obj = client.containers.get("flare-dashboard")
     except docker.errors.NotFound:
-        print("No nvflare-dashboard container found")
+        print("No flare-dashboard container found")
         exit(0)
     container_obj.kill(signal=signal.SIGINT)
-    print("nvflare-dashboard exited")
+    print("flare-dashboard exited")
 
 
 def main():
@@ -89,7 +89,7 @@ def define_dashboard_parser(parser):
         "-f", "--folder", type=str, help="folder containing necessary info (default: current working directory)"
     )
     parser.add_argument(
-        "-i", "--dashboard_image", default="nvflare/nvflare", help="container image for running dashboard"
+        "-i", "--dashboard_image", default="flare/flare", help="container image for running dashboard"
     )
     parser.add_argument(
         "--passphrase", help="Passphrase to encrypt/decrypt root CA private key.  !!! Do not share it with others. !!!"

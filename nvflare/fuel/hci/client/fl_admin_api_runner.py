@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,11 +15,11 @@
 import os
 import time
 
-from nvflare.apis.workspace import Workspace
-from nvflare.fuel.common.excepts import ConfigError
-from nvflare.fuel.hci.client.fl_admin_api import FLAdminAPI
-from nvflare.fuel.hci.client.fl_admin_api_spec import TargetType
-from nvflare.private.fed.app.fl_conf import FLAdminClientStarterConfigurator
+from flare.apis.workspace import Workspace
+from flare.fuel.common.excepts import ConfigError
+from flare.fuel.hci.client.fl_admin_api import FLAdminAPI
+from flare.fuel.hci.client.fl_admin_api_spec import TargetType
+from flare.private.fed.app.fl_conf import FLAdminClientStarterConfigurator
 
 
 def api_command_wrapper(api_command_result):

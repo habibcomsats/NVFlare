@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -20,8 +20,8 @@ from zipfile import ZipFile
 
 import pytest
 
-from nvflare.fuel.hci.zip_utils import convert_legacy_zip, get_all_file_paths, normpath_for_zip, split_path
-from nvflare.private.fed.server.job_meta_validator import META, JobMetaValidator
+from flare.fuel.hci.zip_utils import convert_legacy_zip, get_all_file_paths, normpath_for_zip, split_path
+from flare.private.fed.server.job_meta_validator import META, JobMetaValidator
 
 
 def _zip_directory_with_meta(root_dir: str, folder_name: str, meta: str, writer: io.BytesIO):

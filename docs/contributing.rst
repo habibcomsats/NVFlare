@@ -3,9 +3,9 @@
 Contributing
 ============
 
-Welcome to NVIDIA FLARE! We’re excited you’re here and want to
+Welcome to [BLINDED] FLARE! We’re excited you’re here and want to
 contribute. This documentation is intended for individuals and
-institutions interested in contributing to NVIDIA FLARE. NVIDIA FLARE is
+institutions interested in contributing to [BLINDED] FLARE. [BLINDED] FLARE is
 an open-source project and, as such, its success relies on its community
 of contributors willing to keep improving it. Your contribution will be
 a valued addition to the code base; we simply ask that you read this
@@ -15,7 +15,7 @@ open-source contributor or whether you are a first-time contributor.
 Communicate with us
 ~~~~~~~~~~~~~~~~~~~
 
-We are happy to talk with you about your needs for NVIDIA FLARE and your
+We are happy to talk with you about your needs for [BLINDED] FLARE and your
 ideas for contributing to the project. One way to do this is to create
 an issue discussing your thoughts. It might be that a very similar
 feature is under development or already exists, so an issue is a great
@@ -36,7 +36,7 @@ until it is ready for formal review.
 Preparing pull requests
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-To ensure the code quality, NVIDIA FLARE relies on several linting tools
+To ensure the code quality, [BLINDED] FLARE relies on several linting tools
 (`flake8 and its plugins <https://gitlab.com/pycqa/flake8>`__,
 `black <https://github.com/psf/black>`__ and
 `isort <https://github.com/timothycrosley/isort>`__)
@@ -61,7 +61,7 @@ paragraph:
 
 ::
 
-   # Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+   # Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
    #
    # Licensed under the Apache License, Version 2.0 (the "License");
    # you may not use this file except in compliance with the License.
@@ -78,7 +78,7 @@ paragraph:
 Unit testing
 ^^^^^^^^^^^^
 
-NVIDIA FLARE tests are located under test/. The unit test file names
+[BLINDED] FLARE tests are located under test/. The unit test file names
 follow the ``test_[module_name].py`` pattern.
 
 The bash script ``runtest.sh`` will run unit tests also.
@@ -109,7 +109,7 @@ the docs, please run
 Signing your work
 ^^^^^^^^^^^^^^^^^
 
-NVIDIA FLARE enforces the `Developer Certificate of
+[BLINDED] FLARE enforces the `Developer Certificate of
 Origin <https://developercertificate.org/>`__ (DCO) on all pull
 requests.
 
@@ -120,7 +120,7 @@ from GitHub.
 Commit signature verification
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-NVIDIA FLARE enforces commit signature verification, a security feature
+[BLINDED] FLARE enforces commit signature verification, a security feature
 provided by GitHub. Developers are required to setup GPG keys as
 described in `Commit Signature
 Verification <https://docs.github.com/en/authentication/managing-commit-signature-verification/about-commit-signature-verification#gpg-commit-signature-verification>`__.
@@ -173,7 +173,7 @@ Submitting pull requests
 All code changes to the dev branch must be done via `pull
 requests <https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/proposing-changes-to-your-work-with-pull-requests>`__.
 1. Create a new ticket or take a known ticket from `the issue
-list <https://github.com/NVIDIA/NVFlare/issues>`__. 2. Check if there’s
+list <https://github.com/[BLINDED]/Flare/issues>`__. 2. Check if there’s
 already a branch dedicated to the task. 3. If the task has not been
 taken, `create a new branch in your
 fork <https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork>`__
@@ -185,7 +185,7 @@ Make sure that new tests cover the changes and the changed codebase
 request <https://help.github.com/en/desktop/contributing-to-projects/creating-a-pull-request>`__
 from the task branch to the dev branch, with detailed descriptions of
 the purpose of this pull request. 7. Check `the CI/CD status of the pull
-request <https://github.com/NVIDIA/NVFlare/actions>`__, make sure all
+request <https://github.com/[BLINDED]/Flare/actions>`__, make sure all
 CI/CD tests passed. 8. Assign 2 reviewers. One of the reviewers must be
 a code owner for this section of code. 9. Wait for reviews; if there are
 reviews, make point-to-point responses, make further code changes if
@@ -203,7 +203,7 @@ Reviewing pull requests
 
 All code review comments should be specific, constructive, and
 actionable. 1. Check `the CI/CD status of the pull
-request <https://github.com/NVIDIA/NVFlare/actions>`__, make sure all
+request <https://github.com/[BLINDED]/Flare/actions>`__, make sure all
 CI/CD tests passed before reviewing (contact the branch owner if
 needed). 1. Read carefully the descriptions of the pull request and the
 files changed, write comments if needed. 1. Make in-line comments to
@@ -212,4 +212,4 @@ changes <https://help.github.com/en/github/collaborating-with-issues-and-pull-re
 if needed. 1. Review any further code changes until all comments
 addressed by the contributors. 1. Merge the pull request to the main
 branch. 1. Close the corresponding task ticket on `the issue
-list <https://github.com/NVIDIA/NVFlare/issues>`__.
+list <https://github.com/[BLINDED]/Flare/issues>`__.

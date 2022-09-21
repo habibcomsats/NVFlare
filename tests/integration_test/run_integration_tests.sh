@@ -4,7 +4,7 @@ set -e
 
 usage()
 {
-    echo "Run integration tests of NVFlare."
+    echo "Run integration tests of Flare."
     echo
     echo "Syntax: ./run_integration_tests.sh -m [-c]"
     echo "options:"
@@ -21,7 +21,7 @@ while getopts ":m:c" option; do
         m) # framework/backend
             m=${OPTARG}
             [[ $m == "numpy" || $m == "tensorflow" || $m == "pytorch" ]] || usage
-            prefix="NVFLARE_TEST_FRAMEWORK=$m"
+            prefix="FLARE_TEST_FRAMEWORK=$m"
             ;;
         c) # Clean up
             echo "Clean up integration tests result"

@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,9 +15,9 @@
 import argparse
 import os
 
-from nvflare.tool.package_checker import (
+from flare.tool.package_checker import (
     ClientPackageChecker,
-    NVFlareConsolePackageChecker,
+    FlareConsolePackageChecker,
     OverseerPackageChecker,
     ServerPackageChecker,
 )
@@ -53,7 +53,7 @@ def check_packages(args):
         OverseerPackageChecker(),
         ServerPackageChecker(),
         ClientPackageChecker(),
-        NVFlareConsolePackageChecker(),
+        FlareConsolePackageChecker(),
     ]
     for p in package_checkers:
         for name in package_to_check:
@@ -65,7 +65,7 @@ def check_packages(args):
 
 
 def main():
-    parser = argparse.ArgumentParser("nvflare preflight check")
+    parser = argparse.ArgumentParser("flare preflight check")
     define_preflight_check_parser(parser)
     args = parser.parse_args()
     check_packages(args)

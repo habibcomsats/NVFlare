@@ -8,16 +8,16 @@ Before You Start
 
 We recommend you first finish either the :doc:`hello_pt` or the :doc:`hello_scatter_and_gather` exercise.
 
-Those guides go more in depth in explaining the federated learning aspect of `NVIDIA FLARE <https://pypi.org/project/nvflare/>`_.
+Those guides go more in depth in explaining the federated learning aspect of `[BLINDED] FLARE <https://pypi.org/project/flare/>`_.
 
-Here we assume you have already installed NVIDIA FLARE inside a python virtual environment
+Here we assume you have already installed [BLINDED] FLARE inside a python virtual environment
 and have already cloned the repo.
 
 Introduction
 -------------
 
-Through this exercise, you will integrate NVIDIA FLARE with the popular deep learning framework
-`TensorFlow 2 <https://www.tensorflow.org/>`_ and learn how to use NVIDIA FLARE to train a convolutional
+Through this exercise, you will integrate [BLINDED] FLARE with the popular deep learning framework
+`TensorFlow 2 <https://www.tensorflow.org/>`_ and learn how to use [BLINDED] FLARE to train a convolutional
 network with the MNIST dataset using the Scatter and Gather workflow.
 You will also be introduced to some new components and concepts, including filters, aggregators, and event handlers.
 
@@ -41,10 +41,10 @@ Since this task is using TensorFlow, let's go ahead and install the library insi
 
 .. code-block:: shell
 
-  (nvflare-env) $ python3 -m pip install tensorflow
+  (flare-env) $ python3 -m pip install tensorflow
 
 
-NVIDIA FLARE Client
+[BLINDED] FLARE Client
 -------------------
 
 Neural Network
@@ -63,12 +63,12 @@ Before you start, let's see what a simplified MNIST network looks like.
    :caption: tf2_net.py
 
 This ``Net`` class is the convolutional neural network to train with MNIST dataset.
-This is not related to NVIDIA FLARE, so implement it in a file called ``tf2_net.py``.
+This is not related to [BLINDED] FLARE, so implement it in a file called ``tf2_net.py``.
 
 Dataset & Setup
 ^^^^^^^^^^^^^^^^
 
-Now you have to implement the class ``Trainer``, which is a subclass of ``Executor`` in NVIDIA FLARE,
+Now you have to implement the class ``Trainer``, which is a subclass of ``Executor`` in [BLINDED] FLARE,
 in a file called ``trainer.py``.
 
 Before you can really start a training, you need to set up your dataset.
@@ -89,7 +89,7 @@ let's put this preparation stage into one method ``setup``:
 How can you ensure this setup method is called before the client receives the model from the server?
 
 The Trainer class is also a :ref:`FLComponent <fl_component>`, which always receives ``Event`` whenever
-NVIDIA FLARE enters or leaves a certain stage.
+[BLINDED] FLARE enters or leaves a certain stage.
 
 In this case, there is an ``Event`` called ``EventType.START_RUN`` which perfectly matches these requirements. 
 Because our trainer is a subclass of ``FLComponent``, you can implement the handler to handle the event and call the setup method:
@@ -107,14 +107,14 @@ Because our trainer is a subclass of ``FLComponent``, you can implement the hand
   The concepts of ``event`` and ``handler`` are very powerful because you are free to
   add your logic so it can run at different time and process various events.
 
-  The entire list of events fired by NVIDIA FLARE is shown at :ref:`Event types <event_system>`.
+  The entire list of events fired by [BLINDED] FLARE is shown at :ref:`Event types <event_system>`.
 
 
 You have everything you need, now let's implement the last method called ``execute``, which is
 called every time the client receives an updated model from the server with the Task we will configure.
 
 
-Link NVIDIA FLARE with Local Train
+Link [BLINDED] FLARE with Local Train
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Take a look at the following code:
@@ -123,7 +123,7 @@ Take a look at the following code:
    :language: python
    :pyobject: SimpleTrainer.execute
 
-Every NVIDIA FLARE client receives the model weights from the server in the :ref:`shareable <shareable>`.
+Every [BLINDED] FLARE client receives the model weights from the server in the :ref:`shareable <shareable>`.
 This application uses the ``exclude_var`` filter, so make sure to replace the missing layer with weights from the clients' previous training round:
 
 .. literalinclude:: ../../examples/hello-tf2/custom/trainer.py
@@ -149,10 +149,10 @@ Then perform a simple :code:`self.model.fit` so the client's model is trained wi
    :linenos:
   
 After finishing the local train, the train method uses the newly-trained weights to build a new ``DXO`` to update the
-``Shareable`` with and then returns it back to the NVIDIA FLARE server.
+``Shareable`` with and then returns it back to the [BLINDED] FLARE server.
 
 
-NVIDIA FLARE Server & Application
+[BLINDED] FLARE Server & Application
 ---------------------------------
 
 Filter
@@ -184,7 +184,7 @@ The :ref:`model aggregator <aggregator>` is used by the server to aggregate the 
 within the Scatter and Gather workflow.
 
 In this exercise, we perform a simple average over the two clients' weights with the
-:class:`InTimeAccumulateWeightedAggregator<nvflare.app_common.aggregators.intime_accumulate_model_aggregator.InTimeAccumulateWeightedAggregator>`
+:class:`InTimeAccumulateWeightedAggregator<flare.app_common.aggregators.intime_accumulate_model_aggregator.InTimeAccumulateWeightedAggregator>`
 and configure for it to be used in ``config_fed_server.json`` (shown later below).
 
 Model Persistor
@@ -218,9 +218,9 @@ Finally, inside the config folder there are two files, ``config_fed_client.json`
    :caption: config_fed_server.json
 
 
-Note how the :class:`ScatterAndGather<nvflare.app_common.workflows.scatter_and_gather.ScatterAndGather>` workflow is
-configured to use the included ``aggregator`` :class:`InTimeAccumulateWeightedAggregator<nvflare.app_common.aggregators.intime_accumulate_model_aggregator.InTimeAccumulateWeightedAggregator>`
-and ``shareable_generator`` :class:`FullModelShareableGenerator<nvflare.app_common.shareablegenerators.full_model_shareable_generator.FullModelShareableGenerator>`.
+Note how the :class:`ScatterAndGather<flare.app_common.workflows.scatter_and_gather.ScatterAndGather>` workflow is
+configured to use the included ``aggregator`` :class:`InTimeAccumulateWeightedAggregator<flare.app_common.aggregators.intime_accumulate_model_aggregator.InTimeAccumulateWeightedAggregator>`
+and ``shareable_generator`` :class:`FullModelShareableGenerator<flare.app_common.shareablegenerators.full_model_shareable_generator.FullModelShareableGenerator>`.
 The ``persistor`` is configured to use ``TF2ModelPersistor`` in the custom directory of this hello_tf2 app with full
 Python module paths.
 
@@ -250,4 +250,4 @@ Congratulations!
 You've successfully built and run a federated learning system using TensorFlow 2.
 
 The full source code for this exercise can be found in
-`examples/hello-tf2 <https://github.com/NVIDIA/NVFlare/tree/main/examples/hello-tf2>`_.
+`examples/hello-tf2 <https://github.com/[BLINDED]/Flare/tree/main/examples/hello-tf2>`_.

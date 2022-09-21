@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,15 +17,15 @@ import time
 import numpy as np
 import tenseal as ts
 
-import nvflare.app_common.homomorphic_encryption.he_constant as he
-from nvflare.apis.dxo import DataKind, MetaKey, from_shareable
-from nvflare.apis.event_type import EventType
-from nvflare.apis.fl_context import FLContext
-from nvflare.apis.shareable import Shareable
-from nvflare.app_common.abstract.model import ModelLearnable, ModelLearnableKey
-from nvflare.app_common.app_constant import AppConstants
-from nvflare.app_common.homomorphic_encryption.homomorphic_encrypt import load_tenseal_context_from_workspace
-from nvflare.app_common.shareablegenerators.full_model_shareable_generator import FullModelShareableGenerator
+import flare.app_common.homomorphic_encryption.he_constant as he
+from flare.apis.dxo import DataKind, MetaKey, from_shareable
+from flare.apis.event_type import EventType
+from flare.apis.fl_context import FLContext
+from flare.apis.shareable import Shareable
+from flare.app_common.abstract.model import ModelLearnable, ModelLearnableKey
+from flare.app_common.app_constant import AppConstants
+from flare.app_common.homomorphic_encryption.homomorphic_encrypt import load_tenseal_context_from_workspace
+from flare.app_common.shareablegenerators.full_model_shareable_generator import FullModelShareableGenerator
 
 
 class HEModelShareableGenerator(FullModelShareableGenerator):

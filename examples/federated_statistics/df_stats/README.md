@@ -2,8 +2,8 @@
 
 In this example, we will show how to generate federated statistics for data that be represented as Pandas Data Frame
 
-## setup NVFLARE
-follow the [Quick Start Guide](https://nvflare.readthedocs.io/en/main/quickstart.html) to setup virtual environment and install NVFLARE
+## setup FLARE
+follow the [Quick Start Guide](https://flare.readthedocs.io/en/main/quickstart.html) to setup virtual environment and install FLARE
 ```
 install required packages.
 ```
@@ -14,12 +14,12 @@ pip install -r ./requirements.txt
 
 ### 1.1 Specify client side configuration
 
-We are using a built-in NVFLARE executor,  
+We are using a built-in FLARE executor,  
 
 ```
  "executor": {
         "id": "Executor",
-        "path": "nvflare.app_common.executors.statistics_executor.StatisticsExecutor",
+        "path": "flare.app_common.executors.statistics_executor.StatisticsExecutor",
         "args": {
           "generator_id": "df_stats_generator",
   },
@@ -30,7 +30,7 @@ This is required to protect data privacy. (Todo: this will be moved to data_priv
 if the number of record less than min_count, the job will fail.
 
 To generate histogram, user need to provide the range of the histogram for each feature; or 
-rely on the NVFlare to estimate the histogram range based on features local min, max values. 
+rely on the Flare to estimate the histogram range based on features local min, max values. 
 
 To avoid real user's private data from min/max values, the data privacy policy will be applied 
 to add some noise to min and max values before they are returned to FL Server
@@ -45,7 +45,7 @@ Here we use the built-in Controller, called GlobalStatistics. Here we selected a
 "workflows": [
     {
       "id": "fed_stats_controller",
-      "path": "nvflare.app_common.workflows.statistics_controller.StatisticsController",
+      "path": "flare.app_common.workflows.statistics_controller.StatisticsController",
       "args": {
         "metric_configs": {
           "count": {},
@@ -70,10 +70,10 @@ the writer_id identify the output writer component, defined as
  "components": [
     {
       "id": "stats_writer",
-      "path": "nvflare.app_common.statistics.json_stats_file_persistor.JsonStatsFileWriter",
+      "path": "flare.app_common.statistics.json_stats_file_persistor.JsonStatsFileWriter",
       "args": {
         "output_path": "statistics/adults_stats.json",
-        "json_encoder_path": "nvflare.app_common.utils.json_utils.ObjectEncoder"
+        "json_encoder_path": "flare.app_common.utils.json_utils.ObjectEncoder"
       }
     }
 ```
@@ -96,7 +96,7 @@ In this example, we are using UCI (University of California, Irwin) [adult datas
 The original dataset has already contains "training" and "test" datasets. Here we simply assume that "training" and test data sets are belong to different clients.
 so we assigned the training data and test data into two clients.
  
-Now we use data utility to download UCI datasets to separate client package directory to /tmp/nvflare/data/ directory
+Now we use data utility to download UCI datasets to separate client package directory to /tmp/flare/data/ directory
 
 ```
 python3 data_utils.py  -h
@@ -115,11 +115,11 @@ optional arguments:
 python3 data_utils.py  --prepare-data
 prepare data for data directory
 
-remove existing data at /tmp/nvflare/data/site-1/data.csv
-wget download to /tmp/nvflare/data/site-1/data.csv
+remove existing data at /tmp/flare/data/site-1/data.csv
+wget download to /tmp/flare/data/site-1/data.csv
 100% [..........................................................................] 3974305 / 3974305
-remove existing data at /tmp/nvflare/data/site-2/data.csv
-wget download to /tmp/nvflare/data/site-2/data.csv
+remove existing data at /tmp/flare/data/site-2/data.csv
+wget download to /tmp/flare/data/site-2/data.csv
 100% [..........................................................................] 2003153 / 2003153
 done with prepare data
 
@@ -161,8 +161,8 @@ that the privacy filters will be applied first, then job filters.
 With FL simulator 
 
 ```bash
-nvflare simulator -h
-usage: nvflare simulator [-h] -w WORKSPACE [-n N_CLIENTS] [-c CLIENTS] [-t THREADS] [-gpu GPU] job_folder
+flare simulator -h
+usage: flare simulator [-h] -w WORKSPACE [-n N_CLIENTS] [-c CLIENTS] [-t THREADS] [-gpu GPU] job_folder
 
 positional arguments:
   job_folder
@@ -183,20 +183,20 @@ optional arguments:
 we can just run the example as CLI command 
 
 ```
-nvflare simulator $NVFLARE_HOME/examples/federated_statistics/df_stats/df_stats_job -w /tmp/nvflare -n 2 -t 2
+flare simulator $FLARE_HOME/examples/federated_statistics/df_stats/df_stats_job -w /tmp/flare -n 2 -t 2
 ```
 
-The results are stored in workspace "/tmp/nvflare"
+The results are stored in workspace "/tmp/flare"
 ```
-/tmp/nvflare/simulate_job/statistics/adults_stats.json
+/tmp/flare/simulate_job/statistics/adults_stats.json
 ```
 
 
 ## 5. Run Example using POC command
 
 ```
-nvflare poc -h
-usage: nvflare poc [-h] [-n [NUMBER_OF_CLIENTS]] [-p [PACKAGE]] [-ex [EXCLUDE]] [-gpu [GPU [GPU ...]]] [--prepare] [--start] [--stop] [--clean]
+flare poc -h
+usage: flare poc [-h] [-n [NUMBER_OF_CLIENTS]] [-p [PACKAGE]] [-ex [EXCLUDE]] [-gpu [GPU [GPU ...]]] [--prepare] [--start] [--stop] [--clean]
 
 optional arguments:
   -h, --help            show this help message and exit
@@ -218,31 +218,31 @@ optional arguments:
 ### 5.1 Prepare POC Workspace
 
 ```
-   nvflare poc --prepare 
+   flare poc --prepare 
 ```
-This will create a poc at /tmp/nvflare/poc with n = 2 clients.
+This will create a poc at /tmp/flare/poc with n = 2 clients.
 
 If your poc_workspace is in a different location, use the following command
 
 ```
-export NVFLARE_POC_WORKSPACE=<new poc workspace location>
+export FLARE_POC_WORKSPACE=<new poc workspace location>
 ```
 then repeat above
 
-### 5.2 Start nvflare in POC mode
+### 5.2 Start flare in POC mode
 
 ```
-nvflare poc --start
+flare poc --start
 ```
-once you have done with above command, you are already login to the NVFLARE console (aka Admin Console)
-if you prefer to have NVFLARE Console in separate terminal, you can do 
+once you have done with above command, you are already login to the FLARE console (aka Admin Console)
+if you prefer to have FLARE Console in separate terminal, you can do 
 
 ```
-nvflare poc --start ex admin
+flare poc --start ex admin
 ```
-Then open a separate terminal to start the NVFLARE console 
+Then open a separate terminal to start the FLARE console 
 ```
-nvflare poc --start -p admin
+flare poc --start -p admin
 ```
 
 ### 5.3 Submit job
@@ -252,7 +252,7 @@ Inside the console, submit the job:
 submit_job federated_statistics/df_stats/df_stats_job
 ```
 
-For a complete list of available flare console commands, see [here](https://nvflare.readthedocs.io/en/main/user_guide/operation.html).
+For a complete list of available flare console commands, see [here](https://flare.readthedocs.io/en/main/user_guide/operation.html).
 
 ### 5.4 List the submitted job
 

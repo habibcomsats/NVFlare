@@ -1,4 +1,4 @@
-# Copyright (c) 2021, NVIDIA CORPORATION.
+# Copyright (c) 2021, [BLINDED] CORPORATION.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,10 +16,10 @@ import re
 
 import numpy as np
 
-from nvflare.apis.dxo import DXO, DataKind, from_shareable
-from nvflare.apis.filter import Filter
-from nvflare.apis.fl_context import FLContext
-from nvflare.apis.shareable import Shareable
+from flare.apis.dxo import DXO, DataKind, from_shareable
+from flare.apis.filter import Filter
+from flare.apis.fl_context import FLContext
+from flare.apis.shareable import Shareable
 
 
 class ExcludeVars(Filter):

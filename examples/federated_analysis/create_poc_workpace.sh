@@ -13,7 +13,7 @@ cur_dir=${PWD}
 
 # create POC startup kits
 cd "workspaces" || exit
-python3 -m nvflare.lighter.poc -n "${n_clients}" || exit
+python3 -m flare.lighter.poc -n "${n_clients}" || exit
 # There should be $n_clients site-N folders.
 
 # move the folder

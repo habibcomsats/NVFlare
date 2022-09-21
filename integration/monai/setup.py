@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -22,10 +22,10 @@ with open(os.path.join(this_directory, "README.md"), encoding="utf-8") as f:
 
 release = os.environ.get("MONAI_NVFL_RELEASE")
 if release == "1":
-    package_name = "monai-nvflare"
+    package_name = "monai-flare"
     version = "0.1.0"
 else:
-    package_name = "monai-nvflare-nightly"
+    package_name = "monai-flare-nightly"
     today = datetime.date.today().timetuple()
     year = today[0] % 1000
     month = today[1]
@@ -35,9 +35,9 @@ else:
 setup(
     name=package_name,
     version=version,
-    description="MONAI NVIDIA FLARE integration",
-    url="https://github.com/NVIDIA/NVFlare",
-    package_dir={"monai_nvflare": "monai_nvflare"},
+    description="MONAI [BLINDED] FLARE integration",
+    url="https://github.com/[BLINDED]/Flare",
+    package_dir={"monai_flare": "monai_flare"},
     packages=find_packages(
         where=".",
         include=[
@@ -55,5 +55,5 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     python_requires=">=3.7,<3.9",
-    install_requires=["monai==1.0.0rc1", "nvflare"],
+    install_requires=["monai==1.0.0rc1", "flare"],
 )

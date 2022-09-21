@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@ import os
 import re
 from typing import List
 
-from nvflare.fuel.common.excepts import ConfigError
+from flare.fuel.common.excepts import ConfigError
 
 from .class_utils import ModuleScanner, get_class, instantiate_class
 from .dict_utils import extract_first_level_primitive, merge_dict

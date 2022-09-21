@@ -1,4 +1,4 @@
-# Copyright (c) 2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@ import sys
 import time
 from threading import Thread
 
-from nvflare.ha.overseer_agent import HttpOverseerAgent
+from flare.ha.overseer_agent import HttpOverseerAgent
 
 
 class OALauncher:
@@ -30,7 +30,7 @@ class OALauncher:
 
     def start_overseer(self):
         new_env = os.environ.copy()
-        command = [sys.executable, "-m", "nvflare.ha.overseer.overseer"]
+        command = [sys.executable, "-m", "flare.ha.overseer.overseer"]
 
         process = subprocess.Popen(
             command,

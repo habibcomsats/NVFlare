@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,9 +14,9 @@
 
 import logging
 
-from nvflare.apis.fl_context import FLContext
-from nvflare.app_common.abstract.model_processor import ModelProcessor
-from nvflare.app_common.pt.pt_fed_utils import feed_vars
+from flare.apis.fl_context import FLContext
+from flare.app_common.abstract.model_processor import ModelProcessor
+from flare.app_common.pt.pt_fed_utils import feed_vars
 
 
 class PTModelReaderWriter(ModelProcessor):

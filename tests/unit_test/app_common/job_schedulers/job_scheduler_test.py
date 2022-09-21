@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,14 +17,14 @@ from typing import Dict, List, Optional, Tuple
 
 import pytest
 
-from nvflare.apis.client import Client
-from nvflare.apis.fl_context import FLContext, FLContextManager
-from nvflare.apis.job_def import ALL_SITES, Job
-from nvflare.apis.job_scheduler_spec import DispatchInfo
-from nvflare.apis.resource_manager_spec import ResourceManagerSpec
-from nvflare.apis.server_engine_spec import ServerEngineSpec
-from nvflare.app_common.job_schedulers.job_scheduler import DefaultJobScheduler
-from nvflare.app_common.resource_managers.list_resource_manager import ListResourceManager
+from flare.apis.client import Client
+from flare.apis.fl_context import FLContext, FLContextManager
+from flare.apis.job_def import ALL_SITES, Job
+from flare.apis.job_scheduler_spec import DispatchInfo
+from flare.apis.resource_manager_spec import ResourceManagerSpec
+from flare.apis.server_engine_spec import ServerEngineSpec
+from flare.app_common.job_schedulers.job_scheduler import DefaultJobScheduler
+from flare.app_common.resource_managers.list_resource_manager import ListResourceManager
 
 
 class DummyResourceManager(ResourceManagerSpec):

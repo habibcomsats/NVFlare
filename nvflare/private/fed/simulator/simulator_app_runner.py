@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,9 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from nvflare.private.fed.client.client_app_runner import ClientAppRunner
-from nvflare.private.fed.client.client_run_manager import ClientRunManager
-from nvflare.private.fed.server.server_app_runner import ServerAppRunner
+from flare.private.fed.client.client_app_runner import ClientAppRunner
+from flare.private.fed.client.client_run_manager import ClientRunManager
+from flare.private.fed.server.server_app_runner import ServerAppRunner
 
 
 class SimulatorClientRunManager(ClientRunManager):

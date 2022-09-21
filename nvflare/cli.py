@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,12 +16,12 @@ import argparse
 import os
 import sys
 
-from nvflare.cli_exception import CLIException
-from nvflare.dashboard.cli import define_dashboard_parser, handle_dashboard
-from nvflare.lighter.poc_commands import def_poc_parser, handle_poc_cmd
-from nvflare.lighter.provision import define_provision_parser, handle_provision
-from nvflare.private.fed.app.simulator.simulator import define_simulator_parser, run_simulator
-from nvflare.tool.preflight_check import check_packages, define_preflight_check_parser
+from flare.cli_exception import CLIException
+from flare.dashboard.cli import define_dashboard_parser, handle_dashboard
+from flare.lighter.poc_commands import def_poc_parser, handle_poc_cmd
+from flare.lighter.provision import define_provision_parser, handle_provision
+from flare.private.fed.app.simulator.simulator import define_simulator_parser, run_simulator
+from flare.tool.preflight_check import check_packages, define_preflight_check_parser
 
 CMD_POC = "poc"
 CMD_PROVISION = "provision"
@@ -126,7 +126,7 @@ def print_help(prog_parser, sub_cmd, sub_cmd_parsers):
 
 def main():
     check_python_version()
-    run("nvflare")
+    run("flare")
 
 
 if __name__ == "__main__":

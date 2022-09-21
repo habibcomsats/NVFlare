@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,15 +14,15 @@
 
 import random
 
-from nvflare.apis.client import Client
-from nvflare.apis.fl_context import FLContext
-from nvflare.apis.impl.controller import ClientTask, Controller, Task
-from nvflare.apis.shareable import Shareable
-from nvflare.apis.signal import Signal
-from nvflare.app_common.abstract.learnable_persistor import LearnablePersistor
-from nvflare.app_common.abstract.shareable_generator import ShareableGenerator
-from nvflare.app_common.app_constant import AppConstants
-from nvflare.app_common.app_event_type import AppEventType
+from flare.apis.client import Client
+from flare.apis.fl_context import FLContext
+from flare.apis.impl.controller import ClientTask, Controller, Task
+from flare.apis.shareable import Shareable
+from flare.apis.signal import Signal
+from flare.app_common.abstract.learnable_persistor import LearnablePersistor
+from flare.app_common.abstract.shareable_generator import ShareableGenerator
+from flare.app_common.app_constant import AppConstants
+from flare.app_common.app_event_type import AppEventType
 
 
 class CyclicController(Controller):

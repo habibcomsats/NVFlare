@@ -17,9 +17,9 @@ tests:
     validators:
       - path: tests.integration_test.validators.PTModelValidator
     setup:
-      - python -c "from torchvision.datasets import CIFAR10; CIFAR10(root='/tmp/nvflare/cifar10_data', download=True)"
+      - python -c "from torchvision.datasets import CIFAR10; CIFAR10(root='/tmp/flare/cifar10_data', download=True)"
     teardown:
-      - rm -rf /tmp/nvflare/cifar10_data
+      - rm -rf /tmp/flare/cifar10_data
   - test_name: "run tb_streaming"
     event_sequence:
       - "trigger":

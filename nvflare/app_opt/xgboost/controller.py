@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,16 +16,16 @@ import multiprocessing
 import os
 import traceback
 
-from nvflare.apis.client import Client
-from nvflare.apis.controller_spec import Task
-from nvflare.apis.fl_constant import FLContextKey
-from nvflare.apis.fl_context import FLContext
-from nvflare.apis.impl.controller import Controller
-from nvflare.apis.shareable import Shareable
-from nvflare.apis.signal import Signal
-from nvflare.apis.utils.common_utils import get_open_ports
-from nvflare.apis.workspace import Workspace
-from nvflare.utils.import_utils import optional_import
+from flare.apis.client import Client
+from flare.apis.controller_spec import Task
+from flare.apis.fl_constant import FLContextKey
+from flare.apis.fl_context import FLContext
+from flare.apis.impl.controller import Controller
+from flare.apis.shareable import Shareable
+from flare.apis.signal import Signal
+from flare.apis.utils.common_utils import get_open_ports
+from flare.apis.workspace import Workspace
+from flare.utils.import_utils import optional_import
 
 from .constants import XGB_TRAIN_TASK, XGBShareableHeader
 

@@ -1,7 +1,7 @@
-.. _operating_nvflare:
+.. _operating_flare:
 
 ######################################################
-Operating NVFLARE - Admin Client, Commands, FLAdminAPI
+Operating FLARE - Admin Client, Commands, FLAdminAPI
 ######################################################
 
 The FL system is operated by the packages of type admin configured at provisioning. The admin packages contain key and

@@ -1,4 +1,4 @@
-# Copyright (c) 2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@ import os
 
 import yaml
 
-from nvflare.lighter.spec import Builder
+from flare.lighter.spec import Builder
 
 
 class HelmChartBuilder(Builder):
@@ -25,7 +25,7 @@ class HelmChartBuilder(Builder):
         self.docker_image = docker_image
 
     def initialize(self, ctx):
-        self.helm_chart_directory = os.path.join(self.get_wip_dir(ctx), "nvflare_hc")
+        self.helm_chart_directory = os.path.join(self.get_wip_dir(ctx), "flare_hc")
         os.mkdir(self.helm_chart_directory)
 
     def _build_overseer(self, overseer, ctx):

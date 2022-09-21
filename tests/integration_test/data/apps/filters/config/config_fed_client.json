@@ -7,7 +7,7 @@
         "train"
       ],
       "executor": {
-        "path": "nvflare.app_common.np.np_trainer.NPTrainer",
+        "path": "flare.app_common.np.np_trainer.NPTrainer",
         "args": {}
       }
     }
@@ -17,15 +17,15 @@
       "tasks": ["train"],
       "filters": [
         {
-          "path": "nvflare.app_common.filters.exclude_vars.ExcludeVars",
+          "path": "flare.app_common.filters.exclude_vars.ExcludeVars",
           "args": {}
         },
         {
-          "path": "nvflare.app_common.filters.percentile_privacy.PercentilePrivacy",
+          "path": "flare.app_common.filters.percentile_privacy.PercentilePrivacy",
           "args": {}
         },
         {
-          "path": "nvflare.app_common.filters.svt_privacy.SVTPrivacy",
+          "path": "flare.app_common.filters.svt_privacy.SVTPrivacy",
           "args": {}
         }
       ]
@@ -36,15 +36,15 @@
       "tasks": ["train"],
       "filters": [
         {
-          "path": "nvflare.app_common.filters.exclude_vars.ExcludeVars",
+          "path": "flare.app_common.filters.exclude_vars.ExcludeVars",
           "args": {}
         },
         {
-          "path": "nvflare.app_common.filters.percentile_privacy.PercentilePrivacy",
+          "path": "flare.app_common.filters.percentile_privacy.PercentilePrivacy",
           "args": {}
         },
         {
-          "path": "nvflare.app_common.filters.svt_privacy.SVTPrivacy",
+          "path": "flare.app_common.filters.svt_privacy.SVTPrivacy",
           "args": {}
         }
       ]

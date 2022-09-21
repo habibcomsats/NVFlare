@@ -1,25 +1,25 @@
 .. _dashboard_api:
 
 #########################
-Dashboard in NVIDIA FLARE
+Dashboard in [BLINDED] FLARE
 #########################
-As mentioned in :ref:`provisioning`, NVIDIA FLARE system requires a set of startup kits
+As mentioned in :ref:`provisioning`, [BLINDED] FLARE system requires a set of startup kits
 which include the private keys and certificates, signed by the root CA, in order to communicate to one another.
-The new Dashboard in NVIDIA FLARE provides a simple way to collect information of clients and users from different organizations,
+The new Dashboard in [BLINDED] FLARE provides a simple way to collect information of clients and users from different organizations,
 as well as to generate those startup kits for users to download.
  
 Most of the details about provisioning can be found in :ref:`provisioning`.  In this section, we focus on the user interaction with Dashboard and its backend API.
 
 
 **********************************
-NVIDIA FLARE Dashboard backend API
+[BLINDED] FLARE Dashboard backend API
 **********************************
 
 Architecture
 ============
 
 The Dashboard backend API follows the Restful concept.  It defines four resources, Project, Organizations, Client and User.  There is one and only one Project.
-The Project includes information about server(s) and overseer (if in HA mode).  Clients are defined for NVIDIA FLARE clients and Users for NVIDIA FLARE admin console.
+The Project includes information about server(s) and overseer (if in HA mode).  Clients are defined for [BLINDED] FLARE clients and Users for [BLINDED] FLARE admin console.
 Organizations is a GET only operation, which returns a list of current registered organizations.
 
 Details
@@ -30,7 +30,7 @@ API
 The following is the complete definition of the backend API, written in OpenAPI 3.0 syntax.  Developers can implement the same API in different programming language or
 develop different UI while calling the same API for branding purpose.
 
-.. literalinclude:: ../../nvflare/dashboard/dashboard.yaml
+.. literalinclude:: ../../flare/dashboard/dashboard.yaml
   :language: yaml
 
 
@@ -61,12 +61,12 @@ The following is the schema of the underlying database used by the backend API.
 Dashboard commandline options
 *****************************
 
-Running ``nvflare dashboard -h`` shows all available options.
+Running ``flare dashboard -h`` shows all available options.
 
 .. code-block:: shell
 
-    (nvflare_venv) ~/workspace/repos/flare$ nvflare dashboard -h
-    usage: nvflare dashboard [-h] [--start] [--stop] [-p PORT] [-f FOLDER] [-i DASHBOARD_IMAGE] [--passphrase PASSPHRASE] [-e ENV]
+    (flare_venv) ~/workspace/repos/flare$ flare dashboard -h
+    usage: flare dashboard [-h] [--start] [--stop] [-p PORT] [-f FOLDER] [-i DASHBOARD_IMAGE] [--passphrase PASSPHRASE] [-e ENV]
 
     optional arguments:
     -h, --help            show this help message and exit
@@ -81,7 +81,7 @@ Running ``nvflare dashboard -h`` shows all available options.
                             Passphrase to encrypt/decrypt root CA private key. !!! Do not share it with others. !!!
     -e ENV, --env ENV     additonal environment variables: var1=value1
 
-To start Dashboard, run ``nvflare dashboard --start``.  For the first time, it may take a while to download the nvflare image.
+To start Dashboard, run ``flare dashboard --start``.  For the first time, it may take a while to download the flare image.
 
 We suggest you to set the passphrase to protect the private key of root CA.  Once it's set, you have to provide the same passphrase everytime you
 restart the dashboard for the same project.
@@ -101,4 +101,4 @@ by --port option.
 
     Running Dashboard requires docker.  You have to ensure your system can pull and run docker images
 
-To stop the running Dashboard, run ``nvflare dashboard --stop``.
+To stop the running Dashboard, run ``flare dashboard --stop``.

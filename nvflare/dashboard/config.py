@@ -1,4 +1,4 @@
-# Copyright (c) 2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,12 +19,12 @@ import os
 class Config:
     # General Config
     SECRET_KEY = os.environ.get("SECRET_KEY", "dev_key")
-    # FLASK_APP = "nvflare.web.wsgi.py"
+    # FLASK_APP = "flare.web.wsgi.py"
     # applicationenviron.get("FLASK_APP")
     # FLASK_ENV = environ.get("FLASK_ENV")
 
     # Database
-    web_root = os.environ.get("NVFL_WEB_ROOT", "/var/tmp/nvflare/dashboard")
+    web_root = os.environ.get("NVFL_WEB_ROOT", "/var/tmp/flare/dashboard")
     default_sqlite_file = os.path.join(web_root, "db.sqlite")
     default_sqlite_url = f"sqlite:///{default_sqlite_file}"
     SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL", default_sqlite_url)

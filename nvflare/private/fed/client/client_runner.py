@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,18 +15,18 @@
 import threading
 import time
 
-from nvflare.apis.client_engine_spec import TaskAssignment
-from nvflare.apis.event_type import EventType
-from nvflare.apis.fl_component import FLComponent
-from nvflare.apis.fl_constant import FLContextKey, ReservedKey, ReservedTopic, ReturnCode
-from nvflare.apis.fl_context import FLContext
-from nvflare.apis.shareable import Shareable, make_reply
-from nvflare.apis.signal import Signal
-from nvflare.apis.utils.fl_context_utils import add_job_audit_event
-from nvflare.private.defs import SpecialTaskName, TaskConstant
-from nvflare.private.fed.client.client_engine_executor_spec import ClientEngineExecutorSpec
-from nvflare.private.privacy_manager import Scope
-from nvflare.widgets.info_collector import GroupInfoCollector, InfoCollector
+from flare.apis.client_engine_spec import TaskAssignment
+from flare.apis.event_type import EventType
+from flare.apis.fl_component import FLComponent
+from flare.apis.fl_constant import FLContextKey, ReservedKey, ReservedTopic, ReturnCode
+from flare.apis.fl_context import FLContext
+from flare.apis.shareable import Shareable, make_reply
+from flare.apis.signal import Signal
+from flare.apis.utils.fl_context_utils import add_job_audit_event
+from flare.private.defs import SpecialTaskName, TaskConstant
+from flare.private.fed.client.client_engine_executor_spec import ClientEngineExecutorSpec
+from flare.private.privacy_manager import Scope
+from flare.widgets.info_collector import GroupInfoCollector, InfoCollector
 
 
 class ClientRunnerConfig(object):

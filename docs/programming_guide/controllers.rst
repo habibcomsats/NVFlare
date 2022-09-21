@@ -6,7 +6,7 @@ Controllers and Controller API
 Controller/Worker Interactions
 ------------------------------
 
-NVIDIA FLARE 2.0's collaborative computing is achieved through the Controller/Worker interactions. The following diagram
+[BLINDED] FLARE 2.0's collaborative computing is achieved through the Controller/Worker interactions. The following diagram
 shows how the Controller and Worker interact.
 
 .. image:: ../resources/Controller.png
@@ -25,14 +25,14 @@ to exit by the Controller (a special END_RUN task).
 Controller API
 --------------
 
-The :mod:`Controller API<nvflare.apis.controller_spec>` provides methods for assigning tasks to the Workers (FL clients)
+The :mod:`Controller API<flare.apis.controller_spec>` provides methods for assigning tasks to the Workers (FL clients)
 in different ways:
 
    - Broadcast a task to multiple clients
    - Send a task to a single client
    - Arrange a task to be done by multiple clients in turns
 
-See the included :class:`Controller<nvflare.apis.impl.controller.Controller>` implementation and full reference
+See the included :class:`Controller<flare.apis.impl.controller.Controller>` implementation and full reference
 implementations of the following controller workflows:
 
 .. toctree::
@@ -49,9 +49,9 @@ You can study the source code and use it as a starting point to write your own c
 Task Lifecycle
 --------------
 
-The central concept of the Controller API is :class:`Task<nvflare.apis.controller_spec.Task>`.
+The central concept of the Controller API is :class:`Task<flare.apis.controller_spec.Task>`.
 
-A :class:`Task<nvflare.apis.controller_spec.Task>` is a piece of work that is assigned by the Controller to client workers. Depending on how the task is assigned (broadcast, send, or relay), the task will be performed by one or more clients.
+A :class:`Task<flare.apis.controller_spec.Task>` is a piece of work that is assigned by the Controller to client workers. Depending on how the task is assigned (broadcast, send, or relay), the task will be performed by one or more clients.
 
 The Controller's Task Manager manages the task's lifecycle:
 
@@ -70,7 +70,7 @@ The Controller's Task Manager manages the task's lifecycle:
 
 .. note::
 
-    In NVIDIA FLARE 2.0, the underlying communication is by gRPC: the client always initiates communication by sending
+    In [BLINDED] FLARE 2.0, the underlying communication is by gRPC: the client always initiates communication by sending
     a request to the server and a receiving response. When we say "server sends task to the client", it is only
     conceptual. With gRPC, the client sends the "ask for next task" request to the server, and the server responds with
     the task data.

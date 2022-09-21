@@ -11,13 +11,13 @@
         }
     ],
     "snapshot_persistor": {
-        "path": "nvflare.app_common.state_persistors.storage_state_persistor.StorageStatePersistor",
+        "path": "flare.app_common.state_persistors.storage_state_persistor.StorageStatePersistor",
         "args": {
             "uri_root": "/",
             "storage": {
-                "path": "nvflare.app_common.storages.filesystem_storage.FilesystemStorage",
+                "path": "flare.app_common.storages.filesystem_storage.FilesystemStorage",
                 "args": {
-                    "root_dir": "/tmp/nvflare/snapshot-storage",
+                    "root_dir": "/tmp/flare/snapshot-storage",
                     "uri_root": "/"
                 }
             }
@@ -26,22 +26,22 @@
     "components": [
         {
             "id": "job_scheduler",
-            "path": "nvflare.app_common.job_schedulers.job_scheduler.DefaultJobScheduler",
+            "path": "flare.app_common.job_schedulers.job_scheduler.DefaultJobScheduler",
             "args": {
                 "max_jobs": 1
             }
         },
         {
             "id": "job_manager",
-            "path": "nvflare.apis.impl.job_def_manager.SimpleJobDefManager",
+            "path": "flare.apis.impl.job_def_manager.SimpleJobDefManager",
             "args": {
-                "uri_root": "/tmp/nvflare/jobs-storage",
+                "uri_root": "/tmp/flare/jobs-storage",
                 "job_store_id": "job_store"
             }
         },
         {
             "id": "job_store",
-            "path": "nvflare.app_common.storages.filesystem_storage.FilesystemStorage"
+            "path": "flare.app_common.storages.filesystem_storage.FilesystemStorage"
         }
     ]
 }

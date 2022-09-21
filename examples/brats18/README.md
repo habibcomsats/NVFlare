@@ -2,7 +2,7 @@
 
 ## Introduction to MONAI, BraTS and Differential Privacy
 ### MONAI
-This example shows how to use [NVIDIA FLARE](https://nvflare.readthedocs.io/en/main/index.html) on medical image applications.
+This example shows how to use [[BLINDED] FLARE](https://flare.readthedocs.io/en/main/index.html) on medical image applications.
 It uses [MONAI](https://github.com/Project-MONAI/MONAI),
 which is a PyTorch-based, open-source framework for deep learning in healthcare imaging, part of the PyTorch Ecosystem.
 ### BraTS
@@ -11,7 +11,7 @@ It uses a deep network model published by [Myronenko 2018](https://arxiv.org/abs
 
 The model is trained to segment 3 nested subregions of primary brain tumors (gliomas): the "enhancing tumor" (ET), the "tumor core" (TC), the "whole tumor" (WT) based on 4 aligned input MRI scans (T1c, T1, T2, FLAIR). 
 
-![](https://developer.download.nvidia.com/assets/Clara/Images/clara_pt_brain_mri_segmentation_workflow.png)
+![](https://developer.download.[BLINDED].com/assets/Clara/Images/clara_pt_brain_mri_segmentation_workflow.png)
 
 - The ET is described by areas that show hyper intensity in T1c when compared to T1, but also when compared to "healthy" white matter in T1c. 
 - The TC describes the bulk of the tumor, which is what is typically resected. The TC entails the ET, as well as the necrotic (fluid-filled) and the non-enhancing (solid) parts of the tumor. 
@@ -21,7 +21,7 @@ To run this example, please make sure you have downloaded BraTS 2018 data, which
 In this example, we split BraTS18 dataset into [4 subsets](./dataset_brats18/datalist) for 4 clients. Each client requires at least a 12 GB GPU to run. 
 ### Differential Privacy (DP)
 [Differential Privacy (DP)](https://arxiv.org/abs/1910.00962) [7] is method for ensuring that Federated Learning (FL) preserves privacy by obfuscating the model updates sent from clients to the central server.
-This example shows the usage of a MONAI-based trainer for medical image applications with NVFlare, as well as the usage of DP filters in your FL training. DP is added as a filter in `config_fed_client.json`. Here, we use the "Sparse Vector Technique", i.e. the [SVTPrivacy](https://nvflare.readthedocs.io/en/main/apidocs/nvflare.app_common.filters.svt_privacy.html) protocol, as utilized in [Li et al. 2019](https://arxiv.org/abs/1910.00962) [7] (see [Lyu et al. 2016](https://arxiv.org/abs/1603.01699) [8] for more information).
+This example shows the usage of a MONAI-based trainer for medical image applications with Flare, as well as the usage of DP filters in your FL training. DP is added as a filter in `config_fed_client.json`. Here, we use the "Sparse Vector Technique", i.e. the [SVTPrivacy](https://flare.readthedocs.io/en/main/apidocs/flare.app_common.filters.svt_privacy.html) protocol, as utilized in [Li et al. 2019](https://arxiv.org/abs/1910.00962) [7] (see [Lyu et al. 2016](https://arxiv.org/abs/1603.01699) [8] for more information).
 
 ## (Optional) 1. Set up a virtual environment
 ```
@@ -75,7 +75,7 @@ To enable multitasking (if there are more computation resources - e.g. 4 x 32 GB
 
 (Optional) If using secure workspace, in secure project configuration `secure_project.yml`, we can set the available GPU indices as `gpu: [0, 1, 2, 3]` using the `ListResourceManager` and `max_jobs: 2` in `DefaultJobScheduler`.
 
-For details, please refer to the [documentation](https://nvflare.readthedocs.io/en/main/user_guide/job.html).
+For details, please refer to the [documentation](https://flare.readthedocs.io/en/main/user_guide/job.html).
 
 ## 3. Run automated experiments
 The next scripts will start the FL server and clients automatically to run FL experiments on localhost.
@@ -111,7 +111,7 @@ bash ./submit_job.sh [config]
 `[config]` is the experiment job that will be submitted for the FL training, in this example, this includes `brats_central`, `brats_fedavg`, and `brats_fedavg_dp`.  
 
 Note that in order to make it working under most system resource conditions, the current config set `"cache_dataset": 0.0`, which could be slow. If resource permits, it will make the training much faster by caching the dataset. More information available [here](https://docs.monai.io/en/stable/data.html#cachedataset).  
-For reference, with `"cache_dataset": 0.5` setting (cache half the data), the centralized training for 100 round, 1 epoch per round takes around 24.5 hours on a 12GB NVIDIA TITAN Xp GPU. 
+For reference, with `"cache_dataset": 0.5` setting (cache half the data), the centralized training for 100 round, 1 epoch per round takes around 24.5 hours on a 12GB [BLINDED] TITAN Xp GPU. 
 ### 3.3 Centralized training
 To simulate a centralized training baseline, we run FL with 1 client using all the training data. 
 ```
@@ -133,7 +133,7 @@ bash submit_job.sh brats_fedavg_dp
 ```
 > **_NOTE:_** You can always use the admin console to manually abort a running job. 
   using `abort_job [JOB_ID]`. 
-> For a complete list of admin commands, see [here](https://nvflare.readthedocs.io/en/main/user_guide/operation.html).
+> For a complete list of admin commands, see [here](https://flare.readthedocs.io/en/main/user_guide/operation.html).
 
 > To log into the POC workspace admin console no username is required 
 > (use "admin" for commands requiring conformation with username). 
@@ -149,7 +149,7 @@ We provide a script for plotting the tensorboard records, running
 python3 ./result_stat/plot_tensorboard_events.py
 ```
 The TensorBoard curves (smoothed with weight 0.8) for validation Dice for 600 epochs (600 rounds, 1 local epoch per round) during training are shown below:
-![All training curve](./figs/nvflare_brats18.png)
+![All training curve](./figs/flare_brats18.png)
 
 As shown, FedAvg achieves similar accuracy as centralized training, while DP will lead to some performance degradation based on the specific [parameter settings](./configs/brats_fedavg_dp/config/config_fed_client.json). Different DP settings will have different impacts over the performance. 
 

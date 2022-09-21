@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -22,9 +22,9 @@ import time
 from abc import ABC, abstractmethod
 from multiprocessing.connection import Client
 
-from nvflare.apis.fl_constant import AdminCommandNames, ReturnCode, RunProcessKey
-from nvflare.apis.resource_manager_spec import ResourceManagerSpec
-from nvflare.apis.shareable import Shareable, make_reply
+from flare.apis.fl_constant import AdminCommandNames, ReturnCode, RunProcessKey
+from flare.apis.resource_manager_spec import ResourceManagerSpec
+from flare.apis.shareable import Shareable, make_reply
 
 from .client_status import ClientStatus, get_status_message
 
@@ -189,7 +189,7 @@ class ProcessExecutor(ClientExecutor):
         for t in args.set:
             command_options += " " + t
         command = (
-            f"{sys.executable} -m nvflare.private.fed.app.client.worker_process -m "
+            f"{sys.executable} -m flare.private.fed.app.client.worker_process -m "
             + args.workspace
             + " -w "
             + self.startup

@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,13 +18,13 @@ import time
 from functools import wraps
 from typing import Any, Callable, Dict, List, Optional, Tuple
 
-from nvflare.apis.fl_constant import AdminCommandNames
-from nvflare.apis.overseer_spec import OverseerAgent
-from nvflare.apis.utils.format_check import type_pattern_mapping
-from nvflare.fuel.hci.client.api import AdminAPI
-from nvflare.fuel.hci.client.api_status import APIStatus
-from nvflare.fuel.hci.client.fl_admin_api_constants import FLDetailKey
-from nvflare.fuel.hci.client.fl_admin_api_spec import APISyntaxError, FLAdminAPIResponse, FLAdminAPISpec, TargetType
+from flare.apis.fl_constant import AdminCommandNames
+from flare.apis.overseer_spec import OverseerAgent
+from flare.apis.utils.format_check import type_pattern_mapping
+from flare.fuel.hci.client.api import AdminAPI
+from flare.fuel.hci.client.api_status import APIStatus
+from flare.fuel.hci.client.fl_admin_api_constants import FLDetailKey
+from flare.fuel.hci.client.fl_admin_api_spec import APISyntaxError, FLAdminAPIResponse, FLAdminAPISpec, TargetType
 
 from .overseer_service_finder import ServiceFinderByOverseer
 

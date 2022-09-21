@@ -1,4 +1,4 @@
-# Copyright (c) 2021, NVIDIA CORPORATION.
+# Copyright (c) 2021, [BLINDED] CORPORATION.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,13 +18,13 @@ import os
 import tensorflow as tf
 from tf2_net import Net
 
-from nvflare.apis.event_type import EventType
-from nvflare.apis.fl_constant import FLContextKey
-from nvflare.apis.fl_context import FLContext
-from nvflare.app_common.abstract.model import ModelLearnable, make_model_learnable
-from nvflare.app_common.abstract.model_persistor import ModelPersistor
-from nvflare.app_common.app_constant import AppConstants
-from nvflare.fuel.utils import fobs
+from flare.apis.event_type import EventType
+from flare.apis.fl_constant import FLContextKey
+from flare.apis.fl_context import FLContext
+from flare.app_common.abstract.model import ModelLearnable, make_model_learnable
+from flare.app_common.abstract.model_persistor import ModelPersistor
+from flare.app_common.app_constant import AppConstants
+from flare.fuel.utils import fobs
 
 
 class TF2ModelPersistor(ModelPersistor):

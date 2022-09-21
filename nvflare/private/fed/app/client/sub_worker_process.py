@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2021-2022, [BLINDED] CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -23,19 +23,19 @@ import time
 import traceback
 from multiprocessing.connection import Client, Listener
 
-from nvflare.apis.fl_component import FLComponent
-from nvflare.apis.fl_constant import FLContextKey
-from nvflare.apis.fl_context import FLContext
-from nvflare.apis.signal import Signal
-from nvflare.apis.utils.fl_context_utils import get_serializable_data
-from nvflare.apis.workspace import Workspace
-from nvflare.fuel.common.multi_process_executor_constants import CommunicateData, CommunicationMetaData
-from nvflare.fuel.sec.audit import AuditService
-from nvflare.fuel.sec.security_content_service import SecurityContentService
-from nvflare.private.fed.app.fl_conf import create_privacy_manager
-from nvflare.private.fed.client.client_run_manager import ClientRunManager
-from nvflare.private.fed.utils.fed_utils import add_logfile_handler, configure_logging
-from nvflare.private.privacy_manager import PrivacyService
+from flare.apis.fl_component import FLComponent
+from flare.apis.fl_constant import FLContextKey
+from flare.apis.fl_context import FLContext
+from flare.apis.signal import Signal
+from flare.apis.utils.fl_context_utils import get_serializable_data
+from flare.apis.workspace import Workspace
+from flare.fuel.common.multi_process_executor_constants import CommunicateData, CommunicationMetaData
+from flare.fuel.sec.audit import AuditService
+from flare.fuel.sec.security_content_service import SecurityContentService
+from flare.private.fed.app.fl_conf import create_privacy_manager
+from flare.private.fed.client.client_run_manager import ClientRunManager
+from flare.private.fed.utils.fed_utils import add_logfile_handler, configure_logging
+from flare.private.privacy_manager import PrivacyService
 
 
 class EventRelayer(FLComponent):

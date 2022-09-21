@@ -7,19 +7,19 @@ Before You Start
 ----------------
 
 Feel free to refer to the :doc:`detailed documentation <../programming_guide>` at any point
-to learn more about the specifics of `NVIDIA FLARE <https://pypi.org/project/nvflare/>`_.
+to learn more about the specifics of `[BLINDED] FLARE <https://pypi.org/project/flare/>`_.
 
-Make sure you have an environment with NVIDIA FLARE installed.
+Make sure you have an environment with [BLINDED] FLARE installed.
 
 You can follow the :ref:`installation <installation>` guide on the general concept of setting up a
-Python virtual environment (the recommended environment) and how to install NVIDIA FLARE.
+Python virtual environment (the recommended environment) and how to install [BLINDED] FLARE.
 
 
 Introduction
 -------------
 
-Through this exercise, you will integrate NVIDIA FLARE with the popular
-deep learning framework `PyTorch <https://pytorch.org/>`_ and learn how to use NVIDIA FLARE to train a convolutional
+Through this exercise, you will integrate [BLINDED] FLARE with the popular
+deep learning framework `PyTorch <https://pytorch.org/>`_ and learn how to use [BLINDED] FLARE to train a convolutional
 network with the CIFAR10 dataset using the included Scatter and Gather workflow.
 
 The setup of this exercise consists of one **server** and two **clients**.
@@ -41,15 +41,15 @@ Now that you have a rough idea of what is going on, let's get started. First clo
 
 .. code-block:: shell
 
-  $ git clone https://github.com/NVIDIA/NVFlare.git
+  $ git clone https://github.com/[BLINDED]/Flare.git
 
-Now remember to activate your NVIDIA FLARE Python virtual environment from the installation guide.
+Now remember to activate your [BLINDED] FLARE Python virtual environment from the installation guide.
 
 Since you will use PyTorch and torchvision for this exercise, let's go ahead and install both libraries: 
 
 .. code-block:: shell
 
-  (nvflare-env) $ python3 -m pip install torch torchvision
+  (flare-env) $ python3 -m pip install torch torchvision
 
 
 .. note::
@@ -59,11 +59,11 @@ Since you will use PyTorch and torchvision for this exercise, let's go ahead and
 
   .. code-block:: shell
   
-    (nvflare-env) $ python3 -m pip install torch torchvision Pillow==8.2.0
+    (flare-env) $ python3 -m pip install torch torchvision Pillow==8.2.0
 
 If you would like to go ahead and run the exercise now, you can skip directly to :ref:`hands-on`.
 
-NVIDIA FLARE Client
+[BLINDED] FLARE Client
 -------------------
 
 Neural Network
@@ -85,12 +85,12 @@ Let's see what an extremely simplified CIFAR10 training looks like:
    :caption: simple_network.py
 
 This ``SimpleNetwork`` class is your convolutional neural network to train with the CIFAR10 dataset.
-This is not related to NVIDIA FLARE, so we implement it in a file called ``simple_network.py``.
+This is not related to [BLINDED] FLARE, so we implement it in a file called ``simple_network.py``.
 
 Dataset & Setup
 ^^^^^^^^^^^^^^^^
 
-Now implement the custom class ``Cifar10Trainer`` as an NVIDIA FLARE Executor in a file
+Now implement the custom class ``Cifar10Trainer`` as an [BLINDED] FLARE Executor in a file
 called ``cifar10trainer.py``.
 
 In a real FL experiment, each client would have their own dataset used for their local training.
@@ -121,14 +121,14 @@ Let's also implement a local training loop in a method called ``local_train``:
 
 .. note::
 
-  Everything up to this point is completely independent of NVIDIA FLARE. It is just purely a PyTorch
-  deep learning exercise.  You will now build the NVIDIA FLARE application based on this PyTorch code.
+  Everything up to this point is completely independent of [BLINDED] FLARE. It is just purely a PyTorch
+  deep learning exercise.  You will now build the [BLINDED] FLARE application based on this PyTorch code.
 
 
-Integrate NVIDIA FLARE with Local Train
+Integrate [BLINDED] FLARE with Local Train
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-NVIDIA FLARE makes it easy to integrate your local train code into the NVIDIA FLARE API.
+[BLINDED] FLARE makes it easy to integrate your local train code into the [BLINDED] FLARE API.
 
 The simplest way to do this is to subclass the ``Executor`` class and
 implement one method ``execute``, which is called every time the client receives
@@ -139,7 +139,7 @@ We can then call our local train inside the ``execute`` method.
 .. note::
 
   The ``execute`` method inside the ``Executor`` class is where all of the client side computation occurs.
-  In these exercises, we update the weights by training on a local dataset, however, it is important to remember that NVIDIA FLARE is not restricted to just deep learning.
+  In these exercises, we update the weights by training on a local dataset, however, it is important to remember that [BLINDED] FLARE is not restricted to just deep learning.
   The type of data passed between the server and the clients, and the computations that the clients perform can be anything, as long as all of the FL Components agree on the same format.
 
 Take a look at the following code:
@@ -149,7 +149,7 @@ Take a look at the following code:
    :pyobject: Cifar10Trainer.execute
 
 The concept of ``Shareable`` is described in :ref:`shareable <shareable>`.
-Essentially, every NVIDIA FLARE client receives the model weights from the server in ``shareable`` format.
+Essentially, every [BLINDED] FLARE client receives the model weights from the server in ``shareable`` format.
 It is then passed into the ``execute`` method, and returns a new ``shareable`` back to the server.
 The data is managed by using DXO (see :ref:`data_exchange_object` for details).
 
@@ -159,7 +159,7 @@ the first part of the code block above before ``local_train`` is called.
 We then perform a local train so the client's model is trained with its own dataset.
 
 After finishing the local train, the train method builds a new ``shareable`` with newly-trained weights
-and metadata and returns it back to the NVIDIA FLARE server for aggregation.
+and metadata and returns it back to the [BLINDED] FLARE server for aggregation.
 
 There is additional logic to handle the "submit_model" task, but that is for the CrossSiteModelEval workflow,
 so we will be addressing that in a later example.
@@ -171,14 +171,14 @@ The ``FLContext`` is used to set and retrieve FL related information among the F
 ``get_prop()`` as well as get services provided by the underlying infrastructure. You can find more details in the
 :ref:`documentation <fl_context>`.
 
-NVIDIA FLARE Server & Application
+[BLINDED] FLARE Server & Application
 ---------------------------------
 
-In this exercise, you can use the default settings, which leverage NVIDIA FLARE built-in components for NVIDIA FLARE server.
+In this exercise, you can use the default settings, which leverage [BLINDED] FLARE built-in components for [BLINDED] FLARE server.
 
 These built-in components are commonly used in most deep learning scenarios.
 
-However, you are encouraged to build your own components to fully customize NVIDIA FLARE to meet your environment,
+However, you are encouraged to build your own components to fully customize [BLINDED] FLARE to meet your environment,
  which we will demonstrate in the following exercises.
 
 
@@ -196,9 +196,9 @@ Take a look at line 8.
 
 This is the ``Cifar10Trainer`` you just implemented.
 
-The NVIDIA FLARE client loads this application configuration and picks your implementation.
+The [BLINDED] FLARE client loads this application configuration and picks your implementation.
 
-You can easily change it to another class so your NVIDIA FLARE client has different training logic.
+You can easily change it to another class so your [BLINDED] FLARE client has different training logic.
 
 The tasks "train" and "submit_model" have been configured to work with the ``Cifar10Trainer`` Executor.
 The "validate" task for ``Cifar10Validator`` and the "submit_model" task are used for the ``CrossSiteModelEval`` workflow,
@@ -210,14 +210,14 @@ so we will be addressing that in a later example.
    :linenos:
    :caption: config_fed_server.json
 
-The server application configuration, like said before, leverages NVIDIA FLARE built-in components.
+The server application configuration, like said before, leverages [BLINDED] FLARE built-in components.
 Remember, you are encouraged to change them to your own classes whenever you have different application logic.
 
 Note that on line 12, ``persistor`` points to ``PTFileModelPersistor``.
-NVIDIA FLARE provides a built-in PyTorch implementation for a model persistor,
+[BLINDED] FLARE provides a built-in PyTorch implementation for a model persistor,
 however for other frameworks/libraries, you will have to implement your own.
 
-The Scatter and Gather workflow is implemented by :class:`ScatterAndGather<nvflare.app_common.workflows.scatter_and_gather.ScatterAndGather>`
+The Scatter and Gather workflow is implemented by :class:`ScatterAndGather<flare.app_common.workflows.scatter_and_gather.ScatterAndGather>`
 and is configured to make use of the components with id "aggregator", "persistor", and "shareable_generator".
 The workflow code is all open source now, so feel free to study and use it as inspiration
 to write your own workflows to support your needs.
@@ -238,4 +238,4 @@ Congratulations!
 You've successfully built and run your first federated learning system.
 
 The full source code for this exercise can be found in
-`examples/hello-pt <https://github.com/NVIDIA/NVFlare/tree/main/examples/hello-pt/>`_.
+`examples/hello-pt <https://github.com/[BLINDED]/Flare/tree/main/examples/hello-pt/>`_.
