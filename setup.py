@@ -40,7 +40,7 @@ if versions["error"]:
 else:
     version = versions["version"]
 
-release = os.environ.get("NVFL_RELEASE")
+release = os.environ.get("FL_RELEASE")
 if release == "1":
     package_name = "flare"
 else:
