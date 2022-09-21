@@ -199,7 +199,7 @@ class TrainingCommandModule(CommandModule, CommandUtil):
                 )  # need this because not set in validate_command_targets when target_type == self.TARGET_TYPE_SERVER
                 response = self._restart_clients(conn, tokens)
                 conn.append_string(response)
-                # check with Isaac - no need to wait!
+                # check - no need to wait!
                 # time.sleep(5)
 
             err = engine.restart_server()
