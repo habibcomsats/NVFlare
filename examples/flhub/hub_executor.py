@@ -87,10 +87,12 @@ class HubExecutor(Executor):
                     return make_reply(ReturnCode.EXECUTION_EXCEPTION)
                 dxo = from_shareable(data)
                 # add important meta information
-                print("$$$$$$$$$$$$$$ data header")
+                print("==== Piped data ====")
+                print("dxo:", dxo.data_kind, len(dxo.data))
                 print("NUM_STEPS_CURRENT_ROUND", data.get_header(MetaKey.NUM_STEPS_CURRENT_ROUND))
                 print("INITIAL_METRICS", data.get_header(MetaKey.INITIAL_METRICS))
                 print("CURRENT_ROUND", data.get_header(AppConstants.CURRENT_ROUND), self.round)
+                print("=====================")
                 return_shareable = dxo.to_shareable()
                 return_shareable.set_header(MetaKey.NUM_STEPS_CURRENT_ROUND, 1)
                 return_shareable.set_header(MetaKey.INITIAL_METRICS, 1.0)
