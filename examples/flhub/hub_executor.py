@@ -21,7 +21,8 @@ from nvflare.apis.shareable import Shareable, make_reply
 from nvflare.apis.signal import Signal
 from nvflare.fuel.utils.pipe.pipe import Pipe
 from .defs import Topic, send_to_pipe, receive_from_pipe
-
+from nvflare.apis.dxo import MetaKey
+from nvflare.app_common.app_constant import AppConstants
 import time
 
 
@@ -36,6 +37,7 @@ class HubExecutor(Executor):
         self.task_wait_time = task_wait_time
         self.result_poll_interval = result_poll_interval
         self.pipe = None
+        self.round = 0
 
     def handle_event(self, event_type: str, fl_ctx: FLContext):
         engine = fl_ctx.get_engine()
@@ -81,8 +83,18 @@ class HubExecutor(Executor):
                 self.log_info(fl_ctx, f"got result for task '{topic}' from T2")
                 if not isinstance(data, Shareable):
                     self.log_error(fl_ctx,
-                                   f"bad result data from T2 - must be Shareable butt got {type(data)}")
+                                   f"bad result data from T2 - must be Shareable but got {type(data)}")
                     return make_reply(ReturnCode.EXECUTION_EXCEPTION)
                 dxo = from_shareable(data)
-                return dxo.to_shareable()
+                # add important meta information
+                print("$$$$$$$$$$$$$$ data header")
+                print("NUM_STEPS_CURRENT_ROUND", data.get_header(MetaKey.NUM_STEPS_CURRENT_ROUND))
+                print("INITIAL_METRICS", data.get_header(MetaKey.INITIAL_METRICS))
+                print("CURRENT_ROUND", data.get_header(AppConstants.CURRENT_ROUND), self.round)
+                return_shareable = dxo.to_shareable()
+                return_shareable.set_header(MetaKey.NUM_STEPS_CURRENT_ROUND, 1)
+                return_shareable.set_header(MetaKey.INITIAL_METRICS, 1.0)
+                return_shareable.set_header(AppConstants.CURRENT_ROUND, self.round)
+                self.round += 1
+                return return_shareable
             time.sleep(self.result_poll_interval)
