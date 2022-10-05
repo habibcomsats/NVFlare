@@ -37,7 +37,6 @@ class HubExecutor(Executor):
         self.task_wait_time = task_wait_time
         self.result_poll_interval = result_poll_interval
         self.pipe = None
-        self.round = 0
 
     def handle_event(self, event_type: str, fl_ctx: FLContext):
         engine = fl_ctx.get_engine()
@@ -85,18 +84,13 @@ class HubExecutor(Executor):
                     self.log_error(fl_ctx,
                                    f"bad result data from T2 - must be Shareable but got {type(data)}")
                     return make_reply(ReturnCode.EXECUTION_EXCEPTION)
-                dxo = from_shareable(data)
                 # add important meta information
-                print("==== Piped data ====")
+                self.log_info(fl_ctx, "==== Piped data ====")
+                dxo = from_shareable(data)
                 print("dxo:", dxo.data_kind, len(dxo.data))
-                print("NUM_STEPS_CURRENT_ROUND", data.get_header(MetaKey.NUM_STEPS_CURRENT_ROUND))
-                print("INITIAL_METRICS", data.get_header(MetaKey.INITIAL_METRICS))
-                print("CURRENT_ROUND", data.get_header(AppConstants.CURRENT_ROUND), self.round)
+                print("CURRENT_ROUND", shareable.get_header(AppConstants.CURRENT_ROUND))
+                print("DXO meta props", dxo.get_meta_props())
                 print("=====================")
-                return_shareable = dxo.to_shareable()
-                return_shareable.set_header(MetaKey.NUM_STEPS_CURRENT_ROUND, 1)
-                return_shareable.set_header(MetaKey.INITIAL_METRICS, 1.0)
-                return_shareable.set_header(AppConstants.CURRENT_ROUND, self.round)
-                self.round += 1
-                return return_shareable
+                data.set_header(AppConstants.CURRENT_ROUND, shareable.get_header(AppConstants.CURRENT_ROUND))
+                return data
             time.sleep(self.result_poll_interval)
