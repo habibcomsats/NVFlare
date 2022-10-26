@@ -105,7 +105,7 @@ class FlightCheckController(Controller):
         success = self.checker.final_check(fl_ctx)
         if not success:
             self.system_panic(
-                reason=f"FlightChecker {type(self.checker)} failed to final check",
+                reason=f"FlightChecker {type(self.checker)} failed final check!",
                 fl_ctx=fl_ctx
             )
             return

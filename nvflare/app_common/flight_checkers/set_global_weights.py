@@ -17,6 +17,7 @@ from nvflare.apis.dxo import DataKind, from_shareable
 from nvflare.apis.fl_context import FLContext
 from nvflare.apis.shareable import Shareable
 from nvflare.app_common.abstract.flight_checker import FlightChecker
+from nvflare.app_common.abstract.model import make_model_learnable
 from nvflare.app_common.app_constant import AppConstants
 
 
@@ -27,11 +28,12 @@ class WeightMethod(object):
 
 
 class SetGlobalWeights(FlightChecker):
-
-    def __init__(self,
-                 weights_prop_name: str=AppConstants.GLOBAL_MODEL,
-                 weight_method: str=WeightMethod.FIRST,
-                 client_name: str=""):
+    def __init__(
+        self,
+        weights_prop_name: str = AppConstants.GLOBAL_MODEL,
+        weight_method: str = WeightMethod.FIRST,
+        client_name: str = "",
+    ):
         """Set global model weights based on specified weight setting method.
 
         Args:
@@ -67,12 +69,7 @@ class SetGlobalWeights(FlightChecker):
         self.final_weights = None
         return Shareable()
 
-    def process_client_report(
-            self,
-            client: Client,
-            task_name: str,
-            report: Shareable,
-            fl_ctx: FLContext) -> bool:
+    def process_client_report(self, client: Client, task_name: str, report: Shareable, fl_ctx: FLContext) -> bool:
         """Process the weights submitted by a client.
 
         Args:
@@ -88,26 +85,21 @@ class SetGlobalWeights(FlightChecker):
         """
         if not isinstance(report, Shareable):
             self.log_error(
-                fl_ctx,
-                f"bad report from client {client.name}: "
-                f"report must be Shareable but got {type(report)}"
+                fl_ctx, f"bad report from client {client.name}: " f"report must be Shareable but got {type(report)}"
             )
             return False
 
         try:
             dxo = from_shareable(report)
         except:
-            self.log_exception(
-                fl_ctx,
-                f"bad report from client {client.name}: "
-                f"it does not contain DXO")
+            self.log_exception(fl_ctx, f"bad report from client {client.name}: " f"it does not contain DXO")
             return False
 
         if dxo.data_kind != DataKind.WEIGHTS:
             self.log_error(
                 fl_ctx,
                 f"bad report from client {client.name}: "
-                f"data_kind should be DataKind.WEIGHTS but got {dxo.data_kind}"
+                f"data_kind should be DataKind.WEIGHTS but got {dxo.data_kind}",
             )
             return False
 
@@ -116,9 +108,10 @@ class SetGlobalWeights(FlightChecker):
             self.log_error(fl_ctx, f"No model weights found from client {client.name}")
             return False
 
-        if not self.final_weights and \
-                (self.weight_method == WeightMethod.FIRST or
-                 (self.weight_method == WeightMethod.CLIENT and client.name == self.client_name)):
+        if not self.final_weights and (
+            self.weight_method == WeightMethod.FIRST
+            or (self.weight_method == WeightMethod.CLIENT and client.name == self.client_name)
+        ):
             self.final_weights = weights
 
         return True
@@ -138,6 +131,5 @@ class SetGlobalWeights(FlightChecker):
             return False
 
         # must set sticky to True so other controllers can get it!
-        fl_ctx.set_prop(self.weights_prop_name, self.final_weights,
-                        private=True, sticky=True)
+        fl_ctx.set_prop(self.weights_prop_name, make_model_learnable(self.final_weights, {}), private=True, sticky=True)
         return True

@@ -155,11 +155,11 @@ class ScatterAndGather(Controller):
         fl_ctx.set_prop(AppConstants.START_ROUND, self._start_round, private=True, sticky=True)
         fl_ctx.set_prop(AppConstants.NUM_ROUNDS, self._num_rounds, private=True, sticky=False)
         self._global_weights = self.persistor.load(fl_ctx)
-        if not self._global_weights:
+        if self._global_weights.is_empty():
             # see whether it is available from fl_ctx
             self._global_weights = fl_ctx.get_prop(AppConstants.GLOBAL_MODEL)
 
-        if not self._global_weights:
+        if self._global_weights.is_empty():
             self.system_panic(
                 reason="missing initial global model weights",
                 fl_ctx=fl_ctx
