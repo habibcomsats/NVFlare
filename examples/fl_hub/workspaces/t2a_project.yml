@@ -44,7 +44,7 @@ participants:
   - name: site_a-10
     type: client
     org: nvidia
-  - name: admin@nvflare.com
+  - name: admin@nvidia.com
     type: admin
     org: nvidia
     role: project_admin

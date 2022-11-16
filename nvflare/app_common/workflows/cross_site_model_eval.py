@@ -376,7 +376,10 @@ class CrossSiteModelEval(Controller):
             leaf_dxos, errors = get_leaf_dxos(dxo, client_name)
             if errors:
                 for err in errors:
-                    self.log_error(fl_ctx, f"Bad result from {client_name}: {err}")
+                    self.log_error(
+                        fl_ctx,
+                        f"Bad result from {client_name}: {err}"
+                    )
             for k, v in leaf_dxos.items():
                 self._save_client_model(k, v, fl_ctx)
 
@@ -455,22 +458,23 @@ class CrossSiteModelEval(Controller):
             leaf_dxos, errors = get_leaf_dxos(dxo, client_name)
             if errors:
                 for err in errors:
-                    self.log_error(fl_ctx, f"Bad result from {client_name}: {err}")
+                    self.log_error(
+                        fl_ctx,
+                        f"Bad result from {client_name}: {err}"
+                    )
             for k, v in leaf_dxos.items():
                 self._save_validation_result(k, model_owner, v, fl_ctx)
 
     def _save_validation_result(self, client_name: str, model_name: str, dxo, fl_ctx):
         file_name = client_name + "_" + model_name
         file_path = self._save_dxo_content(file_name, self._cross_val_results_dir, dxo, fl_ctx)
-        models_dict = self._val_results.get(client_name)
-        if models_dict:
-            models_dict.update({model_name: file_path})
-        else:
-            models_dict = {model_name: file_path}
-        self._val_results.update({client_name: models_dict})
-        self.log_info(
-            fl_ctx, f"Saved validation result from client '{client_name}' on model '{model_name}' in {file_path}"
-        )
+        client_results = self._val_results.get(client_name, None)
+        if not client_results:
+            client_results = {}
+            self._val_results[client_name] = client_results
+        client_results[model_name] = file_path
+        self.log_info(fl_ctx,
+                      f"Saved validation result from client '{client_name}' on model '{model_name}' in {file_path}")
 
     def _save_dxo_content(self, name: str, save_dir: str, dxo: DXO, fl_ctx: FLContext) -> str:
         """Saves shareable to given directory within the app_dir.

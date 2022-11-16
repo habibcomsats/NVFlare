@@ -1,5 +1,5 @@
 api_version: 3
-name: t1_project
+name: t2b_project
 description: NVIDIA FLARE integration_test project yaml file
 
 participants:
@@ -12,15 +12,39 @@ participants:
   - name: localhost
     type: server
     org: nvidia
-    fed_learn_port: 8002
-    admin_port: 8003
-  - name: t1_client_a
+    fed_learn_port: 8202
+    admin_port: 8203
+  - name: site_b-1
     type: client
     org: nvidia
-  - name: t1_client_b
+  - name: site_b-2
     type: client
     org: nvidia
-  - name: admin@nvflare.com
+  - name: site_b-3
+    type: client
+    org: nvidia
+  - name: site_b-4
+    type: client
+    org: nvidia
+  - name: site_b-5
+    type: client
+    org: nvidia
+  - name: site_b-6
+    type: client
+    org: nvidia
+  - name: site_b-7
+    type: client
+    org: nvidia
+  - name: site_b-8
+    type: client
+    org: nvidia
+  - name: site_b-9
+    type: client
+    org: nvidia
+  - name: site_b-10
+    type: client
+    org: nvidia
+  - name: admin@nvidia.com
     type: admin
     org: nvidia
     role: project_admin
@@ -41,7 +65,7 @@ builders:
         # if overseer_exists is false, args in this section will be used.
         overseer_exists: false
         args:
-           sp_end_point: localhost:8002:8003
+           sp_end_point: localhost:8202:8203
            heartbeat_interval: 6
   - path: nvflare.lighter.impl.cert.CertBuilder
   - path: nvflare.lighter.impl.signature.SignatureBuilder
